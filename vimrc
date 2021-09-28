@@ -48,8 +48,7 @@ set smartcase
 
 " Enable spell checker
 set spell
-" I'm not sure how to get the spellcheck to work with German
-" set spelllang=en,de_de
+set spelllang=en,de
 
 " Increase undo history
 set history=1000
@@ -66,3 +65,4 @@ set lazyredraw
 set encoding=utf-8
 colorscheme elflord
 set textwidth=80
+set showcmd

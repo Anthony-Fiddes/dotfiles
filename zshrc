@@ -70,7 +70,8 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colemak dotenv fd git-escape-magic gitignore golang pip python ubuntu vscode zsh-interactive-cd)
+plugins=(git colemak dotenv fd fzf fzf-tab git-escape-magic gitignore golang pip python
+ubuntu vscode) 
 
 source $ZSH/oh-my-zsh.sh
 
