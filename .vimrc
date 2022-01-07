@@ -17,11 +17,12 @@ set visualbell
 set autoindent
 
 " Expand tabs into spaces
-set expandtab
+" set expandtab
 
 " Insert 'tabstop' number of spaces on tab.
 set smarttab
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 
 " Always display the status bar
@@ -60,9 +61,19 @@ set title
 set wrap
 set linebreak
 
+" Make buffers useful
+set hidden
+
+" Write the contents of a file on calling make or GoBuild
+set autowrite
+
+"Omni Completion
+filetype plugin on
+
 " Hopefully self-explanatory stuff
 set lazyredraw
 set encoding=utf-8
-colorscheme elflord
 set textwidth=80
 set showcmd
+set termguicolors
+set relativenumber

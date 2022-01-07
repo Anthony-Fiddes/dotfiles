@@ -108,10 +108,14 @@ export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/scripts
 
 # Aliases
+alias bat=batcat
 alias code=codium
+alias fd=fdfind
 alias ipython=ipython3
 alias open=xdg-open
 alias python=python3
+alias vim=nvim
+alias vimm="command vim"
 
 # Misc
 bindkey '^H' backward-kill-word
