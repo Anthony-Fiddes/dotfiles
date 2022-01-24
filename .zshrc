@@ -71,7 +71,7 @@ ZSH_THEME="af-magic"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git colemak dotenv fd fzf fzf-tab git-escape-magic gitignore golang pip python
-ubuntu vscode) 
+tmux ubuntu vscode) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,5 +117,23 @@ alias python=python3
 alias vim=nvim
 alias vimm="command vim"
 
+# Functions
+
+# Turns off ipv6 temporarily. You can turn it back on by rebooting or calling
+# ipv6_on.
+# Sourced from: https://itsfoss.com/disable-ipv6-ubuntu-linux/
+function ipv6_off(){
+	sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+	sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+	sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+}
+
+# See ipv6 above
+function ipv6_on(){
+	sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
+	sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0
+	sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=0
+}
+ 
 # Misc
 bindkey '^H' backward-kill-word
