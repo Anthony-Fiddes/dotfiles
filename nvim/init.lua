@@ -1,3 +1,5 @@
+--- Everything else ---
+vim.cmd([[
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
@@ -14,7 +16,7 @@ call plug#begin()
 	Plug 'SirVer/ultisnips'
 	Plug 'tpope/vim-surround'
 	Plug 'preservim/nerdcommenter'
-	Plug 'vimwiki/vimwiki'
+	" Plug 'vimwiki/vimwiki'
 	Plug 'vim-pandoc/vim-pandoc'
 	Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'folke/which-key.nvim'
@@ -68,6 +70,8 @@ let g:vimwiki_list = [{'path': '~/Documents/second_brain',
 " Pandoc Syntax
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#keyboard#blacklist_submodule_mappings = ["checkboxes"]
+let g:pandoc#formatting#mode = "hA"
+let g:pandoc#folding#mode = "relative"
 
 " IPA Keybindings
 inoremap <leader>ia<Space>  ɑ
@@ -85,9 +89,9 @@ inoremap <leader>iu         ʊ
 inoremap <leader>iv         ʌ
 inoremap <leader>iz         ʒ
 inoremap <leader>i?         ʔ
+]])
 
-" LSP Keybindings
-lua << EOF
+--- LSP Keybindings ---
 local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
@@ -124,7 +128,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls' }
+local servers = { 'gopls', 'sumneko_lua' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -133,11 +137,7 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-EOF
 
-" Whichkey
-lua << EOF
-  require("which-key").setup {
-  }
-EOF
+---  Whichkey ---
+require("which-key").setup {}
 

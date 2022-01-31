@@ -67,6 +67,7 @@ filetype plugin on
 " Hopefully self-explanatory stuff
 set lazyredraw
 set encoding=utf-8
+set formatoptions+=t
 set textwidth=80
 set showcmd
 set termguicolors
