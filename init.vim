@@ -14,8 +14,15 @@ call plug#begin()
 	Plug 'SirVer/ultisnips'
 	Plug 'tpope/vim-surround'
 	Plug 'preservim/nerdcommenter'
-	Plug 'ray-x/lsp_signature.nvim'
+	Plug 'vimwiki/vimwiki'
+	Plug 'vim-pandoc/vim-pandoc'
+	Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'folke/which-key.nvim'
 	Plug 'neovim/nvim-lspconfig'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'tpope/vim-fugitive'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
 	" Go
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
@@ -35,10 +42,49 @@ let g:airline_symbols.maxlinenr = '☰'
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>d  <Plug>(go-doc)
-autocmd FileType go nmap <leader>f  <Plug>(go-def)
+autocmd FileType go nmap <leader>D  <Plug>(go-def)
 lua << EOF
 require'lspconfig'.gopls.setup{}
 EOF
+
+" FZF
+" 'find buffer'
+nnoremap <silent> <Leader>fb :Buffers<CR> 
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <M-p> :GFiles<CR>
+nnoremap <silent> <C-f> :BLines<CR>
+" 'find commit'
+nnoremap <silent> <Leader>fc :Commits<CR> 
+nnoremap <silent> <Leader>H :Helptags<CR>
+nnoremap <silent> <Leader>hh :History<CR>
+nnoremap <silent> <Leader>hc :Commands<CR>
+nnoremap <silent> <Leader>h: :History:<CR>
+nnoremap <silent> <Leader>h/ :History/<CR> 
+
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/Documents/second_brain',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" Pandoc Syntax
+let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#keyboard#blacklist_submodule_mappings = ["checkboxes"]
+
+" IPA Keybindings
+inoremap <leader>ia<Space>  ɑ
+inoremap <leader>iae        æ
+inoremap <leader>id         ð
+inoremap <leader>i3         ɛ
+inoremap <leader>ie         ə
+inoremap <leader>ii         ɪ
+inoremap <leader>in         ŋ
+inoremap <leader>io         ɔ
+inoremap <leader>ir         ɾ
+inoremap <leader>is         ʃ
+inoremap <leader>it         θ
+inoremap <leader>iu         ʊ
+inoremap <leader>iv         ʌ
+inoremap <leader>iz         ʒ
+inoremap <leader>i?         ʔ
 
 " LSP Keybindings
 lua << EOF
@@ -74,7 +120,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -89,3 +134,10 @@ for _, lsp in ipairs(servers) do
   }
 end
 EOF
+
+" Whichkey
+lua << EOF
+  require("which-key").setup {
+  }
+EOF
+
