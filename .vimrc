@@ -1,3 +1,6 @@
+" change directory to that of the current file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
 " For security
 set modelines=0
 
@@ -24,15 +27,6 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
-" Always display the status bar
-" set laststatus=2
-
-" Show line number on current line and relative line numbers on others
-" set relativenumber
-
-" Always show the cursor
-" set ruler
 
 " Highlight the line under the cursor
 " set cursorline
@@ -77,3 +71,4 @@ set textwidth=80
 set showcmd
 set termguicolors
 set relativenumber
+set nocompatible
