@@ -1,14 +1,75 @@
+-- helpers stolen from oroques.dev/notes/neovim-init/
+local g = vim.g      -- a table to access global variables
+local opt = vim.opt  -- to set options
+
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+--- Keybindings
+-- change directory to that of the current file
+map('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>:pwd<CR>')
+
+-- Don't let Vim do unsafe stuff
+opt.modelines = 0
+-- No annoying beep
+opt.visualbell = true
+-- visual autocomplete for the command menu
+opt.wildmenu = true
+-- insert "tabstop" number of spaces on tab
+opt.tabstop = 4
+opt.smarttab = true
+opt.softtabstop = 4
+opt.shiftwidth = 4
+-- highlight the line under the cursor
+opt.cursorline = true
+-- Pay attention to case if there is an upper case letter
+opt.smartcase = true
+-- Increase undo history
+opt.history = 1000
+-- Set window title to reflect the file being edited
+opt.title = true
+-- Enable line wrapping, but not in  the middle of a word
+opt.wrap = true
+opt.linebreak = true
+-- Write the contents of a file on calling make or GoBuild
+opt.autowrite = true
+-- Make buffers useful
+opt.hidden = true
+
+-- Hopefully self-explanatory stuff
+opt.autoindent = true
+opt.number = true
+opt.syntax = "ON"
+opt.hlsearch = true
+opt.incsearch = true
+opt.ignorecase = true
+opt.spell = true
+opt.spelllang = "en,de"
+opt.lazyredraw = true
+opt.encoding = "utf-8"
+opt.textwidth = 80
+opt.showcmd = true
+opt.termguicolors = true
+opt.relativenumber = true
+opt.compatible = false
+
+
 --- Everything else ---
 vim.cmd([[
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-source ~/.vimrc
+"Omni Completion
+filetype plugin on
 
 call plug#begin()
     " Themes
     Plug 'EdenEast/nightfox.nvim'
     Plug 'arcticicestudio/nord-vim'
-    Plug 'vim-airline/vim-airline'
+	Plug 'nvim-lualine/lualine.nvim'
+	Plug 'kyazdani42/nvim-web-devicons'
     " Things that make my life easier
     Plug 'preservim/nerdtree' |
            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
@@ -30,15 +91,6 @@ call plug#begin()
 call plug#end()
 
 colorscheme nord
-
-" Airline
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_powerline_fonts = 1
-let g:airline_symbols.colnr = ' '
-let g:airline_symbols.linenr = ' '
-let g:airline_symbols.maxlinenr = '☰'
 
 " Go
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
@@ -72,6 +124,7 @@ let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#keyboard#blacklist_submodule_mappings = ["checkboxes"]
 let g:pandoc#formatting#mode = "hA"
 let g:pandoc#folding#mode = "relative"
+let g:pandoc#folding#level = 1
 
 " IPA Keybindings
 inoremap <leader>ia<Space>  ɑ
@@ -141,3 +194,12 @@ end
 ---  Whichkey ---
 require("which-key").setup {}
 
+---  nvim-web-devicons ---
+require'nvim-web-devicons'.setup {
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+}
+
+---  lualine ---
+require('lualine').setup()
