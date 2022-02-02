@@ -104,6 +104,7 @@ fi
 #
 # Add go commands/installs
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/bin/lua-language-server/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/scripts
 
