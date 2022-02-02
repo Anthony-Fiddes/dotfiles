@@ -121,14 +121,14 @@ let g:vimwiki_list = [{'path': '~/Documents/second_brain',
 
 " Pandoc Syntax
 let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#syntax#conceal#backslash = 1
 let g:pandoc#keyboard#blacklist_submodule_mappings = ["checkboxes"]
 let g:pandoc#formatting#mode = "hA"
 let g:pandoc#folding#mode = "relative"
 let g:pandoc#folding#level = 1
 
 " IPA Keybindings
-inoremap <leader>ia<Space>  ɑ
-inoremap <leader>iae        æ
+inoremap <leader>ia	        ɑ
 inoremap <leader>id         ð
 inoremap <leader>i3         ɛ
 inoremap <leader>ie         ə
