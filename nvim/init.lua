@@ -3,12 +3,35 @@ local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = {noremap = true}
+	if opts then options = vim.tbl_extend('force', options, opts) end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+local function insert(str)
+	return 'i' .. str .. '<Esc>'
 end
 
 --- Keybindings
+g.mapleader = " "
+g.maplocalleader = '\\'
+
+--" IPA Keybindings
+map('n', '<Leader>ia', insert('ɑ'))
+map('n', '<Leader>id', insert('ð'))
+map('n', '<Leader>i3', insert('ɛ'))
+map('n', '<Leader>ie', insert('ə'))
+map('n', '<Leader>ii', insert('ɪ'))
+map('n', '<Leader>in', insert('ŋ'))
+map('n', '<Leader>io', insert('ɔ'))
+map('n', '<Leader>ir', insert('ɾ'))
+map('n', '<Leader>is', insert('ʃ'))
+map('n', '<Leader>it', insert('θ'))
+map('n', '<Leader>iu', insert('ʊ'))
+map('n', '<Leader>iv', insert('ʌ'))
+map('n', '<Leader>iz', insert('ʒ'))
+map('n', '<Leader>i?', insert('ʔ'))
+
 -- change directory to that of the current file
 map('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>:pwd<CR>')
 
@@ -126,22 +149,6 @@ let g:pandoc#formatting#mode = "hA"
 let g:pandoc#folding#mode = "relative"
 let g:pandoc#folding#level = 1
 
-" IPA Keybindings
-inoremap <leader>ia<Space>  ɑ
-inoremap <leader>iae        æ
-inoremap <leader>id         ð
-inoremap <leader>i3         ɛ
-inoremap <leader>ie         ə
-inoremap <leader>ii         ɪ
-inoremap <leader>in         ŋ
-inoremap <leader>io         ɔ
-inoremap <leader>ir         ɾ
-inoremap <leader>is         ʃ
-inoremap <leader>it         θ
-inoremap <leader>iu         ʊ
-inoremap <leader>iv         ʌ
-inoremap <leader>iz         ʒ
-inoremap <leader>i?         ʔ
 ]])
 
 --- LSP Keybindings ---
