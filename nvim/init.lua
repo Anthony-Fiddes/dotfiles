@@ -56,7 +56,6 @@ opt.termguicolors = true
 opt.relativenumber = true
 opt.compatible = false
 
-
 --- Everything else ---
 vim.cmd([[
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -68,9 +67,10 @@ call plug#begin()
     " Themes
     Plug 'EdenEast/nightfox.nvim'
     Plug 'arcticicestudio/nord-vim'
+    " Things that make my life easier
 	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'kyazdani42/nvim-web-devicons'
-    " Things that make my life easier
+	Plug 'goolord/alpha-nvim'
     Plug 'preservim/nerdtree' |
            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
 	Plug 'jiangmiao/auto-pairs'
@@ -200,6 +200,8 @@ require'nvim-web-devicons'.setup {
  -- will get overriden by `get_icons` option
  default = true;
 }
+
+require'alpha'.setup(require'alpha.themes.startify'.config)
 
 ---  lualine ---
 require('lualine').setup()
