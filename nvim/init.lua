@@ -8,6 +8,10 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local function silent_map(mode, lhs, rhs)
+	map(mode, lhs, rhs, {noremap = true, silent = true})
+end
+
 --- Plugins
 local function load_plugins()
 	return require('packer').startup(function()
@@ -18,9 +22,6 @@ local function load_plugins()
 		use 'junegunn/fzf.vim'
 		use {
 			'kyazdani42/nvim-tree.lua',
-			requires = {
-			  'kyazdani42/nvim-web-devicons',
-			},
 			config = function() require'nvim-tree'.setup {} end
 		}
 		use {
@@ -31,8 +32,8 @@ local function load_plugins()
 				require'mini.comment'.setup {}
 			end
 		}
-		use { 
-			"folke/which-key.nvim", 
+		use {
+			"folke/which-key.nvim",
 			config = function()
 				require("which-key").setup {
 					plugins = {
@@ -88,7 +89,7 @@ end
 g.mapleader = " "
 g.maplocalleader = '\\'
 
---" IPA Keybindings
+-- IPA Keybindings
 map('n', '<Leader>ia', insert('ɑ'))
 map('n', '<Leader>id', insert('ð'))
 map('n', '<Leader>i3', insert('ɛ'))
@@ -103,6 +104,18 @@ map('n', '<Leader>iu', insert('ʊ'))
 map('n', '<Leader>iv', insert('ʌ'))
 map('n', '<Leader>iz', insert('ʒ'))
 map('n', '<Leader>i?', insert('ʔ'))
+
+-- FZF
+silent_map('n', '<C-p>', ':Files<CR>')
+silent_map('n', '<M-p>', ':GFiles<CR>')
+silent_map('n', '<C-f>', ':BLines<CR>')
+silent_map('n', '<Leader>fb', ':Buffers<CR>') -- 'find buffer'
+silent_map('n', '<Leader>fc', ':Commits<CR>') -- 'find commit'
+silent_map('n', '<Leader>H', ':Helptags<CR>')
+silent_map('n', '<Leader>hh', ':History<CR>')
+silent_map('n', '<Leader>hc', ':Commands<CR>')
+silent_map('n', '<Leader>h:', ':History:<CR>')
+silent_map('n', '<Leader>h/', ':History/<CR>')
 
 -- change directory to that of the current file
 map('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>:pwd<CR>')
@@ -166,20 +179,6 @@ autocmd FileType go nmap <leader>D  <Plug>(go-def)
 lua << EOF
 require'lspconfig'.gopls.setup{}
 EOF
-
-" FZF
-" 'find buffer'
-nnoremap <silent> <Leader>fb :Buffers<CR> 
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <M-p> :GFiles<CR>
-nnoremap <silent> <C-f> :BLines<CR>
-" 'find commit'
-nnoremap <silent> <Leader>fc :Commits<CR> 
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>hc :Commands<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR> 
 
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/second_brain',
