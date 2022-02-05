@@ -50,6 +50,7 @@ local function load_plugins()
 
 		-- Language Things
 		use 'neovim/nvim-lspconfig'
+		use 'williamboman/nvim-lsp-installer'
 		use {'fatih/vim-go', run = ':GoUpdateBinaries'}
 
 		-- Pretty Things
@@ -228,6 +229,20 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+
+local lsp_installer = require("nvim-lsp-installer")
+
+-- Register a handler that will be called for each installed server when it's
+-- ready (i.e. when installation is finished
+-- or if the server is already installed).
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
+    -- before passing it onwards to lspconfig.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+end)
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'gopls', 'sumneko_lua' }
@@ -239,4 +254,3 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-
