@@ -8,6 +8,78 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+--- Plugins
+local function load_plugins()
+	return require('packer').startup(function()
+		use 'wbthomason/packer.nvim'
+
+		-- Useful Things
+		use {'junegunn/fzf', run = 'fzf#install()'}
+		use 'junegunn/fzf.vim'
+		use {
+			'kyazdani42/nvim-tree.lua',
+			requires = {
+			  'kyazdani42/nvim-web-devicons',
+			},
+			config = function() require'nvim-tree'.setup {} end
+		}
+		use {
+			'echasnovski/mini.nvim', branch = 'stable',
+			config = function()
+				require'mini.pairs'.setup {}
+				require'mini.surround'.setup {}
+				require'mini.comment'.setup {}
+			end
+		}
+		use { 
+			"folke/which-key.nvim", 
+			config = function()
+				require("which-key").setup {
+					plugins = {
+						spelling = {enabled = true}
+					}
+				}
+			end
+		}
+		use 'airblade/vim-gitgutter'
+		use 'tpope/vim-fugitive'
+		use 'SirVer/ultisnips'
+		use 'vim-pandoc/vim-pandoc'
+		use 'vim-pandoc/vim-pandoc-syntax'
+
+		-- Language Things
+		use 'neovim/nvim-lspconfig'
+		use {'fatih/vim-go', run = ':GoUpdateBinaries'}
+
+		-- Pretty Things
+		use 'arcticicestudio/nord-vim'
+		use {
+			'nvim-lualine/lualine.nvim',
+			config = function()
+				require('lualine').setup()
+			end
+		}
+		use {
+			'kyazdani42/nvim-web-devicons',
+			config = function()
+				require'nvim-web-devicons'.setup {
+				 -- globally enable default icons (default to false)
+				 -- will get overridden by `get_icons` option
+				 default = true;
+				}
+			end
+		}
+		use {
+			'goolord/alpha-nvim',
+			config = function()
+				require'alpha'.setup(require'alpha.themes.startify'.config)
+			end
+		}
+	end)
+end
+
+load_plugins()
+
 local function insert(str)
 	return 'i' .. str .. '<Esc>'
 end
@@ -83,33 +155,6 @@ opt.compatible = false
 vim.cmd([[
 "Omni Completion
 filetype plugin on
-
-call plug#begin()
-    " Themes
-    Plug 'EdenEast/nightfox.nvim'
-    Plug 'arcticicestudio/nord-vim'
-    " Things that make my life easier
-	Plug 'nvim-lualine/lualine.nvim'
-	Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'goolord/alpha-nvim'
-    Plug 'preservim/nerdtree' |
-           \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'SirVer/ultisnips'
-	Plug 'tpope/vim-surround'
-	Plug 'preservim/nerdcommenter'
-	" Plug 'vimwiki/vimwiki'
-	Plug 'vim-pandoc/vim-pandoc'
-	Plug 'vim-pandoc/vim-pandoc-syntax'
-    Plug 'folke/which-key.nvim'
-	Plug 'neovim/nvim-lspconfig'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'tpope/vim-fugitive'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
-	" Go
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-call plug#end()
 
 colorscheme nord
 
@@ -196,23 +241,3 @@ for _, lsp in ipairs(servers) do
   }
 end
 
----  Whichkey ---
-require("which-key").setup {
-	plugins = {
-		spelling = {
-			enabled = true,
-		}
-	}
-}
-
----  nvim-web-devicons ---
-require'nvim-web-devicons'.setup {
- -- globally enable default icons (default to false)
- -- will get overriden by `get_icons` option
- default = true;
-}
-
-require'alpha'.setup(require'alpha.themes.startify'.config)
-
----  lualine ---
-require('lualine').setup()
