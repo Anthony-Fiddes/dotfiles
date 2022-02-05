@@ -70,8 +70,10 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colemak dotenv fd fzf fzf-tab git-escape-magic gitignore golang pip python
-tmux ubuntu vscode) 
+plugins=( 
+	dotenv fd fzf fzf-tab git git-escape-magic gitignore golang pip python
+	tmux ubuntu vscode
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,12 +106,11 @@ fi
 #
 # Add go commands/installs
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:~/bin/lua-language-server/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/scripts
 
 # Aliases
-alias bat=batcat
+alias cat=batcat
 alias code=codium
 alias fd=fdfind
 alias ipython=ipython3
