@@ -81,8 +81,6 @@ opt.compatible = false
 
 --- Everything else ---
 vim.cmd([[
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
 "Omni Completion
 filetype plugin on
 
@@ -199,7 +197,13 @@ for _, lsp in ipairs(servers) do
 end
 
 ---  Whichkey ---
-require("which-key").setup {}
+require("which-key").setup {
+	plugins = {
+		spelling = {
+			enabled = true,
+		}
+	}
+}
 
 ---  nvim-web-devicons ---
 require'nvim-web-devicons'.setup {
