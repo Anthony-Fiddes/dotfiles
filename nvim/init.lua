@@ -42,7 +42,11 @@ local function load_plugins()
 				}
 			end
 		}
-		use 'airblade/vim-gitgutter'
+		use {
+			'lewis6991/gitsigns.nvim',
+			requires = { 'nvim-lua/plenary.nvim'},
+			config = function() require('gitsigns').setup() end
+		}
 		use 'tpope/vim-fugitive'
 		use 'SirVer/ultisnips'
 		use 'vim-pandoc/vim-pandoc'
@@ -120,6 +124,7 @@ silent_map('n', '<Leader>h/', ':History/<CR>')
 
 -- change directory to that of the current file
 map('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>:pwd<CR>')
+map('n', '<Leader>nh', ':nohlsearch<CR>')
 
 -- Don't let Vim do unsafe stuff
 opt.modelines = 0
@@ -187,8 +192,7 @@ let g:vimwiki_list = [{'path': '~/Documents/second_brain',
 
 " Pandoc Syntax
 let g:pandoc#syntax#conceal#use = 1
-let g:pandoc#keyboard#blacklist_submodule_mappings = ["checkboxes"]
-let g:pandoc#formatting#mode = "hA"
+let g:pandoc#formatting#mode = "ha"
 let g:pandoc#folding#mode = "relative"
 let g:pandoc#folding#level = 1
 
