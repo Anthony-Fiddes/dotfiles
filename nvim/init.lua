@@ -223,6 +223,7 @@ let g:vimwiki_list = [{'path': '~/Documents/second_brain',
 
 " Pandoc Syntax
 let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#syntax#conceal#backslash = 1
 let g:pandoc#formatting#mode = "hA"
 let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
 let g:pandoc#folding#mode = "relative"
