@@ -58,6 +58,7 @@ local function load_plugins()
 		use("SirVer/ultisnips")
 		use("vim-pandoc/vim-pandoc")
 		use("vim-pandoc/vim-pandoc-syntax")
+		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
 
 		-- Language Things
 		use("neovim/nvim-lspconfig")
