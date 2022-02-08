@@ -61,6 +61,27 @@ local function load_plugins()
 		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
 
 		-- Language Things
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
+			config = function()
+				require("nvim-treesitter.configs").setup({
+					highlight = {
+						enable = true,
+					},
+					indent = {
+						enable = true,
+					},
+				})
+			end,
+		})
+		-- this makes spell check WAY less aggressive looking when coding.
+		use({
+			"lewis6991/spellsitter.nvim",
+			config = function()
+				require("spellsitter").setup()
+			end,
+		})
 		use("neovim/nvim-lspconfig")
 		use("williamboman/nvim-lsp-installer")
 		use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
