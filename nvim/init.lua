@@ -32,9 +32,9 @@ local function load_plugins()
 			"echasnovski/mini.nvim",
 			branch = "stable",
 			config = function()
+				require("mini.comment").setup({})
 				require("mini.pairs").setup({})
 				require("mini.surround").setup({})
-				require("mini.comment").setup({})
 			end,
 		})
 		use({
@@ -148,6 +148,7 @@ g.maplocalleader = "\\"
 
 -- IPA Keybindings
 map("n", "<Leader>ia", insert("ɑ"))
+map("n", "<Leader>ic", insert("ç"))
 map("n", "<Leader>id", insert("ð"))
 map("n", "<Leader>i3", insert("ɛ"))
 map("n", "<Leader>ie", insert("ə"))
