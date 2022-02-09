@@ -1,16 +1,183 @@
 -- helpers stolen from oroques.dev/notes/neovim-init/
-local g = vim.g      -- a table to access global variables
-local opt = vim.opt  -- to set options
+local g = vim.g -- a table to access global variables
+local opt = vim.opt -- to set options
 
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+local function silent_map(mode, lhs, rhs)
+	map(mode, lhs, rhs, { noremap = true, silent = true })
+end
+
+--- Plugins
+local function load_plugins()
+	return require("packer").startup(function()
+		use("wbthomason/packer.nvim")
+
+		-- Useful Things
+		use({ "junegunn/fzf", run = "fzf#install()" })
+		use("junegunn/fzf.vim")
+		use({
+			"kyazdani42/nvim-tree.lua",
+			config = function()
+				require("nvim-tree").setup({})
+			end,
+		})
+		use({
+			"echasnovski/mini.nvim",
+			branch = "stable",
+			config = function()
+				require("mini.pairs").setup({})
+				require("mini.surround").setup({})
+				require("mini.comment").setup({})
+			end,
+		})
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				require("which-key").setup({
+					plugins = {
+						spelling = { enabled = true },
+					},
+				})
+			end,
+		})
+		use({
+			"lewis6991/gitsigns.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("gitsigns").setup()
+			end,
+		})
+		use("tpope/vim-fugitive")
+		use("SirVer/ultisnips")
+		use("vim-pandoc/vim-pandoc")
+		use("vim-pandoc/vim-pandoc-syntax")
+		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
+
+		-- Language Things
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
+			config = function()
+				require("nvim-treesitter.configs").setup({
+					highlight = {
+						enable = true,
+					},
+					indent = {
+						enable = true,
+					},
+				})
+			end,
+		})
+		-- this makes spell check WAY less aggressive looking when coding.
+		use({
+			"lewis6991/spellsitter.nvim",
+			config = function()
+				require("spellsitter").setup()
+			end,
+		})
+		use("neovim/nvim-lspconfig")
+		use("williamboman/nvim-lsp-installer")
+		use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
+		use({
+			"jose-elias-alvarez/null-ls.nvim",
+			config = function()
+				local null_ls = require("null-ls")
+				local sources = {
+					null_ls.builtins.formatting.stylua,
+				}
+				null_ls.setup({
+					sources = sources,
+					on_attach = function(client)
+						if client.resolved_capabilities.document_formatting then
+							vim.cmd([[ 
+							augroup LspFormatting 
+								autocmd! * <buffer>
+								autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() 
+							augroup END 
+							]])
+						end
+					end,
+				})
+			end,
+			requires = { "nvim-lua/plenary.nvim" },
+		})
+
+		-- Pretty Things
+		use("arcticicestudio/nord-vim")
+		use({
+			"nvim-lualine/lualine.nvim",
+			config = function()
+				require("lualine").setup()
+			end,
+		})
+		use({
+			"kyazdani42/nvim-web-devicons",
+			config = function()
+				require("nvim-web-devicons").setup({
+					-- globally enable default icons (default to false)
+					-- will get overridden by `get_icons` option
+					default = true,
+				})
+			end,
+		})
+		use({
+			"goolord/alpha-nvim",
+			config = function()
+				require("alpha").setup(require("alpha.themes.startify").config)
+			end,
+		})
+	end)
+end
+
+load_plugins()
+
+local function insert(str)
+	return "i" .. str .. "<Esc>"
 end
 
 --- Keybindings
+g.mapleader = " "
+g.maplocalleader = "\\"
+
+-- IPA Keybindings
+map("n", "<Leader>ia", insert("ɑ"))
+map("n", "<Leader>id", insert("ð"))
+map("n", "<Leader>i3", insert("ɛ"))
+map("n", "<Leader>ie", insert("ə"))
+map("n", "<Leader>ii", insert("ɪ"))
+map("n", "<Leader>in", insert("ŋ"))
+map("n", "<Leader>io", insert("ɔ"))
+map("n", "<Leader>ir", insert("ɾ"))
+map("n", "<Leader>is", insert("ʃ"))
+map("n", "<Leader>it", insert("θ"))
+map("n", "<Leader>iu", insert("ʊ"))
+map("n", "<Leader>iv", insert("ʌ"))
+map("n", "<Leader>iz", insert("ʒ"))
+map("n", "<Leader>i?", insert("ʔ"))
+
+-- FZF
+silent_map("n", "<C-p>", ":Files<CR>")
+silent_map("n", "<M-p>", ":GFiles<CR>")
+silent_map("n", "<C-f>", ":BLines<CR>")
+silent_map("n", "<Leader>fb", ":Buffers<CR>") -- 'find buffer'
+silent_map("n", "<Leader>ff", ":Rg<CR>") -- 'find files'
+silent_map("n", "<Leader>fc", ":Commits<CR>") -- 'find commit'
+silent_map("n", "<Leader>H", ":Helptags<CR>")
+silent_map("n", "<Leader>hh", ":History<CR>")
+silent_map("n", "<Leader>hc", ":Commands<CR>")
+silent_map("n", "<Leader>h:", ":History:<CR>")
+silent_map("n", "<Leader>h/", ":History/<CR>")
+
 -- change directory to that of the current file
-map('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>:pwd<CR>')
+map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
+map("n", "<Leader>nh", ":nohlsearch<CR>")
 
 -- Don't let Vim do unsafe stuff
 opt.modelines = 0
@@ -56,64 +223,21 @@ opt.termguicolors = true
 opt.relativenumber = true
 opt.compatible = false
 
-
 --- Everything else ---
 vim.cmd([[
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
 "Omni Completion
 filetype plugin on
-
-call plug#begin()
-    " Themes
-    Plug 'EdenEast/nightfox.nvim'
-    Plug 'arcticicestudio/nord-vim'
-	Plug 'nvim-lualine/lualine.nvim'
-	Plug 'kyazdani42/nvim-web-devicons'
-    " Things that make my life easier
-    Plug 'preservim/nerdtree' |
-           \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'SirVer/ultisnips'
-	Plug 'tpope/vim-surround'
-	Plug 'preservim/nerdcommenter'
-	" Plug 'vimwiki/vimwiki'
-	Plug 'vim-pandoc/vim-pandoc'
-	Plug 'vim-pandoc/vim-pandoc-syntax'
-    Plug 'folke/which-key.nvim'
-	Plug 'neovim/nvim-lspconfig'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'tpope/vim-fugitive'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
-	" Go
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-call plug#end()
 
 colorscheme nord
 
 " Go
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>d  <Plug>(go-doc)
-autocmd FileType go nmap <leader>D  <Plug>(go-def)
+autocmd FileType go nmap <LocalLeader>b  <Plug>(go-build)
+autocmd FileType go nmap <LocalLeader>r  <Plug>(go-run)
+autocmd FileType go nmap <LocalLeader>d  <Plug>(go-doc)
+autocmd FileType go nmap <LocalLeader>D  <Plug>(go-def)
 lua << EOF
 require'lspconfig'.gopls.setup{}
 EOF
-
-" FZF
-" 'find buffer'
-nnoremap <silent> <Leader>fb :Buffers<CR> 
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <M-p> :GFiles<CR>
-nnoremap <silent> <C-f> :BLines<CR>
-" 'find commit'
-nnoremap <silent> <Leader>fc :Commits<CR> 
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>hc :Commands<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR> 
 
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/second_brain',
@@ -122,26 +246,11 @@ let g:vimwiki_list = [{'path': '~/Documents/second_brain',
 " Pandoc Syntax
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#backslash = 1
-let g:pandoc#keyboard#blacklist_submodule_mappings = ["checkboxes"]
 let g:pandoc#formatting#mode = "hA"
+let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
 let g:pandoc#folding#mode = "relative"
 let g:pandoc#folding#level = 1
 
-" IPA Keybindings
-inoremap <leader>ia	        ɑ
-inoremap <leader>id         ð
-inoremap <leader>i3         ɛ
-inoremap <leader>ie         ə
-inoremap <leader>ii         ɪ
-inoremap <leader>in         ŋ
-inoremap <leader>io         ɔ
-inoremap <leader>ir         ɾ
-inoremap <leader>is         ʃ
-inoremap <leader>it         θ
-inoremap <leader>iu         ʊ
-inoremap <leader>iv         ʌ
-inoremap <leader>iz         ʒ
-inoremap <leader>i?         ʔ
 execute "digraphs ks " . 0x2096 
 execute "digraphs as " . 0x2090
 execute "digraphs es " . 0x2091
@@ -162,61 +271,65 @@ execute "digraphs xs " . 0x2093
 ]])
 
 --- LSP Keybindings ---
-local nvim_lsp = require('lspconfig')
+local nvim_lsp = require("lspconfig")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+	local function buf_set_option(...)
+		vim.api.nvim_buf_set_option(bufnr, ...)
+	end
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	-- Enable completion triggered by <c-x><c-o>
+	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+	-- Mappings.
+	local opts = { noremap = true, silent = true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	buf_set_keymap("n", "<Leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+	buf_set_keymap("n", "<Leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+	buf_set_keymap("n", "<Leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+	buf_set_keymap("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	buf_set_keymap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	buf_set_keymap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	buf_set_keymap("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "<Leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	buf_set_keymap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
+
+local lsp_installer = require("nvim-lsp-installer")
+
+-- Register a handler that will be called for each installed server when it's
+-- ready (i.e. when installation is finished
+-- or if the server is already installed).
+lsp_installer.on_server_ready(function(server)
+	local opts = {}
+	-- This setup() function will take the provided server configuration and decorate it with the necessary properties
+	-- before passing it onwards to lspconfig.
+	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	server:setup(opts)
+end)
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'sumneko_lua' }
+local servers = { "gopls", "sumneko_lua" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
+	nvim_lsp[lsp].setup({
+		on_attach = on_attach,
+		flags = {
+			debounce_text_changes = 150,
+		},
+	})
 end
-
----  Whichkey ---
-require("which-key").setup {}
-
----  nvim-web-devicons ---
-require'nvim-web-devicons'.setup {
- -- globally enable default icons (default to false)
- -- will get overriden by `get_icons` option
- default = true;
-}
-
----  lualine ---
-require('lualine').setup()
