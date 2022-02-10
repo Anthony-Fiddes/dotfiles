@@ -56,8 +56,6 @@ local function load_plugins()
 		})
 		use("tpope/vim-fugitive")
 		use("SirVer/ultisnips")
-		use("vim-pandoc/vim-pandoc")
-		use("vim-pandoc/vim-pandoc-syntax")
 		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
 
 		-- Language Things
@@ -109,6 +107,11 @@ local function load_plugins()
 			requires = { "nvim-lua/plenary.nvim" },
 		})
 
+		-- Markdown Things
+		use("vim-pandoc/vim-pandoc")
+		use("vim-pandoc/vim-pandoc-syntax")
+		use("dhruvasagar/vim-table-mode")
+
 		-- Pretty Things
 		use("arcticicestudio/nord-vim")
 		use({
@@ -138,30 +141,38 @@ end
 
 load_plugins()
 
-local function insert(str)
-	return "i" .. str .. "<Esc>"
+local function append(str)
+	return "a" .. str .. "<Esc>"
 end
 
 --- Keybindings
 g.mapleader = " "
 g.maplocalleader = "\\"
 
+-- Pandoc Syntax
+g["pandoc#syntax#conceal#use"] = 1
+g["pandoc#syntax#conceal#backslash"] = 1
+g["pandoc#formatting#mode"] = "ha"
+g["pandoc#formatting#smart_autoformat_on_cursormoved"] = 1
+g["pandoc#folding#mode"] = "relative"
+g["pandoc#folding#level"] = 1
+
 -- IPA Keybindings
-map("n", "<Leader>ia", insert("ɑ"))
-map("n", "<Leader>ic", insert("ç"))
-map("n", "<Leader>id", insert("ð"))
-map("n", "<Leader>i3", insert("ɛ"))
-map("n", "<Leader>ie", insert("ə"))
-map("n", "<Leader>ii", insert("ɪ"))
-map("n", "<Leader>in", insert("ŋ"))
-map("n", "<Leader>io", insert("ɔ"))
-map("n", "<Leader>ir", insert("ɾ"))
-map("n", "<Leader>is", insert("ʃ"))
-map("n", "<Leader>it", insert("θ"))
-map("n", "<Leader>iu", insert("ʊ"))
-map("n", "<Leader>iv", insert("ʌ"))
-map("n", "<Leader>iz", insert("ʒ"))
-map("n", "<Leader>i?", insert("ʔ"))
+map("n", "<Leader>ia", append("ɑ"))
+map("n", "<Leader>ic", append("ç"))
+map("n", "<Leader>id", append("ð"))
+map("n", "<Leader>i3", append("ɛ"))
+map("n", "<Leader>ie", append("ə"))
+map("n", "<Leader>ii", append("ɪ"))
+map("n", "<Leader>in", append("ŋ"))
+map("n", "<Leader>io", append("ɔ"))
+map("n", "<Leader>ir", append("ɾ"))
+map("n", "<Leader>is", append("ʃ"))
+map("n", "<Leader>it", append("θ"))
+map("n", "<Leader>iu", append("ʊ"))
+map("n", "<Leader>iv", append("ʌ"))
+map("n", "<Leader>iz", append("ʒ"))
+map("n", "<Leader>i?", append("ʔ"))
 
 -- FZF
 silent_map("n", "<C-p>", ":Files<CR>")
@@ -244,13 +255,6 @@ EOF
 let g:vimwiki_list = [{'path': '~/Documents/second_brain',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-" Pandoc Syntax
-let g:pandoc#syntax#conceal#use = 1
-let g:pandoc#syntax#conceal#backslash = 1
-let g:pandoc#formatting#mode = "hA"
-let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
-let g:pandoc#folding#mode = "relative"
-let g:pandoc#folding#level = 1
 
 execute "digraphs ks " . 0x2096 
 execute "digraphs as " . 0x2090
