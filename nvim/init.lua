@@ -20,7 +20,7 @@ local function word_count()
 	if counts.visual_words then
 		result = counts.visual_words
 	end
-	return string.format("Words: %s", result)
+	return string.format("%d Words", result)
 end
 
 -- I copied most of the default config over to the extension. The next order of
