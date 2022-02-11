@@ -191,8 +191,7 @@ g.maplocalleader = "\\"
 -- Pandoc Syntax
 g["pandoc#syntax#conceal#use"] = 1
 g["pandoc#syntax#conceal#backslash"] = 1
-g["pandoc#formatting#mode"] = "ha"
-g["pandoc#formatting#smart_autoformat_on_cursormoved"] = 1
+g["pandoc#formatting#mode"] = "hA"
 g["pandoc#folding#mode"] = "relative"
 g["pandoc#folding#level"] = 1
 
