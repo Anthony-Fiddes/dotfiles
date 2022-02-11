@@ -62,6 +62,7 @@ local function load_plugins()
 		-- Useful Things
 		use({ "junegunn/fzf", run = "fzf#install()" })
 		use("junegunn/fzf.vim")
+		use("https://github.com/tpope/vim-surround")
 		use({
 			"kyazdani42/nvim-tree.lua",
 			config = function()
@@ -74,7 +75,6 @@ local function load_plugins()
 			config = function()
 				require("mini.comment").setup({})
 				require("mini.pairs").setup({})
-				require("mini.surround").setup({})
 			end,
 		})
 		use({
@@ -152,6 +152,7 @@ local function load_plugins()
 		use("vim-pandoc/vim-pandoc")
 		use("vim-pandoc/vim-pandoc-syntax")
 		use("dhruvasagar/vim-table-mode")
+		use("ellisonleao/glow.nvim")
 
 		-- Pretty Things
 		use("arcticicestudio/nord-vim")
@@ -187,6 +188,9 @@ end
 --- Keybindings
 g.mapleader = " "
 g.maplocalleader = "\\"
+
+-- Glow Markdown Preview
+map("n", "<Leader>gp", ":Glow<CR>") -- glow preview
 
 -- Pandoc Syntax
 g["pandoc#syntax#conceal#use"] = 1
@@ -293,12 +297,11 @@ EOF
 let g:vimwiki_list = [{'path': '~/Documents/second_brain',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-
-execute "digraphs ks " . 0x2096 
 execute "digraphs as " . 0x2090
 execute "digraphs es " . 0x2091
 execute "digraphs hs " . 0x2095
 execute "digraphs is " . 0x1D62
+execute "digraphs js " . 0x2C7C
 execute "digraphs ks " . 0x2096
 execute "digraphs ls " . 0x2097
 execute "digraphs ms " . 0x2098
@@ -311,6 +314,32 @@ execute "digraphs ts " . 0x209C
 execute "digraphs us " . 0x1D64
 execute "digraphs vs " . 0x1D65
 execute "digraphs xs " . 0x2093
+
+execute "digraphs aS " . 0x1d43
+execute "digraphs bS " . 0x1d47
+execute "digraphs cS " . 0x1d9c
+execute "digraphs dS " . 0x1d48
+execute "digraphs eS " . 0x1d49
+execute "digraphs fS " . 0x1da0
+execute "digraphs gS " . 0x1d4d
+execute "digraphs hS " . 0x02b0
+execute "digraphs iS " . 0x2071
+execute "digraphs jS " . 0x02b2
+execute "digraphs kS " . 0x1d4f
+execute "digraphs lS " . 0x02e1
+execute "digraphs mS " . 0x1d50
+execute "digraphs nS " . 0x207f
+execute "digraphs oS " . 0x1d52
+execute "digraphs pS " . 0x1d56
+execute "digraphs rS " . 0x02b3
+execute "digraphs sS " . 0x02e2
+execute "digraphs tS " . 0x1d57
+execute "digraphs uS " . 0x1d58
+execute "digraphs vS " . 0x1d5b
+execute "digraphs wS " . 0x02b7
+execute "digraphs xS " . 0x02e3
+execute "digraphs yS " . 0x02b8
+execute "digraphs zS " . 0x1dbb
 ]])
 
 --- LSP Keybindings ---
