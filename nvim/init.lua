@@ -98,7 +98,10 @@ local function load_plugins()
 		use("SirVer/ultisnips")
 		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
 		use("rafcamlet/nvim-luapad")
-		use("ggandor/lightspeed.nvim")
+		use({
+			"ggandor/lightspeed.nvim",
+			requires = { "tpope/vim-repeat" },
+		})
 
 		-- Language Things
 		use({
