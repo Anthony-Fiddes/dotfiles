@@ -62,7 +62,7 @@ local function load_plugins()
 		-- Useful Things
 		use({ "junegunn/fzf", run = "fzf#install()" })
 		use("junegunn/fzf.vim")
-		use("https://github.com/tpope/vim-surround")
+		use("tpope/vim-surround")
 		use({
 			"kyazdani42/nvim-tree.lua",
 			config = function()
@@ -101,6 +101,12 @@ local function load_plugins()
 		use({
 			"ggandor/lightspeed.nvim",
 			requires = { "tpope/vim-repeat" },
+		})
+		use({
+			"ethanholz/nvim-lastplace",
+			config = function()
+				require("nvim-lastplace").setup({})
+			end,
 		})
 
 		-- Language Things
@@ -155,6 +161,8 @@ local function load_plugins()
 		-- Markdown Things
 		use("vim-pandoc/vim-pandoc")
 		use("vim-pandoc/vim-pandoc-syntax")
+		--   needed for smart autoformatting to play nicely with vim-table-mode
+		use("vim-pandoc/vim-pandoc-after")
 		use("dhruvasagar/vim-table-mode")
 		use("ellisonleao/glow.nvim")
 
@@ -196,12 +204,13 @@ g.maplocalleader = "\\"
 -- Glow Markdown Preview
 map("n", "<Leader>gp", ":Glow<CR>") -- glow preview
 
--- Pandoc Syntax
+-- Pandoc
 g["pandoc#syntax#conceal#use"] = 1
 g["pandoc#syntax#conceal#backslash"] = 1
 g["pandoc#formatting#mode"] = "hA"
 g["pandoc#folding#mode"] = "relative"
 g["pandoc#folding#level"] = 1
+g["pandoc#after#modules#enabled"] = { "tablemode" }
 
 -- IPA Keybindings
 map("n", "<Leader>ia", append("ɑ"))
