@@ -112,7 +112,9 @@ export PATH=$PATH:~/scripts
 # Aliases
 alias cat=batcat
 alias code=codium
+alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias fd=fdfind
+alias icat="kitty +kitten icat"
 alias ipython=ipython3
 alias open=xdg-open
 alias python=python3
