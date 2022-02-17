@@ -49,12 +49,12 @@ end
 -- Toggles the rendering of LSP diagnostic information.
 -- This is useful when writing and using prose linters.
 function M.toggle_diagnostics()
-	if vim.w.diag_enabled then
-		vim.diagnostic.disable()
-		vim.w.diag_enabled = false
-	else
+	if vim.w.diag_disabled then
 		vim.diagnostic.enable()
-		vim.w.diag_enabled = true
+		vim.w.diag_disabled = false
+	else
+		vim.diagnostic.disable()
+		vim.w.diag_disabled = true
 	end
 end
 
