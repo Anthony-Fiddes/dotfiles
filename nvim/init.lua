@@ -369,3 +369,16 @@ lsp_installer.on_server_ready(function(server)
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(opts)
 end)
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { "gopls" }
+for _, lsp in pairs(servers) do
+	require("lspconfig")[lsp].setup({
+		on_attach = require("afiddes/lsp-config").on_attach,
+		flags = {
+			-- This will be the default in neovim 0.7+
+			debounce_text_changes = 150,
+		},
+	})
+end
