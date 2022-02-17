@@ -30,6 +30,7 @@ function M.on_attach(client, bufnr)
 	buf_set_keymap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	buf_set_keymap("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	buf_set_keymap("n", "<Leader>te", "<cmd>lua require('afiddes/lsp-config').toggle_diagnostics()<CR>", opts)
 	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<Leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
@@ -42,6 +43,18 @@ function M.on_attach(client, bufnr)
 				autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync() 
 			augroup END 
 		]])
+	end
+end
+
+-- Toggles the rendering of LSP diagnostic information.
+-- This is useful when writing and using prose linters.
+function M.toggle_diagnostics()
+	if vim.w.diag_enabled then
+		vim.diagnostic.disable()
+		vim.w.diag_enabled = false
+	else
+		vim.diagnostic.enable()
+		vim.w.diag_enabled = true
 	end
 end
 

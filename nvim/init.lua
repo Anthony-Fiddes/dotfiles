@@ -140,6 +140,7 @@ local function load_plugins()
 				local null_ls = require("null-ls")
 				local sources = {
 					null_ls.builtins.formatting.stylua,
+					null_ls.builtins.code_actions.gitsigns,
 					null_ls.builtins.diagnostics.write_good.with({
 						extra_filetypes = { "pandoc" },
 					}),
@@ -302,9 +303,6 @@ autocmd FileType go nmap <LocalLeader>b  <Plug>(go-build)
 autocmd FileType go nmap <LocalLeader>r  <Plug>(go-run)
 autocmd FileType go nmap <LocalLeader>d  <Plug>(go-doc)
 autocmd FileType go nmap <LocalLeader>D  <Plug>(go-def)
-lua << EOF
-require'lspconfig'.gopls.setup{}
-EOF
 
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/second_brain',
@@ -364,6 +362,15 @@ lsp_installer.on_server_ready(function(server)
 	local opts = {
 		on_attach = require("afiddes/lsp-config").on_attach,
 	}
+
+	if server.name == "sumneko_lua" then
+		opts.settings = {
+			Lua = {
+				diagnostics = { globals = { "vim", "use" } },
+			},
+		}
+	end
+
 	-- This setup() function will take the provided server configuration and decorate it with the necessary properties
 	-- before passing it onwards to lspconfig.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
