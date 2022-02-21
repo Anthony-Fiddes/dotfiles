@@ -82,7 +82,7 @@ local function load_plugins()
 			config = function()
 				require("which-key").setup({
 					plugins = {
-						spelling = { enabled = true },
+						spelling = { enabled = true, suggestions = 10 },
 					},
 				})
 			end,
@@ -186,6 +186,19 @@ local function load_plugins()
 				require("alpha").setup(require("alpha.themes.startify").config)
 			end,
 		})
+		use({
+			"folke/zen-mode.nvim",
+			config = function()
+				require("zen-mode").setup({
+					plugins = {
+						kitty = {
+							enabled = true,
+							font = "+2",
+						},
+					},
+				})
+			end,
+		})
 	end)
 end
 
@@ -206,7 +219,7 @@ map("n", "<Leader>gp", ":Glow<CR>") -- glow preview
 g["pandoc#syntax#conceal#use"] = 1
 g["pandoc#syntax#conceal#backslash"] = 1
 g["pandoc#formatting#mode"] = "hA"
-g["pandoc#folding#mode"] = "relative"
+g["pandoc#folding#fastfolds"] = 1
 g["pandoc#folding#level"] = 1
 g["pandoc#after#modules#enabled"] = { "tablemode" }
 
@@ -246,6 +259,9 @@ silent_map("n", "<Leader>h/", ":History/<CR>")
 -- change directory to that of the current file
 map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
 map("n", "<Leader>nh", ":nohlsearch<CR>")
+map("n", "<Leader>fw", ":update<CR>") -- 'file write'
+map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
+silent_map("n", "<Leader>tn", ":lua vim.opt.nu = not vim.opt.nu._value vim.opt.rnu = not vim.opt.rnu._value<CR>") -- 'toggle line numbers'
 
 -- Don't let Vim do unsafe stuff
 opt.modelines = 0
@@ -255,15 +271,12 @@ opt.visualbell = true
 opt.wildmenu = true
 -- insert "tabstop" number of spaces on tab
 opt.tabstop = 4
-opt.smarttab = true
 opt.softtabstop = 4
 opt.shiftwidth = 4
 -- highlight the line under the cursor
 opt.cursorline = true
 -- Pay attention to case if there is an upper case letter
 opt.smartcase = true
--- Increase undo history
-opt.history = 1000
 -- Set window title to reflect the file being edited
 opt.title = true
 -- Enable line wrapping, but not in  the middle of a word
@@ -275,11 +288,7 @@ opt.autowrite = true
 opt.hidden = true
 
 -- Hopefully self-explanatory stuff
-opt.autoindent = true
-opt.number = true
 opt.syntax = "ON"
-opt.hlsearch = true
-opt.incsearch = true
 opt.ignorecase = true
 opt.spell = true
 opt.spelllang = "en,de"
@@ -288,8 +297,11 @@ opt.encoding = "utf-8"
 opt.textwidth = 80
 opt.showcmd = true
 opt.termguicolors = true
-opt.relativenumber = true
 opt.compatible = false
+opt.undofile = true
+opt.backup = true
+opt.writebackup = true
+opt.backupcopy = "auto"
 
 --- Everything else ---
 vim.cmd([[
