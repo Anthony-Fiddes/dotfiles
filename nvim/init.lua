@@ -263,6 +263,14 @@ map("n", "<Leader>fw", ":update<CR>") -- 'file write'
 map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
 silent_map("n", "<Leader>tn", ":lua vim.opt.nu = not vim.opt.nu._value vim.opt.rnu = not vim.opt.rnu._value<CR>") -- 'toggle line numbers'
 
+local function ensure_dir(path)
+	vim.validate({ path = { path, "string" } })
+	local dir_exists = vim.fn.isdirectory(path) == 1
+	if not dir_exists then
+		print(vim.fn.mkdir(path, "p"))
+	end
+end
+
 -- Don't let Vim do unsafe stuff
 opt.modelines = 0
 -- No annoying beep
@@ -302,6 +310,10 @@ opt.undofile = true
 opt.backup = true
 opt.writebackup = true
 opt.backupcopy = "auto"
+local backup_dir = vim.fn.stdpath("data") .. "/backup//"
+ensure_dir(backup_dir)
+-- add the current directory as a backup
+opt.backupdir = backup_dir .. ",."
 
 --- Everything else ---
 vim.cmd([[
