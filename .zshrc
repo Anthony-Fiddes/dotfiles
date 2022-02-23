@@ -134,11 +134,24 @@ function ipv6_off(){
 }
 
 # See ipv6 above
-function ipv6_on(){
+function ipv6_on {
 	sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
 	sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0
 	sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=0
 }
+
+# Links the given file to my second brain
+function add_brain {
+	if (($# != 1))
+	then
+		echo "add_brain links a file to my second brain"
+		echo ""
+		echo "it takes one file as its argument."
+		return
+	fi
+	ln $1 ~/Documents/second_brain/school/spring2022/$1
+} 
+alias ab=add_brain
  
 # Misc
 bindkey '^H' backward-kill-word
