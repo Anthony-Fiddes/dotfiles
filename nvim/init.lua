@@ -2,18 +2,6 @@
 local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options
 
-local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-local function silent_map(mode, lhs, rhs)
-	map(mode, lhs, rhs, { noremap = true, silent = true })
-end
-
 local function word_count()
 	local counts = vim.fn.wordcount()
 	local result = counts.words
@@ -202,18 +190,10 @@ local function load_plugins()
 	end)
 end
 
-load_plugins()
-
-local function append(str)
-	return "a" .. str .. "<Esc>"
-end
-
---- Keybindings
 g.mapleader = " "
 g.maplocalleader = "\\"
-
--- Glow Markdown Preview
-map("n", "<Leader>gp", ":Glow<CR>") -- glow preview
+load_plugins()
+require("afiddes/mappings").set()
 
 -- Pandoc
 g["pandoc#syntax#conceal#use"] = 1
@@ -222,46 +202,6 @@ g["pandoc#formatting#mode"] = "hA"
 g["pandoc#folding#fastfolds"] = 1
 g["pandoc#folding#level"] = 1
 g["pandoc#after#modules#enabled"] = { "tablemode" }
-
--- IPA Keybindings
-map("n", "<Leader>ia", append("ɑ"))
-map("n", "<Leader>ic", append("ç"))
-map("n", "<Leader>id", append("ð"))
-map("n", "<Leader>i3", append("ɛ"))
-map("n", "<Leader>ie", append("ə"))
-map("n", "<Leader>if", append("ɸ"))
-map("n", "<Leader>ii", append("ɪ"))
-map("n", "<Leader>in", append("ŋ"))
-map("n", "<Leader>io", append("ɔ"))
-map("n", "<Leader>ir", append("ɾ"))
-map("n", "<Leader>is", append("ʃ"))
-map("n", "<Leader>it", append("θ"))
-map("n", "<Leader>iu", append("ʊ"))
-map("n", "<Leader>iv", append("ʌ"))
-map("n", "<Leader>iw", append("ɯ"))
-map("n", "<Leader>iy", append("ɣ"))
-map("n", "<Leader>iz", append("ʒ"))
-map("n", "<Leader>i?", append("ʔ"))
-
--- FZF
-silent_map("n", "<C-p>", ":Files<CR>")
-silent_map("n", "<M-p>", ":GFiles<CR>")
-silent_map("n", "<C-f>", ":BLines<CR>")
-silent_map("n", "<Leader>fb", ":Buffers<CR>") -- 'find buffer'
-silent_map("n", "<Leader>ff", ":Rg<CR>") -- 'find files'
-silent_map("n", "<Leader>fc", ":Commits<CR>") -- 'find commit'
-silent_map("n", "<Leader>H", ":Helptags<CR>")
-silent_map("n", "<Leader>hh", ":History<CR>")
-silent_map("n", "<Leader>hc", ":Commands<CR>")
-silent_map("n", "<Leader>h:", ":History:<CR>")
-silent_map("n", "<Leader>h/", ":History/<CR>")
-
--- change directory to that of the current file
-map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
-map("n", "<Leader>nh", ":nohlsearch<CR>")
-map("n", "<Leader>fw", ":update<CR>") -- 'file write'
-map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
-silent_map("n", "<Leader>tn", ":lua vim.opt.nu = not vim.opt.nu._value vim.opt.rnu = not vim.opt.rnu._value<CR>") -- 'toggle line numbers'
 
 local function ensure_dir(path)
 	vim.validate({ path = { path, "string" } })
