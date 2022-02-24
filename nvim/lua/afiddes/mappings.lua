@@ -1,7 +1,6 @@
 local M = {}
 
-local g = vim.g
-
+-- helper stolen from oroques.dev/notes/neovim-init/
 function M.map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
 	if opts then
@@ -12,6 +11,12 @@ end
 
 function M.silent_map(mode, lhs, rhs)
 	M.map(mode, lhs, rhs, { noremap = true, silent = true })
+end
+
+-- toggle line numbers
+function M.toggle_nums()
+	vim.opt.nu = not vim.opt.nu:get()
+	vim.opt.rnu = not vim.opt.rnu:get()
 end
 
 --- Sets all of my custom keybindings
@@ -61,7 +66,7 @@ function M.set()
 	M.map("n", "<Leader>nh", ":nohlsearch<CR>")
 	M.map("n", "<Leader>fw", ":update<CR>") -- 'file write'
 	M.map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
-	M.silent_map("n", "<Leader>tn", ":lua vim.opt.nu = not vim.opt.nu._value vim.opt.rnu = not vim.opt.rnu._value<CR>") -- 'toggle line numbers'
+	M.silent_map("n", "<Leader>tn", ":lua require('afiddes/mappings').toggle_nums()<CR>") -- 'toggle line numbers'
 end
 
 return M

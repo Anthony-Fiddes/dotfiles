@@ -2,46 +2,6 @@
 local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options
 
-local function word_count()
-	local counts = vim.fn.wordcount()
-	local result = counts.words
-	if counts.visual_words then
-		result = counts.visual_words
-	end
-	return string.format("%d Words", result)
-end
-
--- I copied most of the default config over to the extension. The next order of
--- business would be figuring out how to make it apply specifically to ".md"
--- files instead of the pandoc filetype.
-local word_count_extension = {
-	options = {
-		icons_enabled = true,
-		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		disabled_filetypes = {},
-		always_divide_middle = true,
-	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_c = { "filename" },
-		lualine_x = { word_count },
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
-	},
-	inactive_sections = {
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-	},
-	filetypes = { "pandoc" },
-}
-
-local lualine = require("lualine")
--- this must be outside of packer's config hook since it does not have access
--- to global variables.
-lualine.setup({ extensions = { word_count_extension } })
-
 --- Plugins
 local function load_plugins()
 	return require("packer").startup(function()
@@ -157,6 +117,9 @@ local function load_plugins()
 		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			config = function()
+				require("lualine").setup({ extensions = { require("afiddes/lualine_ext").word_count_extension } })
+			end,
 		})
 		use({
 			"kyazdani42/nvim-web-devicons",
@@ -330,7 +293,10 @@ lsp_installer.on_server_ready(function(server)
 	if server.name == "sumneko_lua" then
 		opts.settings = {
 			Lua = {
-				diagnostics = { globals = { "vim", "use" } },
+				diagnostics = {
+					enable = true,
+					globals = { "vim", "use" },
+				},
 			},
 		}
 	end
