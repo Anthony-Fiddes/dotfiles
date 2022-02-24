@@ -1,6 +1,6 @@
 local M = {}
 
--- helper stolen from oroques.dev/notes/neovim-init/
+-- helpers stolen from oroques.dev/notes/neovim-init/
 function M.map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
 	if opts then
