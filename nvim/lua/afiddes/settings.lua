@@ -46,6 +46,8 @@ opt.autowrite = true
 opt.hidden = true
 
 -- Hopefully self-explanatory stuff
+opt.number = true
+opt.relativenumber = true
 opt.syntax = "ON"
 opt.ignorecase = true
 opt.spell = true

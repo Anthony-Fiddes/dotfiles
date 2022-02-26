@@ -1,7 +1,3 @@
--- helpers stolen from oroques.dev/notes/neovim-init/
-local g = vim.g -- a table to access global variables
-local opt = vim.opt -- to set options
-
 --- Plugins
 local function load_plugins()
 	return require("packer").startup(function()
@@ -103,6 +99,7 @@ local function load_plugins()
 			end,
 			requires = { "nvim-lua/plenary.nvim" },
 		})
+		use("khaveesh/vim-fish-syntax")
 
 		-- Markdown Things
 		use("vim-pandoc/vim-pandoc")
