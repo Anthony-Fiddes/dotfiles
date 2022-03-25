@@ -13,6 +13,7 @@ alias vimm="command vim"
 fish_add_path -g /usr/local/go/bin
 fish_add_path -g ~/go/bin
 fish_add_path -g ~/scripts
+fish_add_path -g ~/bin
 
 # Variables
 set -gx EDITOR nvim
