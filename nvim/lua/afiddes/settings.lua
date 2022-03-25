@@ -12,6 +12,11 @@ g["pandoc#formatting#mode"] = "hA"
 g["pandoc#folding#fastfolds"] = 1
 g["pandoc#folding#level"] = 1
 g["pandoc#after#modules#enabled"] = { "tablemode" }
+g["pandoc#command#autoexec_on_writes"] = 1
+g["pandoc#command#autoexec_command"] = "Pandoc html --filter mermaid-filter"
+
+-- COQ
+vim.g.coq_settings = { auto_start = "shut-up" }
 
 local function ensure_dir(path)
 	vim.validate({ path = { path, "string" } })
@@ -158,13 +163,14 @@ end)
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "gopls" }
+local servers = { "gopls", "tsserver" }
 for _, lsp in pairs(servers) do
-	require("lspconfig")[lsp].setup({
+	local coq = require("coq")
+	require("lspconfig")[lsp].setup(coq.lsp_ensure_capabilities({
 		on_attach = require("afiddes/lsp-config").on_attach,
 		flags = {
 			-- This will be the default in neovim 0.7+
 			debounce_text_changes = 150,
 		},
-	})
+	}))
 end
