@@ -165,8 +165,16 @@ end)
 -- map buffer local keybindings when the language server attaches
 local servers = { "gopls", "tsserver" }
 for _, lsp in pairs(servers) do
-	local coq = require("coq")
-	require("lspconfig")[lsp].setup(coq.lsp_ensure_capabilities({
+	local wrap_setup = function(tbl)
+		return tbl
+	end
+	if pcall(require, "coq") then
+		local coq = require("coq")
+		wrap_setup = function(tbl)
+			return coq.lsp_ensure_capabilities(tbl)
+		end
+	end
+	require("lspconfig")[lsp].setup(wrap_setup({
 		on_attach = require("afiddes/lsp-config").on_attach,
 		flags = {
 			-- This will be the default in neovim 0.7+
