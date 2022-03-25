@@ -61,11 +61,14 @@ function M.set()
 	M.silent_map("n", "<Leader>h:", ":History:<CR>")
 	M.silent_map("n", "<Leader>h/", ":History/<CR>")
 
+	-- Misc
 	-- change directory to that of the current file
 	M.map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
 	M.map("n", "<Leader>nh", ":nohlsearch<CR>")
 	M.map("n", "<Leader>fw", ":update<CR>") -- 'file write'
 	M.map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
+	M.map("n", "<Leader>gp", ":Glow<CR>") -- 'glow preview'
+	M.map("n", "<Leader>fe", ":NvimTreeToggle<CR>") --  'file explorer'
 	M.silent_map("n", "<Leader>tn", ":lua require('afiddes/mappings').toggle_nums()<CR>") -- 'toggle line numbers'
 end
 

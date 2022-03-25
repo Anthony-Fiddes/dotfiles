@@ -52,6 +52,7 @@ local function load_plugins()
 				require("nvim-lastplace").setup({})
 			end,
 		})
+		use("tpope/vim-sleuth")
 
 		-- Language Things
 		use({
@@ -75,14 +76,33 @@ local function load_plugins()
 				require("spellsitter").setup()
 			end,
 		})
-		use("neovim/nvim-lspconfig")
+		use({
+			"neovim/nvim-lspconfig",
+			config = function()
+				require("lspconfig").tsserver.setup({
+					on_attach = function(client, bufnr)
+						client.resolved_capabilities.document_formatting = false
+						client.resolved_capabilities.document_range_formatting = false
+						require("afiddes/lsp-config").on_attach(client, bufnr)
+					end,
+				})
+			end,
+		})
 		use("williamboman/nvim-lsp-installer")
-		use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
+		use({ "ms-jpq/coq_nvim", branch = "coq" })
+		use("ray-x/go.nvim")
+		use({
+			"ray-x/lsp_signature.nvim",
+			config = function()
+				require("lsp_signature").setup()
+			end,
+		})
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
 				local null_ls = require("null-ls")
 				local sources = {
+					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.code_actions.gitsigns,
 					null_ls.builtins.diagnostics.write_good.with({

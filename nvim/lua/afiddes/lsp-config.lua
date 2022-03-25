@@ -44,6 +44,9 @@ function M.on_attach(client, bufnr)
 			augroup END 
 		]])
 	end
+	if pcall(require, "lsp_signature") then
+		require("lsp_signature").on_attach()
+	end
 end
 
 -- Toggles the rendering of LSP diagnostic information.
