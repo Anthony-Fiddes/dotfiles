@@ -39,7 +39,6 @@ local function load_plugins()
 			end,
 		})
 		use("tpope/vim-fugitive")
-		use("SirVer/ultisnips")
 		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
 		use("rafcamlet/nvim-luapad")
 		use({
@@ -90,6 +89,7 @@ local function load_plugins()
 		})
 		use("williamboman/nvim-lsp-installer")
 		use({ "ms-jpq/coq_nvim", branch = "coq" })
+		use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
 		use("ray-x/go.nvim")
 		use({
 			"ray-x/lsp_signature.nvim",
