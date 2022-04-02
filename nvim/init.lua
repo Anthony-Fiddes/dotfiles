@@ -9,6 +9,7 @@ local function load_plugins()
 		use("tpope/vim-surround")
 		use({
 			"kyazdani42/nvim-tree.lua",
+			requires = { "kyazdani42/nvim-web-devicons" },
 			config = function()
 				require("nvim-tree").setup({})
 			end,
@@ -19,6 +20,7 @@ local function load_plugins()
 			config = function()
 				require("mini.comment").setup({})
 				require("mini.pairs").setup({})
+				require("mini.starter").setup({})
 			end,
 		})
 		use({
@@ -146,12 +148,6 @@ local function load_plugins()
 					-- will get overridden by `get_icons` option
 					default = true,
 				})
-			end,
-		})
-		use({
-			"goolord/alpha-nvim",
-			config = function()
-				require("alpha").setup(require("alpha.themes.startify").config)
 			end,
 		})
 		use({
