@@ -5,6 +5,9 @@ local opt = vim.opt -- to set options
 g.mapleader = " "
 g.maplocalleader = "\\"
 
+-- matchparen.vim is annoyingly slow
+g["matchparen_timeout"] = 10
+
 -- Pandoc
 g["pandoc#syntax#conceal#use"] = 1
 g["pandoc#syntax#conceal#backslash"] = 1
@@ -16,7 +19,7 @@ g["pandoc#command#autoexec_on_writes"] = 1
 g["pandoc#command#autoexec_command"] = "Pandoc html --filter mermaid-filter"
 
 -- COQ
-vim.g.coq_settings = { auto_start = "shut-up" }
+g.coq_settings = { auto_start = "shut-up" }
 
 local function ensure_dir(path)
 	vim.validate({ path = { path, "string" } })
@@ -84,10 +87,6 @@ autocmd FileType go nmap <LocalLeader>b  <Plug>(go-build)
 autocmd FileType go nmap <LocalLeader>r  <Plug>(go-run)
 autocmd FileType go nmap <LocalLeader>d  <Plug>(go-doc)
 autocmd FileType go nmap <LocalLeader>D  <Plug>(go-def)
-
-" Vimwiki
-let g:vimwiki_list = [{'path': '~/Documents/second_brain',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 execute "digraphs as " . 0x2090
 execute "digraphs es " . 0x2091

@@ -53,7 +53,6 @@ local function load_plugins()
 				require("nvim-lastplace").setup({})
 			end,
 		})
-		use("tpope/vim-sleuth")
 
 		-- Language Things
 		use({
