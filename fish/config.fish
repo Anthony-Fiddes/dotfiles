@@ -1,11 +1,16 @@
+if test -e /etc/fedora-release
+	set -f DISTRO fedora
+	echo "hi"
+end
+
 # Aliases
-alias cat=batcat
+# NOTE: You have to clear an alias with "functions -e {ALIAS}" in
+# order to set it again.
 alias code=codium
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias fd=fdfind
 alias icat="kitty +kitten icat"
 alias ipython=ipython3
-alias open=xdg-open
 alias python=python3
 alias vimm="command vim"
 
@@ -25,7 +30,11 @@ if not set -q XDG_CONFIG_HOME
 end
 
 # Abbreviations
-abbr -a -g cat batcat
+if test "$DISTRO" = "fedora"
+	abbr -a -g cat bat
+else
+	abbr -a -g cat batcat
+end
 abbr -a -g ga git add
 abbr -a -g gc git commit -v
 abbr -a -g gca git commit -v --amend
@@ -36,6 +45,7 @@ abbr -a -g gs git status
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g v nvim
 abbr -a -g vim nvim
+abbr -a -g open xdg-open
 
 # Vim Mode
 fish_vi_key_bindings
