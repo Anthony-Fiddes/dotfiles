@@ -2,5 +2,6 @@ fish/fish_variables
 nvim/plugin
 nvim/spell
 nvim/autoload
+scripts/logs
 systemd/user/default.target.wants/
 systemd/user/timers.target.wants/
