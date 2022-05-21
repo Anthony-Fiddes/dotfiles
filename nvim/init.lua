@@ -1,3 +1,9 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+end
+
 --- Plugins
 local function load_plugins()
 	return require("packer").startup(function()
@@ -104,7 +110,6 @@ local function load_plugins()
 				local null_ls = require("null-ls")
 				local sources = {
 					null_ls.builtins.formatting.prettier,
-					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.code_actions.gitsigns,
 					null_ls.builtins.diagnostics.write_good.with({
 						extra_filetypes = { "pandoc" },
@@ -162,7 +167,14 @@ local function load_plugins()
 				})
 			end,
 		})
-	end)
+
+		if packer_bootstrap then
+			require('packer').sync()
+		end
+	end
+
+	)
+
 end
 
 require("afiddes/settings")

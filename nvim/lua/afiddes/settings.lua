@@ -77,10 +77,15 @@ opt.backupdir = backup_dir .. ",."
 
 --- Everything else ---
 vim.cmd([[
+
+try
+	colorscheme nord
+catch
+	echo "Nord colorscheme not available"
+endtry
+
 "Also provides omni Completion
 filetype plugin on
-
-colorscheme nord
 
 " Go
 autocmd FileType go nmap <LocalLeader>b  <Plug>(go-build)
@@ -133,32 +138,35 @@ execute "digraphs yS " . 0x02b8
 execute "digraphs zS " . 0x1dbb
 ]])
 
-local lsp_installer = require("nvim-lsp-installer")
 
--- Register a handler that will be called for each installed server when it's
--- ready (i.e. when installation is finished
--- or if the server is already installed).
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = require("afiddes/lsp-config").on_attach,
-	}
+local okay, lsp_installer = pcall(require, "nvim-lsp-installer")
 
-	if server.name == "sumneko_lua" then
-		opts.settings = {
-			Lua = {
-				diagnostics = {
-					enable = true,
-					globals = { "vim", "use" },
-				},
-			},
+if okay then
+	-- Register a handler that will be called for each installed server when it's
+	-- ready (i.e. when installation is finished
+	-- or if the server is already installed).
+	lsp_installer.on_server_ready(function(server)
+		local opts = {
+			on_attach = require("afiddes/lsp-config").on_attach,
 		}
-	end
 
-	-- This setup() function will take the provided server configuration and decorate it with the necessary properties
-	-- before passing it onwards to lspconfig.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	server:setup(opts)
-end)
+		if server.name == "sumneko_lua" then
+			opts.settings = {
+				Lua = {
+					diagnostics = {
+						enable = true,
+						globals = { "vim", "use" },
+					},
+				},
+			}
+		end
+
+		-- This setup() function will take the provided server configuration and decorate it with the necessary properties
+		-- before passing it onwards to lspconfig.
+		-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+		server:setup(opts)
+	end)
+end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -173,11 +181,13 @@ for _, lsp in pairs(servers) do
 			return coq.lsp_ensure_capabilities(tbl)
 		end
 	end
-	require("lspconfig")[lsp].setup(wrap_setup({
-		on_attach = require("afiddes/lsp-config").on_attach,
-		flags = {
-			-- This will be the default in neovim 0.7+
-			debounce_text_changes = 150,
-		},
-	}))
+	if pcall(require, "lspconfig") then
+		require("lspconfig")[lsp].setup(wrap_setup({
+			on_attach = require("afiddes/lsp-config").on_attach,
+			flags = {
+				-- This will be the default in neovim 0.7+
+				debounce_text_changes = 150,
+			},
+		}))
+	end
 end
