@@ -1,6 +1,5 @@
-if test -e /etc/fedora-release
+if on_fedora
 	set -f DISTRO fedora
-	echo "hi"
 end
 
 # Aliases
@@ -8,7 +7,6 @@ end
 # order to set it again.
 alias code=codium
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
-alias fd=fdfind
 alias icat="kitty +kitten icat"
 alias ipython=ipython3
 alias python=python3
@@ -22,7 +20,7 @@ fish_add_path -g ~/bin
 
 # Variables
 set -gx EDITOR nvim
-if not set -q BROWSER
+if not set -q BROWSER and which brave-browser
 	set -gx BROWSER brave-browser
 end
 if not set -q XDG_CONFIG_HOME
