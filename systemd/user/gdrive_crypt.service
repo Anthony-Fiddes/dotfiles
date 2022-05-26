@@ -1,6 +1,6 @@
 [Unit]
 Description=Google Drive (rclone)
-AssertPathIsDirectory=%h/gdrive_crypt
+AssertPathIsDirectory=%h/Documents/gdrive_crypt
 After=network-online.target
 Wants=network-online.target
 
@@ -8,7 +8,7 @@ Wants=network-online.target
 Type=simple
 StandardOutput=journal
 StandardError=inherit
-ExecStart=%h/scripts/gdrive_crypt.sh
+ExecStart=%h/bin/gdrive_crypt.sh
 Restart=on-failure
 RestartSec=5
 
