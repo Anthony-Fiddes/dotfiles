@@ -84,17 +84,35 @@ local function load_plugins()
 		})
 		use({
 			"neovim/nvim-lspconfig",
+			requires = { "williamboman/nvim-lsp-installer", "ms-jpq/coq_nvim" },
 			config = function()
-				require("lspconfig").tsserver.setup({
+				require("nvim-lsp-installer").setup({})
+				local lspconfig = require("lspconfig")
+				local coq = require("coq")
+				local on_attach = require("afiddes/lsp-config").on_attach
+				lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
 					on_attach = function(client, bufnr)
 						client.resolved_capabilities.document_formatting = false
 						client.resolved_capabilities.document_range_formatting = false
-						require("afiddes/lsp-config").on_attach(client, bufnr)
+						on_attach(client, bufnr)
 					end,
-				})
+				}))
+				lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+					settings = {
+						Lua = {
+							diagnostics = {
+								enable = true,
+								globals = { "vim", "use" },
+							},
+						},
+					},
+					on_attach = on_attach
+				}))
+				lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+					on_attach = on_attach
+				}))
 			end,
 		})
-		use("williamboman/nvim-lsp-installer")
 		use({ "ms-jpq/coq_nvim", branch = "coq" })
 		use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
 		use("ray-x/go.nvim")
