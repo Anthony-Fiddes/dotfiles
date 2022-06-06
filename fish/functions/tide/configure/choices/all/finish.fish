@@ -4,13 +4,13 @@ function finish
     set_color normal
 
     _tide_option y Yes
-    printf '%b' '\n'
+    echo
 
     _tide_menu
     switch $_tide_selected_option
         case y
             _tide_finish
-            clear
+            command -q clear && clear
     end
 end
 
@@ -31,7 +31,7 @@ function _tide_finish
     end
 
     # Set the real variables
-    for fakeVar in (set --names | string match --regex "^fake_tide.*")
+    for fakeVar in (set --names | string match -r "^fake_tide.*")
         set -U (string replace 'fake_' '' $fakeVar) $$fakeVar
     end
 
