@@ -1,12 +1,11 @@
 [Unit]
 Description=Backup my budgeter information
-Requires=gdrive_crypt.service
 
 [Service]
 Type=oneshot
 StandardOutput=journal
 StandardError=inherit
-ExecStart=%h/scripts/budgeter_backup.sh
+ExecStart=%h/bin/budgeter_backup.sh
 Restart=on-failure
 RestartSec=2min
 
