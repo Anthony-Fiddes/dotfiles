@@ -1,0 +1,16 @@
+[Unit]
+Description=Nextcloud (rclone)
+AssertPathIsDirectory=%h/Documents/nextcloud_crypt
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+StandardOutput=journal
+StandardError=inherit
+ExecStart=%h/bin/nextcloud_crypt.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
