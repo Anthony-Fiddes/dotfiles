@@ -17,6 +17,7 @@ fish_add_path -g /usr/local/go/bin
 fish_add_path -g ~/go/bin
 fish_add_path -g ~/scripts
 fish_add_path -g ~/bin
+fish_add_path -g ~/.local/bin
 
 # Variables
 set -gx EDITOR nvim
