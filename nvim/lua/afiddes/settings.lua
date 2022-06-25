@@ -87,12 +87,6 @@ endtry
 "Also provides omni Completion
 filetype plugin on
 
-" Go
-autocmd FileType go nmap <LocalLeader>b  <Plug>(go-build)
-autocmd FileType go nmap <LocalLeader>r  <Plug>(go-run)
-autocmd FileType go nmap <LocalLeader>d  <Plug>(go-doc)
-autocmd FileType go nmap <LocalLeader>D  <Plug>(go-def)
-
 execute "digraphs as " . 0x2090
 execute "digraphs es " . 0x2091
 execute "digraphs hs " . 0x2095
