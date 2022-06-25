@@ -1,0 +1,13 @@
+[Unit]
+Description=Backup my second brain information
+
+[Service]
+Type=oneshot
+StandardOutput=journal
+StandardError=inherit
+ExecStart=%h/bin/brain_backup.sh
+Restart=on-failure
+RestartSec=2min
+
+[Install]
+WantedBy=default.target

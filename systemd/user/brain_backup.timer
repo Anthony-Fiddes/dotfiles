@@ -1,5 +1,5 @@
 [Unit]
-Description=Backup my budgeting information to nextcloud daily.
+Description=Backup my second brain to nextcloud daily.
 
 [Timer]
 OnCalendar=daily
