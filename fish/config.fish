@@ -1,7 +1,3 @@
-if on_fedora
-	set -f DISTRO fedora
-end
-
 # Aliases
 # NOTE: You have to clear an alias with "functions -e {ALIAS}" in
 # order to set it again.
@@ -29,10 +25,10 @@ if not set -q XDG_CONFIG_HOME
 end
 
 # Abbreviations
-if test "$DISTRO" = "fedora"
-	abbr -a -g cat bat
-else
+if on_ubuntu or on_debian
 	abbr -a -g cat batcat
+else
+	abbr -a -g cat bat
 end
 abbr -a -g ga git add
 abbr -a -g gc git commit -v
@@ -45,7 +41,10 @@ abbr -a -g gs git status
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g v nvim
 abbr -a -g vim nvim
-abbr -a -g open xdg-open
+
+if test $(uname) != "Darwin"
+	abbr -a -g open xdg-open
+end
 
 # Vim Mode
 fish_vi_key_bindings
