@@ -1,4 +1,6 @@
 fish/fish_variables
+fish/conf.d
+fish/functions/_*
 nvim/plugin
 nvim/spell
 nvim/autoload
