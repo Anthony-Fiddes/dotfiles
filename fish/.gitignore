@@ -1,0 +1,8 @@
+fish_variables
+conf.d
+functions/_*
+functions/bass*
+functions/fisher*
+functions/fish_mode_prompt.fish
+functions/fish_prompt.fish
+functions/tide*
