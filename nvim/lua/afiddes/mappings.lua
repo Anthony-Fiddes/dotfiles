@@ -66,6 +66,7 @@ function M.set()
 	M.map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
 	M.map("n", "<Leader>nh", ":nohlsearch<CR>")
 	M.map("n", "<Leader>fw", ":update<CR>") -- 'file write'
+	M.map("n", "<Leader>tl", ":set list!<CR>") -- 'toggle list (show/hide white space)'
 	M.map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
 	M.map("n", "<Leader>gp", ":Glow<CR>") -- 'glow preview'
 	M.map("n", "<Leader>fe", ":NvimTreeToggle<CR>") --  'file explorer'
