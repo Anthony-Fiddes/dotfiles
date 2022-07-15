@@ -48,7 +48,6 @@ local function load_plugins()
 			end,
 		})
 		use("tpope/vim-fugitive")
-		use({ "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" })
 		use("rafcamlet/nvim-luapad")
 		use({
 			"ggandor/lightspeed.nvim",
@@ -58,6 +57,12 @@ local function load_plugins()
 			"ethanholz/nvim-lastplace",
 			config = function()
 				require("nvim-lastplace").setup({})
+			end,
+		})
+		use({
+			"nmac427/guess-indent.nvim",
+			config = function()
+				require('guess-indent').setup({})
 			end,
 		})
 
@@ -91,13 +96,7 @@ local function load_plugins()
 				local lspconfig = require("lspconfig")
 				local coq = require("coq")
 				local on_attach = require("afiddes/lsp-config").on_attach
-				lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
-					on_attach = function(client, bufnr)
-						client.resolved_capabilities.document_formatting = false
-						client.resolved_capabilities.document_range_formatting = false
-						on_attach(client, bufnr)
-					end,
-				}))
+				lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
 				lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 					settings = {
 						Lua = {
@@ -147,12 +146,12 @@ local function load_plugins()
 		use("khaveesh/vim-fish-syntax")
 
 		-- Markdown Things
+		use("ellisonleao/glow.nvim")
 		use("vim-pandoc/vim-pandoc")
 		use("vim-pandoc/vim-pandoc-syntax")
 		--   needed for smart autoformatting to play nicely with vim-table-mode
 		use("vim-pandoc/vim-pandoc-after")
 		use("dhruvasagar/vim-table-mode")
-		use("ellisonleao/glow.nvim")
 
 		-- Pretty Things
 		use("arcticicestudio/nord-vim")
