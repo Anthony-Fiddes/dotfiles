@@ -115,7 +115,12 @@ local function load_plugins()
 		})
 		use({ "ms-jpq/coq_nvim", branch = "coq" })
 		use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
-		use("ray-x/go.nvim")
+		use({
+			"ray-x/go.nvim",
+			config = function()
+				require("go").setup()
+			end
+		})
 		use({
 			"ray-x/lsp_signature.nvim",
 			config = function()

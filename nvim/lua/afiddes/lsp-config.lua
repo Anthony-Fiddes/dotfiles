@@ -50,7 +50,7 @@ function M.on_attach(client, bufnr)
 			callback = function()
 				if client.name ~= "tsserver" then
 					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-					vim.lsp.buf.formatting_seq_sync()
+					vim.lsp.buf.formatting_sync()
 				end
 			end,
 		})
