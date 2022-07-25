@@ -90,9 +90,14 @@ local function load_plugins()
 		})
 		use({
 			"neovim/nvim-lspconfig",
-			requires = { "williamboman/nvim-lsp-installer", "ms-jpq/coq_nvim" },
+			requires = {
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
+				"ms-jpq/coq_nvim"
+			},
 			config = function()
-				require("nvim-lsp-installer").setup({})
+				require("mason").setup({})
+				require("mason-lspconfig").setup({})
 				local lspconfig = require("lspconfig")
 				local coq = require("coq")
 				local on_attach = require("afiddes/lsp-config").on_attach
