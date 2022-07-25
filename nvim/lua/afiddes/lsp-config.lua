@@ -69,4 +69,27 @@ function M.toggle_diagnostics()
 	end
 end
 
+function M.setup_servers()
+	local lspconfig = require("lspconfig")
+	local coq = require("coq")
+	lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({ on_attach = M.on_attach }))
+	lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+		settings = {
+			Lua = {
+				diagnostics = {
+					enable = true,
+					globals = { "vim", "use" },
+				},
+			},
+		},
+		on_attach = M.on_attach
+	}))
+	lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+		on_attach = M.on_attach
+	}))
+	lspconfig.jedi_language_server.setup(coq.lsp_ensure_capabilities({
+		on_attach = M.on_attach
+	}))
+end
+
 return M

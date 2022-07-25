@@ -98,24 +98,6 @@ local function load_plugins()
 			config = function()
 				require("mason").setup({})
 				require("mason-lspconfig").setup({})
-				local lspconfig = require("lspconfig")
-				local coq = require("coq")
-				local on_attach = require("afiddes/lsp-config").on_attach
-				lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
-				lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
-					settings = {
-						Lua = {
-							diagnostics = {
-								enable = true,
-								globals = { "vim", "use" },
-							},
-						},
-					},
-					on_attach = on_attach
-				}))
-				lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
-					on_attach = on_attach
-				}))
 			end,
 		})
 		use({ "ms-jpq/coq_nvim", branch = "coq" })
@@ -208,3 +190,4 @@ end
 require("afiddes/settings")
 load_plugins()
 require("afiddes/mappings").set()
+require("afiddes/lsp-config").setup_servers()
