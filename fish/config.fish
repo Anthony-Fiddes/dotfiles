@@ -17,7 +17,7 @@ fish_add_path -g ~/.local/bin
 
 # Variables
 set -gx EDITOR nvim
-if not set -q BROWSER and which brave-browser
+if not set -q BROWSER; and which brave-browser
 	set -gx BROWSER brave-browser
 end
 if not set -q XDG_CONFIG_HOME
@@ -25,7 +25,7 @@ if not set -q XDG_CONFIG_HOME
 end
 
 # Abbreviations
-if on_ubuntu or on_debian
+if on_ubuntu; or on_debian
 	abbr -a -g cat batcat
 else
 	abbr -a -g cat bat
@@ -38,6 +38,9 @@ abbr -a -g gl git log
 abbr -a -g gp git push
 abbr -a -g gpl git pull
 abbr -a -g gs git status
+if on_fedora
+	abbr -a -g say espeak-ng
+end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g v nvim
 abbr -a -g vim nvim
