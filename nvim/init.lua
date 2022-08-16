@@ -32,6 +32,7 @@ local function load_plugins()
 					}
 				})
 				require("mini.pairs").setup({})
+				require("mini.tabline").setup({})
 				require("mini.starter").setup({})
 			end,
 		})

@@ -21,14 +21,28 @@ end
 
 --- Sets all of my custom keybindings
 function M.set()
+	-- FZF
+	M.silent_map("n", "<C-p>", ":Files<CR>")
+	M.silent_map("n", "<M-p>", ":GFiles<CR>")
+	M.silent_map("n", "<C-f>", ":BLines<CR>")
+	M.silent_map("n", "<Leader>fb", ":Buffers<CR>") -- 'find buffer'
+	M.silent_map("n", "<Leader>ff", ":Rg<CR>") -- 'find files'
+	M.silent_map("n", "<Leader>fc", ":Commits<CR>") -- 'find commit'
+	M.silent_map("n", "<Leader>H", ":Helptags<CR>")
+	M.silent_map("n", "<Leader>hh", ":History<CR>")
+	M.silent_map("n", "<Leader>hc", ":Commands<CR>")
+	M.silent_map("n", "<Leader>h:", ":History:<CR>")
+	M.silent_map("n", "<Leader>h/", ":History/<CR>")
+
+	-- Navigation
+	M.map("n", "gb", ":bnext<CR>")
+	M.map("n", "gB", ":bprev<CR>")
+
+	-- IPA Keybindings
 	local function append(str)
 		return "a" .. str .. "<Esc>"
 	end
 
-	-- Glow Markdown Preview
-	M.map("n", "<Leader>gp", ":Glow<CR>") -- glow preview
-
-	-- IPA Keybindings
 	M.map("n", "<Leader>ia", append("ɑ"))
 	M.map("n", "<Leader>ic", append("ç"))
 	M.map("n", "<Leader>id", append("ð"))
@@ -47,19 +61,6 @@ function M.set()
 	M.map("n", "<Leader>iy", append("ɣ"))
 	M.map("n", "<Leader>iz", append("ʒ"))
 	M.map("n", "<Leader>i?", append("ʔ"))
-
-	-- FZF
-	M.silent_map("n", "<C-p>", ":Files<CR>")
-	M.silent_map("n", "<M-p>", ":GFiles<CR>")
-	M.silent_map("n", "<C-f>", ":BLines<CR>")
-	M.silent_map("n", "<Leader>fb", ":Buffers<CR>") -- 'find buffer'
-	M.silent_map("n", "<Leader>ff", ":Rg<CR>") -- 'find files'
-	M.silent_map("n", "<Leader>fc", ":Commits<CR>") -- 'find commit'
-	M.silent_map("n", "<Leader>H", ":Helptags<CR>")
-	M.silent_map("n", "<Leader>hh", ":History<CR>")
-	M.silent_map("n", "<Leader>hc", ":Commands<CR>")
-	M.silent_map("n", "<Leader>h:", ":History:<CR>")
-	M.silent_map("n", "<Leader>h/", ":History/<CR>")
 
 	-- Misc
 	-- change directory to that of the current file
