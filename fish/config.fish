@@ -38,6 +38,7 @@ abbr -a -g gl git log
 abbr -a -g gp git push
 abbr -a -g gpl git pull
 abbr -a -g gs git status
+abbr -a -g gsw git switch
 if on_fedora
 	abbr -a -g say espeak-ng
 end
