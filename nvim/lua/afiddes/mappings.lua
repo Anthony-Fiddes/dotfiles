@@ -19,6 +19,25 @@ function M.toggle_nums()
 	vim.opt.rnu = not vim.opt.rnu:get()
 end
 
+-- execute command count times
+local function repeating(command)
+	local count = vim.v.count
+	if count == 0 then
+		count = 1
+	end
+	for _ = 1, count do
+		vim.cmd(command)
+	end
+end
+
+function M.next_tab()
+	repeating(":bnext")
+end
+
+function M.prev_tab()
+	repeating(":bprev")
+end
+
 --- Sets all of my custom keybindings
 function M.set()
 	-- FZF
@@ -35,8 +54,21 @@ function M.set()
 	M.silent_map("n", "<Leader>h/", ":History/<CR>")
 
 	-- Navigation
-	M.map("n", "gb", ":bnext<CR>")
-	M.map("n", "gB", ":bprev<CR>")
+	M.silent_map("n", "<C-PageDown>", ":bnext<CR>")
+	M.silent_map("n", "<C-PageUp>", ":bprev<CR>")
+	M.silent_map("n", "gb", ":lua require('afiddes/mappings').next_tab()<CR>")
+	M.silent_map("n", "gB", ":lua require('afiddes/mappings').prev_tab()<CR>")
+
+	-- Misc
+	-- change directory to that of the current file
+	M.map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
+	M.map("n", "<Leader>nh", ":nohlsearch<CR>")
+	M.map("n", "<Leader>fw", ":update<CR>") -- 'file write'
+	M.map("n", "<Leader>tl", ":set list!<CR>") -- 'toggle list (show/hide white space)'
+	M.map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
+	M.map("n", "<Leader>gp", ":Glow<CR>") -- 'glow preview'
+	M.map("n", "<Leader>fe", ":NvimTreeToggle<CR>") --  'file explorer'
+	M.silent_map("n", "<Leader>tn", ":lua require('afiddes/mappings').toggle_nums()<CR>") -- 'toggle line numbers'
 
 	-- IPA Keybindings
 	local function append(str)
@@ -62,16 +94,6 @@ function M.set()
 	M.map("n", "<Leader>iz", append("ʒ"))
 	M.map("n", "<Leader>i?", append("ʔ"))
 
-	-- Misc
-	-- change directory to that of the current file
-	M.map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
-	M.map("n", "<Leader>nh", ":nohlsearch<CR>")
-	M.map("n", "<Leader>fw", ":update<CR>") -- 'file write'
-	M.map("n", "<Leader>tl", ":set list!<CR>") -- 'toggle list (show/hide white space)'
-	M.map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
-	M.map("n", "<Leader>gp", ":Glow<CR>") -- 'glow preview'
-	M.map("n", "<Leader>fe", ":NvimTreeToggle<CR>") --  'file explorer'
-	M.silent_map("n", "<Leader>tn", ":lua require('afiddes/mappings').toggle_nums()<CR>") -- 'toggle line numbers'
 end
 
 return M
