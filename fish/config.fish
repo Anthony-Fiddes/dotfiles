@@ -35,6 +35,7 @@ abbr -a -g gc git commit -v
 abbr -a -g gca git commit -v --amend
 abbr -a -g gd git diff
 abbr -a -g gl git log
+abbr -a -g gm git merge
 abbr -a -g gp git push
 abbr -a -g gpl git pull
 abbr -a -g gs git status
