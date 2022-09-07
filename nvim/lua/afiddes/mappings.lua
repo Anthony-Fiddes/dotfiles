@@ -59,6 +59,11 @@ function M.set()
 	M.silent_map("n", "gb", ":lua require('afiddes/mappings').next_tab()<CR>")
 	M.silent_map("n", "gB", ":lua require('afiddes/mappings').prev_tab()<CR>")
 
+	-- Documentation
+	M.map("n", "<Leader>ng", ":lua require('neogen').generate()<CR>")
+	M.map("n", "<Leader>nf", ":lua require('neogen').generate({ type = 'func' })<CR>")
+	M.map("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>")
+
 	-- Misc
 	-- change directory to that of the current file
 	M.map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
