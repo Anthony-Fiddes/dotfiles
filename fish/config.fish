@@ -23,6 +23,9 @@ end
 if not set -q XDG_CONFIG_HOME
  	set -gx XDG_CONFIG_HOME "$HOME/.config"
 end
+if not set -q BAT_THEME
+ 	set -gx BAT_THEME "Visual Studio Dark+"
+end
 
 # Abbreviations
 if on_ubuntu; or on_debian
