@@ -9,6 +9,7 @@ end
 local function load_plugins()
 	return require("packer").startup(function()
 		use("wbthomason/packer.nvim")
+		use("lewis6991/impatient.nvim")
 
 		-- Useful Things
 		use({ "junegunn/fzf", run = "fzf#install()" })
@@ -222,6 +223,7 @@ local function load_plugins()
 
 end
 
+pcall(require, "impatient")
 require("afiddes/settings")
 load_plugins()
 require("afiddes/mappings").set()
