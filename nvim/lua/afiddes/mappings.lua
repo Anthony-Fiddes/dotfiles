@@ -29,18 +29,25 @@ end
 function M.set()
 	local opts = { noremap = true }
 	local silent_opts = { noremap = true, silent = true }
-	-- FZF
-	vim.keymap.set("n", "<C-p>", ":Files<CR>", opts)
-	vim.keymap.set("n", "<M-p>", ":GFiles<CR>", opts)
-	vim.keymap.set("n", "<C-f>", ":BLines<CR>", opts)
-	vim.keymap.set("n", "<Leader>fb", ":Buffers<CR>", opts) -- 'find buffer'
-	vim.keymap.set("n", "<Leader>ff", ":Rg<CR>", opts) -- 'find files'
-	vim.keymap.set("n", "<Leader>fc", ":Commits<CR>", opts) -- 'find commit'
-	vim.keymap.set("n", "<Leader>H", ":Helptags<CR>", opts)
-	vim.keymap.set("n", "<Leader>hh", ":History<CR>", opts)
-	vim.keymap.set("n", "<Leader>hc", ":Commands<CR>", opts)
-	vim.keymap.set("n", "<Leader>h:", ":History:<CR>", opts)
-	vim.keymap.set("n", "<Leader>h/", ":History/<CR>", opts)
+
+	-- fzf-lua
+	-- I've noticed some bugginess with certain commands, if it gets too bad, I
+	-- may try telescope.
+	vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", opts)
+	vim.keymap.set("n", "<M-p>", ":FzfLua git_files<CR>", opts)
+	vim.keymap.set("n", "<C-f>", ":FzfLua blines<CR>", opts)
+	vim.keymap.set("n", "<Leader>fb", ":FzfLua buffers<CR>", opts) -- 'find in buffer'
+	vim.keymap.set("n", "<Leader>ff", ":FzfLua live_grep<CR>", opts) -- 'find in files'
+	vim.keymap.set("n", "<Leader>fr", ":FzfLua live_grep_resume<CR>", opts) -- 'find in files resume'
+	vim.keymap.set("n", "<Leader>fc", ":FzfLua git_commits<CR>", opts) -- 'find commit'
+	vim.keymap.set("n", "<Leader>fd", ":FzfLua lsp_workspace_diagnostics<CR>", opts) -- find diagnostics
+	vim.keymap.set("n", "<Leader>fs", ":FzfLua lsp_live_workspace_symbols<CR>", opts) -- find symbols
+	vim.keymap.set("n", "<Leader>fl", ":FzfLua builtin<CR>", opts) -- fzf-lua pickers
+	vim.keymap.set("n", "<Leader>H", ":FzfLua help_tags<CR>", opts)
+	vim.keymap.set("n", "<Leader>hh", ":FzfLua oldfiles<CR>", opts)
+	vim.keymap.set("n", "<Leader>hc", ":FzfLua commands<CR>", opts)
+	vim.keymap.set("n", "<Leader>h:", ":FzfLua command_history<CR>", opts)
+	vim.keymap.set("n", "<Leader>h/", ":FzfLua search_history<CR>", opts)
 
 	-- Navigation
 	vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", silent_opts)
@@ -57,11 +64,11 @@ function M.set()
 	-- change directory to that of the current file
 	vim.keymap.set("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>", opts)
 	vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>", opts)
-	vim.keymap.set("n", "<Leader>fw", ":update<CR>", opts) -- 'file write'
+	vim.keymap.set("n", "<Leader>uf", ":update<CR>", opts) -- 'update file'
 	vim.keymap.set("n", "<Leader>tl", ":set list!<CR>", opts) -- 'toggle list (show/hide white space)'
 	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts) -- 'glow preview'
-	vim.keymap.set("n", "<Leader>fe", ":NvimTreeToggle<CR>", opts) --  'file explorer'
+	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle<CR>", opts) --  'toggle file explorer'
 	vim.keymap.set("n", "<Leader>tn", M.toggle_nums, silent_opts) -- 'toggle line numbers'
 
 	-- IPA Keybindings

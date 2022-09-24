@@ -13,7 +13,10 @@ local function load_plugins()
 
 		-- Useful Things
 		use({ "junegunn/fzf", run = "fzf#install()" })
-		use("junegunn/fzf.vim")
+		use({ 'ibhagwan/fzf-lua',
+			-- optional for icon support
+			requires = { 'kyazdani42/nvim-web-devicons' }
+		})
 		use("tpope/vim-surround")
 		use({
 			"kyazdani42/nvim-tree.lua",
