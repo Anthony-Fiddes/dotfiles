@@ -1,18 +1,5 @@
 local M = {}
 
--- helpers stolen from oroques.dev/notes/neovim-init/
-function M.map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-function M.silent_map(mode, lhs, rhs)
-	M.map(mode, lhs, rhs, { noremap = true, silent = true })
-end
-
 -- toggle line numbers
 function M.toggle_nums()
 	vim.opt.nu = not vim.opt.nu:get()
@@ -40,65 +27,66 @@ end
 
 --- Sets all of my custom keybindings
 function M.set()
+	local opts = { noremap = true }
+	local silent_opts = { noremap = true, silent = true }
 	-- FZF
-	M.silent_map("n", "<C-p>", ":Files<CR>")
-	M.silent_map("n", "<M-p>", ":GFiles<CR>")
-	M.silent_map("n", "<C-f>", ":BLines<CR>")
-	M.silent_map("n", "<Leader>fb", ":Buffers<CR>") -- 'find buffer'
-	M.silent_map("n", "<Leader>ff", ":Rg<CR>") -- 'find files'
-	M.silent_map("n", "<Leader>fc", ":Commits<CR>") -- 'find commit'
-	M.silent_map("n", "<Leader>H", ":Helptags<CR>")
-	M.silent_map("n", "<Leader>hh", ":History<CR>")
-	M.silent_map("n", "<Leader>hc", ":Commands<CR>")
-	M.silent_map("n", "<Leader>h:", ":History:<CR>")
-	M.silent_map("n", "<Leader>h/", ":History/<CR>")
+	vim.keymap.set("n", "<C-p>", ":Files<CR>", opts)
+	vim.keymap.set("n", "<M-p>", ":GFiles<CR>", opts)
+	vim.keymap.set("n", "<C-f>", ":BLines<CR>", opts)
+	vim.keymap.set("n", "<Leader>fb", ":Buffers<CR>", opts) -- 'find buffer'
+	vim.keymap.set("n", "<Leader>ff", ":Rg<CR>", opts) -- 'find files'
+	vim.keymap.set("n", "<Leader>fc", ":Commits<CR>", opts) -- 'find commit'
+	vim.keymap.set("n", "<Leader>H", ":Helptags<CR>", opts)
+	vim.keymap.set("n", "<Leader>hh", ":History<CR>", opts)
+	vim.keymap.set("n", "<Leader>hc", ":Commands<CR>", opts)
+	vim.keymap.set("n", "<Leader>h:", ":History:<CR>", opts)
+	vim.keymap.set("n", "<Leader>h/", ":History/<CR>", opts)
 
 	-- Navigation
-	M.silent_map("n", "<C-PageDown>", ":bnext<CR>")
-	M.silent_map("n", "<C-PageUp>", ":bprev<CR>")
-	M.silent_map("n", "gb", ":lua require('afiddes/mappings').next_tab()<CR>")
-	M.silent_map("n", "gB", ":lua require('afiddes/mappings').prev_tab()<CR>")
+	vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", silent_opts)
+	vim.keymap.set("n", "<C-PageUp>", ":bprev<CR>", silent_opts)
+	vim.keymap.set("n", "gb", M.next_tab, silent_opts)
+	vim.keymap.set("n", "gB", M.prev_tab, silent_opts)
 
 	-- Documentation
-	M.map("n", "<Leader>ng", ":lua require('neogen').generate()<CR>")
-	M.map("n", "<Leader>nf", ":lua require('neogen').generate({ type = 'func' })<CR>")
-	M.map("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>")
+	vim.keymap.set("n", "<Leader>ng", function() require('neogen').generate() end, opts)
+	vim.keymap.set("n", "<Leader>nf", function() require('neogen').generate({ type = 'func' }) end, opts)
+	vim.keymap.set("n", "<Leader>nc", function() require('neogen').generate({ type = 'class' }) end, opts)
 
 	-- Misc
 	-- change directory to that of the current file
-	M.map("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>")
-	M.map("n", "<Leader>nh", ":nohlsearch<CR>")
-	M.map("n", "<Leader>fw", ":update<CR>") -- 'file write'
-	M.map("n", "<Leader>tl", ":set list!<CR>") -- 'toggle list (show/hide white space)'
-	M.map("n", "<Leader>tz", ":ZenMode<CR>") -- 'toggle zen'
-	M.map("n", "<Leader>gp", ":Glow<CR>") -- 'glow preview'
-	M.map("n", "<Leader>fe", ":NvimTreeToggle<CR>") --  'file explorer'
-	M.silent_map("n", "<Leader>tn", ":lua require('afiddes/mappings').toggle_nums()<CR>") -- 'toggle line numbers'
+	vim.keymap.set("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>", opts)
+	vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>", opts)
+	vim.keymap.set("n", "<Leader>fw", ":update<CR>", opts) -- 'file write'
+	vim.keymap.set("n", "<Leader>tl", ":set list!<CR>", opts) -- 'toggle list (show/hide white space)'
+	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
+	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts) -- 'glow preview'
+	vim.keymap.set("n", "<Leader>fe", ":NvimTreeToggle<CR>", opts) --  'file explorer'
+	vim.keymap.set("n", "<Leader>tn", M.toggle_nums, silent_opts) -- 'toggle line numbers'
 
 	-- IPA Keybindings
 	local function append(str)
 		return "a" .. str .. "<Esc>"
 	end
 
-	M.map("n", "<Leader>ia", append("ɑ"))
-	M.map("n", "<Leader>ic", append("ç"))
-	M.map("n", "<Leader>id", append("ð"))
-	M.map("n", "<Leader>i3", append("ɛ"))
-	M.map("n", "<Leader>ie", append("ə"))
-	M.map("n", "<Leader>if", append("ɸ"))
-	M.map("n", "<Leader>ii", append("ɪ"))
-	M.map("n", "<Leader>in", append("ŋ"))
-	M.map("n", "<Leader>io", append("ɔ"))
-	M.map("n", "<Leader>ir", append("ɾ"))
-	M.map("n", "<Leader>is", append("ʃ"))
-	M.map("n", "<Leader>it", append("θ"))
-	M.map("n", "<Leader>iu", append("ʊ"))
-	M.map("n", "<Leader>iv", append("ʌ"))
-	M.map("n", "<Leader>iw", append("ɯ"))
-	M.map("n", "<Leader>iy", append("ɣ"))
-	M.map("n", "<Leader>iz", append("ʒ"))
-	M.map("n", "<Leader>i?", append("ʔ"))
-
+	vim.keymap.set("n", "<Leader>ia", append("ɑ"), opts)
+	vim.keymap.set("n", "<Leader>ic", append("ç"), opts)
+	vim.keymap.set("n", "<Leader>id", append("ð"), opts)
+	vim.keymap.set("n", "<Leader>i3", append("ɛ"), opts)
+	vim.keymap.set("n", "<Leader>ie", append("ə"), opts)
+	vim.keymap.set("n", "<Leader>if", append("ɸ"), opts)
+	vim.keymap.set("n", "<Leader>ii", append("ɪ"), opts)
+	vim.keymap.set("n", "<Leader>in", append("ŋ"), opts)
+	vim.keymap.set("n", "<Leader>io", append("ɔ"), opts)
+	vim.keymap.set("n", "<Leader>ir", append("ɾ"), opts)
+	vim.keymap.set("n", "<Leader>is", append("ʃ"), opts)
+	vim.keymap.set("n", "<Leader>it", append("θ"), opts)
+	vim.keymap.set("n", "<Leader>iu", append("ʊ"), opts)
+	vim.keymap.set("n", "<Leader>iv", append("ʌ"), opts)
+	vim.keymap.set("n", "<Leader>iw", append("ɯ"), opts)
+	vim.keymap.set("n", "<Leader>iy", append("ɣ"), opts)
+	vim.keymap.set("n", "<Leader>iz", append("ʒ"), opts)
+	vim.keymap.set("n", "<Leader>i?", append("ʔ"), opts)
 end
 
 return M
