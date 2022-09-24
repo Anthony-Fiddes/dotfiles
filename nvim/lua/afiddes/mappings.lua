@@ -60,6 +60,18 @@ function M.set()
 	vim.keymap.set("n", "<Leader>nf", function() require('neogen').generate({ type = 'func' }) end, opts)
 	vim.keymap.set("n", "<Leader>nc", function() require('neogen').generate({ type = 'class' }) end, opts)
 
+	-- GitSigns
+	local ok, gs = pcall(require, "gitsigns")
+	if ok then
+		vim.keymap.set("n", "<Leader>hp", gs.preview_hunk, opts) -- 'hunk preview'
+		vim.keymap.set({ "n", "v" }, "<Leader>hr", ":Gitsigns reset_hunk<CR>", opts) -- 'hunk reset'
+		vim.keymap.set({ "n", "v" }, "<Leader>hs", ":Gitsigns stage_hunk<CR>", opts) -- 'hunk stage'
+		vim.keymap.set("n", "<Leader>hu", gs.undo_stage_hunk, opts) -- 'hunk undo stage'
+		vim.keymap.set("n", "<Leader>hb", function() gs.blame_line({full=true}) end, opts) -- 'hunk blame'
+		vim.keymap.set("n", "<Leader>hn", gs.next_hunk, opts) -- 'hunk next'
+		vim.keymap.set("n", "<Leader>hN", gs.prev_hunk, opts) -- 'hunk prev'
+	end
+
 	-- Misc
 	-- change directory to that of the current file
 	vim.keymap.set("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>", opts)
