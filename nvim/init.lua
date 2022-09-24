@@ -57,8 +57,6 @@ local function load_plugins()
 				require("gitsigns").setup()
 			end,
 		})
-		use("tpope/vim-fugitive")
-		use("rafcamlet/nvim-luapad")
 		use({
 			"ggandor/lightspeed.nvim",
 			requires = { "tpope/vim-repeat" },
@@ -226,7 +224,7 @@ local function load_plugins()
 
 end
 
-pcall(require, "impatient")
+pcall(require, "impatient") -- call impatient if installed
 require("afiddes/settings")
 load_plugins()
 require("afiddes/mappings").set()
