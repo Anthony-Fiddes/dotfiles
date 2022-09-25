@@ -101,26 +101,89 @@ local function load_plugins()
 			requires = {
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
-				"ms-jpq/coq_nvim"
 			},
 			config = function()
 				require("mason").setup({})
 				require("mason-lspconfig").setup({})
 			end,
 		})
-		use({ "ms-jpq/coq_nvim", branch = "coq" })
-		use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
+		use({
+			"L3MON4D3/LuaSnip",
+			tag = "v<CurrentMajor>.*",
+			requires = {
+				"rafamadriz/friendly-snippets"
+			},
+			config = function ()
+				require("luasnip.loaders.from_vscode").lazy_load()
+			end
+		})
+		use({
+			"hrsh7th/nvim-cmp",
+			requires = {
+				"neovim/nvim-lspconfig",
+				"hrsh7th/cmp-calc",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-cmdline",
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-nvim-lua",
+				"L3MON4D3/LuaSnip",
+			},
+			config = function()
+				local cmp = require("cmp")
+				cmp.setup({
+					snippet = {
+						expand = function(args) require("luasnip").lsp_expand(args.body) end
+					},
+					mapping = cmp.mapping.preset.insert({
+						['<C-b>'] = cmp.mapping.scroll_docs(-4),
+						['<C-f>'] = cmp.mapping.scroll_docs(4),
+						['<C-Space>'] = cmp.mapping.complete(),
+						['<C-e>'] = cmp.mapping.abort(),
+						['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					}),
+					sources = cmp.config.sources(
+						{
+							{ name = 'nvim_lsp_signature_help' },
+							{ name = 'nvim_lsp' },
+							{ name = 'nvim_lua' },
+							{ name = 'luasnip' }, -- For luasnip users.
+							{ name = 'calc' },
+							{ name = 'fish' },
+							{ name = 'buffer' },
+							{ name = 'path' },
+						}
+					)
+				})
+
+				-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+				for _, v in pairs({ '/', '?' }) do
+					cmp.setup.cmdline(v, {
+						mapping = cmp.mapping.preset.cmdline(),
+						sources = {
+							{ name = 'buffer' }
+						}
+					})
+				end
+
+				-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+				cmp.setup.cmdline(':', {
+					mapping = cmp.mapping.preset.cmdline(),
+					sources = cmp.config.sources({
+						{ name = 'path' }
+					}, {
+						{ name = 'cmdline' }
+					})
+				})
+			end
+		})
 		use({
 			"ray-x/go.nvim",
 			config = function()
 				require("go").setup()
-			end
-		})
-		use({
-			"ray-x/lsp_signature.nvim",
-			config = function()
-				require("lsp_signature").setup()
 			end,
+			ft = "go"
 		})
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
@@ -158,18 +221,20 @@ local function load_plugins()
 				})
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
+			ft = "py",
 			-- Uncomment next line if you want to follow only stable versions
 			-- tag = "*"
 		})
-		use("khaveesh/vim-fish-syntax")
+		use({ "khaveesh/vim-fish-syntax", ft = "fish" })
+		use({ "mtoohey31/cmp-fish", ft = "fish" })
 
 		-- Markdown Things
-		use("ellisonleao/glow.nvim")
-		use("vim-pandoc/vim-pandoc")
-		use("vim-pandoc/vim-pandoc-syntax")
+		use({ "ellisonleao/glow.nvim", ft = "md" })
+		use({ "vim-pandoc/vim-pandoc", ft = "md" })
+		use({ "vim-pandoc/vim-pandoc-syntax", ft = "md" })
 		--   needed for smart autoformatting to play nicely with vim-table-mode
-		use("vim-pandoc/vim-pandoc-after")
-		use("dhruvasagar/vim-table-mode")
+		use({ "vim-pandoc/vim-pandoc-after", ft = "md" })
+		use({ "dhruvasagar/vim-table-mode", ft = "md" })
 
 		-- Pretty Things
 		use("arcticicestudio/nord-vim")

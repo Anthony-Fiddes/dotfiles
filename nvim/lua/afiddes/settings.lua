@@ -18,9 +18,6 @@ g["pandoc#after#modules#enabled"] = { "tablemode" }
 g["pandoc#command#autoexec_on_writes"] = 1
 g["pandoc#command#autoexec_command"] = "Pandoc html --filter mermaid-filter"
 
--- COQ
-g.coq_settings = { auto_start = "shut-up" }
-
 local function ensure_dir(path)
 	vim.validate({ path = { path, "string" } })
 	local dir_exists = vim.fn.isdirectory(path) == 1
@@ -52,6 +49,8 @@ opt.linebreak = true
 opt.autowrite = true
 -- Make buffers useful
 opt.hidden = true
+-- Recommended for nvim-cmp
+opt.completeopt = "menu,menuone,noselect"
 
 -- Hopefully self-explanatory stuff
 opt.number = true
