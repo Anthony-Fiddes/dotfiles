@@ -77,12 +77,6 @@ opt.backupdir = backup_dir .. ",."
 --- Everything else ---
 vim.cmd([[
 
-try
-	colorscheme nord
-catch
-	echo "Nord colorscheme not available"
-endtry
-
 "Also provides omni Completion
 filetype plugin on
 
