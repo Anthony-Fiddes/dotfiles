@@ -113,7 +113,7 @@ local function load_plugins()
 			requires = {
 				"rafamadriz/friendly-snippets"
 			},
-			config = function ()
+			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 			end
 		})
@@ -237,7 +237,14 @@ local function load_plugins()
 		use({ "dhruvasagar/vim-table-mode", ft = "md" })
 
 		-- Pretty Things
-		use("arcticicestudio/nord-vim")
+		-- use("arcticicestudio/nord-vim") trying out onedark
+		use({
+			"navarasu/onedark.nvim",
+			config = function()
+				require("onedark").setup()
+				require('onedark').load()
+			end
+		})
 		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },

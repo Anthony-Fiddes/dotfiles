@@ -78,6 +78,7 @@ function M.set()
 	vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>", opts)
 	vim.keymap.set("n", "<Leader>uf", ":update<CR>", opts) -- 'update file'
 	vim.keymap.set("n", "<Leader>tl", ":set list!<CR>", opts) -- 'toggle list (show/hide white space)'
+	vim.keymap.set("n", "<Leader>ts", ":set spell!<CR>", opts) -- 'toggle spellcheck'
 	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts) -- 'glow preview'
 	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle<CR>", opts) --  'toggle file explorer'
