@@ -29,7 +29,6 @@ local function load_plugins()
 			"echasnovski/mini.nvim",
 			branch = "stable",
 			config = function()
-				require("mini.comment").setup({})
 				require("mini.indentscope").setup({
 					draw = {
 						delay = 25,
@@ -79,8 +78,19 @@ local function load_plugins()
 		use({
 			"nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
+			requires = {
+				"windwp/nvim-ts-autotag",
+				"JoosepAlviste/nvim-ts-context-commentstring"
+			},
 			config = function()
 				require("nvim-treesitter.configs").setup({
+					autotag = {
+						enable = true,
+					},
+					context_commentstring = {
+						enable = true,
+						enable_autocmd = false,
+					},
 					highlight = {
 						enable = true,
 					},
@@ -263,6 +273,15 @@ local function load_plugins()
 				})
 			end,
 		})
+		use {
+			"numToStr/Comment.nvim",
+			requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
+			config = function()
+				require('Comment').setup({
+					pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+				})
+			end
+		}
 		use({
 			"folke/todo-comments.nvim",
 			requires = { "nvim-lua/plenary.nvim" },
