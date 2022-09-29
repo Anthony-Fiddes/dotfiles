@@ -34,7 +34,6 @@ local function load_plugins()
 						delay = 25,
 					}
 				})
-				require("mini.pairs").setup({})
 				require("mini.tabline").setup({})
 				require("mini.starter").setup({})
 			end,
@@ -100,6 +99,7 @@ local function load_plugins()
 				})
 			end,
 		})
+		-- TODO: Remove once 0.8 drops
 		-- this makes spell check WAY less aggressive looking when coding.
 		use({
 			"lewis6991/spellsitter.nvim",
@@ -140,9 +140,17 @@ local function load_plugins()
 				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"hrsh7th/cmp-nvim-lua",
 				"L3MON4D3/LuaSnip",
+				"windwp/nvim-autopairs",
 			},
 			config = function()
 				local cmp = require("cmp")
+
+				local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+				cmp.event:on(
+					'confirm_done',
+					cmp_autopairs.on_confirm_done()
+				)
+
 				cmp.setup({
 					snippet = {
 						expand = function(args) require("luasnip").lsp_expand(args.body) end
