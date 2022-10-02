@@ -38,6 +38,7 @@ abbr -a -g gc git commit -v
 abbr -a -g gca git commit -v --amend
 abbr -a -g gco git checkout
 abbr -a -g gd git diff
+abbr -a -g gf git fetch
 abbr -a -g gl git log
 abbr -a -g gm git merge
 abbr -a -g gp git push
