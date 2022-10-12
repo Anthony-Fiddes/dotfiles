@@ -249,12 +249,12 @@ local function load_plugins()
 		use({ "mtoohey31/cmp-fish", ft = "fish" })
 
 		-- Markdown Things
-		use({ "ellisonleao/glow.nvim", ft = "md" })
-		use({ "vim-pandoc/vim-pandoc", ft = "md" })
-		use({ "vim-pandoc/vim-pandoc-syntax", ft = "md" })
+		use({ "ellisonleao/glow.nvim", ft = { "md", "pandoc" } })
+		use({ "vim-pandoc/vim-pandoc", ft = { "md", "pandoc" } })
+		use({ "vim-pandoc/vim-pandoc-syntax", ft = { "md", "pandoc" } })
 		--   needed for smart autoformatting to play nicely with vim-table-mode
-		use({ "vim-pandoc/vim-pandoc-after", ft = "md" })
-		use({ "dhruvasagar/vim-table-mode", ft = "md" })
+		use({ "vim-pandoc/vim-pandoc-after", ft = { "md", "pandoc" } })
+		use({ "dhruvasagar/vim-table-mode", ft = { "md", "pandoc" } })
 
 		-- Pretty Things
 		-- use("arcticicestudio/nord-vim") trying out onedark
