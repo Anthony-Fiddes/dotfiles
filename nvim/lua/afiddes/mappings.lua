@@ -70,6 +70,7 @@ function M.set()
 		vim.keymap.set("n", "<Leader>hb", function() gs.blame_line({full=true}) end, opts) -- 'hunk blame'
 		vim.keymap.set("n", "<Leader>hn", gs.next_hunk, opts) -- 'hunk next'
 		vim.keymap.set("n", "<Leader>hN", gs.prev_hunk, opts) -- 'hunk prev'
+		vim.keymap.set("n", "<Leader>tb", gs.toggle_current_line_blame, opts) -- 'hunk prev'
 	end
 
 	-- Misc
