@@ -1,5 +1,5 @@
 #!/bin/bash
-DBNAME=budget_backup.tsv
+DBNAME=budget_backup.db
 
 # Abort at first error.
 set -e
