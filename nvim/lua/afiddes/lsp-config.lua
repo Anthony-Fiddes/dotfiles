@@ -78,12 +78,12 @@ end
 
 function M.setup_servers()
 	local lspconfig = require("lspconfig")
-	local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-	lspconfig.tsserver.setup({ 
-		capabilities=capabilities, on_attach = M.on_attach 
+	local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+	lspconfig.tsserver.setup({
+		capabilities = capabilities, on_attach = M.on_attach
 	})
 	lspconfig.sumneko_lua.setup({
-		capabilities=capabilities,
+		capabilities = capabilities,
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -95,11 +95,11 @@ function M.setup_servers()
 		on_attach = M.on_attach
 	})
 	lspconfig.gopls.setup({
-		capabilities=capabilities,
+		capabilities = capabilities,
 		on_attach = M.on_attach
 	})
 	lspconfig.jedi_language_server.setup({
-		capabilities=capabilities,
+		capabilities = capabilities,
 		on_attach = M.on_attach
 	})
 end
