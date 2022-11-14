@@ -72,6 +72,7 @@ function M.set()
 	vim.keymap.set("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>", opts)
 	vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>", opts)
 	vim.keymap.set("n", "<Leader>uf", ":update<CR>", opts) -- 'update file'
+	vim.keymap.set("n", "<Leader>rf", ":e!<CR>", opts) -- 'reload file'
 	vim.keymap.set("n", "<Leader>tl", ":set list!<CR>", opts) -- 'toggle list (show/hide white space)'
 	vim.keymap.set("n", "<Leader>ts", ":set spell!<CR>", opts) -- 'toggle spellcheck'
 	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
