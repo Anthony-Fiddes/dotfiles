@@ -8,21 +8,15 @@ end
 
 -- execute command count times
 local function repeating(command)
-	local count = vim.v.count
-	if count == 0 then
-		count = 1
+	return function()
+		local count = vim.v.count
+		if count == 0 then
+			count = 1
+		end
+		for _ = 1, count do
+			vim.cmd(command)
+		end
 	end
-	for _ = 1, count do
-		vim.cmd(command)
-	end
-end
-
-function M.next_tab()
-	repeating(":bnext")
-end
-
-function M.prev_tab()
-	repeating(":bprev")
 end
 
 --- Sets all of my custom keybindings
@@ -52,8 +46,8 @@ function M.set()
 	-- Navigation
 	vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", silent_opts)
 	vim.keymap.set("n", "<C-PageUp>", ":bprev<CR>", silent_opts)
-	vim.keymap.set("n", "gb", M.next_tab, silent_opts)
-	vim.keymap.set("n", "gB", M.prev_tab, silent_opts)
+	vim.keymap.set("n", "gb", repeating("bnext"), silent_opts)
+	vim.keymap.set("n", "gB", repeating("bprev"), silent_opts)
 
 	-- Documentation
 	vim.keymap.set("n", "<Leader>ng", function() require('neogen').generate() end, opts)
@@ -82,7 +76,7 @@ function M.set()
 	vim.keymap.set("n", "<Leader>ts", ":set spell!<CR>", opts) -- 'toggle spellcheck'
 	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts) -- 'glow preview'
-	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle<CR>", opts) --  'toggle file explorer'
+	vim.keymap.set("n", "<Leader>tf", repeating(":NvimTreeFindFileToggle"), opts) --  'toggle file explorer'
 	vim.keymap.set("n", "<Leader>tn", M.toggle_nums, silent_opts) -- 'toggle line numbers'
 
 	-- IPA Keybindings
