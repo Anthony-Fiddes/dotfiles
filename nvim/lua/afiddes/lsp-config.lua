@@ -78,7 +78,7 @@ end
 
 function M.setup_servers()
 	local lspconfig = require("lspconfig")
-	local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+	local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	lspconfig.tsserver.setup({
 		capabilities = capabilities, on_attach = M.on_attach
 	})
