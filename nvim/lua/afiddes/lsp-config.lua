@@ -25,7 +25,7 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
 	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, opts)
+	vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, opts)
 	vim.keymap.set("n", "<Leader>td", M.toggle_diagnostics, opts)
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
@@ -99,6 +99,10 @@ function M.setup_servers()
 		on_attach = M.on_attach
 	})
 	lspconfig.jedi_language_server.setup({
+		capabilities = capabilities,
+		on_attach = M.on_attach
+	})
+	lspconfig.julials.setup({
 		capabilities = capabilities,
 		on_attach = M.on_attach
 	})

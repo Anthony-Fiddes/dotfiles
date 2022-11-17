@@ -50,9 +50,12 @@ function M.set()
 	vim.keymap.set("n", "gB", repeating("bprev"), silent_opts)
 
 	-- Documentation
-	vim.keymap.set("n", "<Leader>ng", function() require('neogen').generate() end, opts)
-	vim.keymap.set("n", "<Leader>nf", function() require('neogen').generate({ type = 'func' }) end, opts)
-	vim.keymap.set("n", "<Leader>nc", function() require('neogen').generate({ type = 'class' }) end, opts)
+	local ok, neogen = pcall(require, "neogen")
+	if ok then
+		vim.keymap.set("n", "<Leader>ng", function() neogen.generate() end, opts)
+		vim.keymap.set("n", "<Leader>nf", function() neogen.generate({ type = 'func' }) end, opts)
+		vim.keymap.set("n", "<Leader>nc", function() neogen.generate({ type = 'class' }) end, opts)
+	end
 
 	-- GitSigns
 	local ok, gs = pcall(require, "gitsigns")
@@ -61,7 +64,7 @@ function M.set()
 		vim.keymap.set({ "n", "v" }, "<Leader>hr", ":Gitsigns reset_hunk<CR>", opts) -- 'hunk reset'
 		vim.keymap.set({ "n", "v" }, "<Leader>hs", ":Gitsigns stage_hunk<CR>", opts) -- 'hunk stage'
 		vim.keymap.set("n", "<Leader>hu", gs.undo_stage_hunk, opts) -- 'hunk undo stage'
-		vim.keymap.set("n", "<Leader>hb", function() gs.blame_line({full=true}) end, opts) -- 'hunk blame'
+		vim.keymap.set("n", "<Leader>hb", function() gs.blame_line({ full = true }) end, opts) -- 'hunk blame'
 		vim.keymap.set("n", "<Leader>hn", gs.next_hunk, opts) -- 'hunk next'
 		vim.keymap.set("n", "<Leader>hN", gs.prev_hunk, opts) -- 'hunk prev'
 		vim.keymap.set("n", "<Leader>tb", gs.toggle_current_line_blame, opts) -- 'hunk prev'

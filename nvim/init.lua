@@ -256,12 +256,12 @@ local function load_plugins()
 							template = {
 								annotation_convention = "reST"
 							}
-						}
-					}
+						},
+					},
+					snippet_engine = "luasnip"
 				})
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
-			ft = "py",
 			-- Uncomment next line if you want to follow only stable versions
 			-- tag = "*"
 		})
