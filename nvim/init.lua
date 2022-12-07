@@ -34,7 +34,6 @@ local function load_plugins()
 						delay = 25,
 					}
 				})
-				require("mini.tabline").setup({})
 				require("mini.starter").setup({})
 			end,
 		})
@@ -289,8 +288,24 @@ local function load_plugins()
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = function()
-				require("lualine").setup({ extensions = { require("afiddes/lualine_ext").word_count_extension } })
+				local lualine = require("lualine")
+				lualine.setup({
+					tabline = {},
+					extensions = { require("afiddes/lualine_ext").word_count_extension }
+				})
+				lualine.hide({
+					place = { "tabline" }, -- The segment this change applies to.
+					unhide = false, -- whether to reenable lualine again/
+				})
 			end,
+		})
+		use({
+			"akinsho/bufferline.nvim",
+			tag = "v3.*",
+			requires = "nvim-tree/nvim-web-devicons",
+			config = function()
+				require("bufferline").setup()
+			end
 		})
 		use({
 			"kyazdani42/nvim-web-devicons",
