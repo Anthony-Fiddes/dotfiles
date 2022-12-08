@@ -17,7 +17,13 @@ local function load_plugins()
 			-- optional for icon support
 			requires = { 'kyazdani42/nvim-web-devicons' }
 		})
-		use("tpope/vim-surround")
+		use({
+			"kylechui/nvim-surround",
+			tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+			config = function()
+				require("nvim-surround").setup()
+			end
+		})
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = { "kyazdani42/nvim-web-devicons" },
