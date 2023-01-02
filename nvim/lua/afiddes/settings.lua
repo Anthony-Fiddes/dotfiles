@@ -16,7 +16,7 @@ g["pandoc#folding#fastfolds"] = 1
 g["pandoc#folding#level"] = 1
 g["pandoc#after#modules#enabled"] = { "tablemode" }
 g["pandoc#command#autoexec_on_writes"] = 1
-g["pandoc#command#autoexec_command"] = "Pandoc html --filter mermaid-filter"
+g["pandoc#command#autoexec_command"] = "Pandoc html"
 
 local function ensure_dir(path)
 	vim.validate({ path = { path, "string" } })
