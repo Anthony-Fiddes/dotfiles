@@ -6,6 +6,7 @@ alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias icat="kitty +kitten icat"
 alias ipython=ipython3
 alias python=python3
+alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
 # PATH Variables
