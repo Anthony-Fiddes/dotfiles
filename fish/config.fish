@@ -4,8 +4,6 @@
 alias code=codium
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias icat="kitty +kitten icat"
-alias ipython=ipython3
-alias python=python3
 alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
@@ -18,7 +16,7 @@ fish_add_path -g ~/.local/bin
 
 # Variables
 set -gx EDITOR nvim
-if not set -q BROWSER; and which brave-browser
+if not set -q BROWSER; and type -q brave-browser
 	set -gx BROWSER brave-browser
 end
 if not set -q XDG_CONFIG_HOME
@@ -47,6 +45,10 @@ abbr -a -g gpl git pull
 abbr -a -g gs git status
 abbr -a -g gsw git switch
 abbr -a -g m math
+if not type -q pyenv
+	abbr -a -g ipython ipython3
+	abbr -a -g python python3
+end
 if on_fedora
 	abbr -a -g say espeak-ng
 end
