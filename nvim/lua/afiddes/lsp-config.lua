@@ -59,6 +59,7 @@ function M.on_attach(client, bufnr)
 
 	local formatting_disabled = {}
 	formatting_disabled["tsserver"] = true
+	formatting_disabled["jedi_language_server"] = true
 	if not formatting_disabled[client.name] == true then
 		setup_formatting(client, bufnr)
 	end
@@ -82,7 +83,7 @@ function M.setup_servers()
 	lspconfig.tsserver.setup({
 		capabilities = capabilities, on_attach = M.on_attach
 	})
-	lspconfig.sumneko_lua.setup({
+	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
 		settings = {
 			Lua = {
