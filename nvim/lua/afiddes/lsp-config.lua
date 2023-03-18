@@ -36,29 +36,43 @@ function M.on_attach(client, bufnr)
 	end
 
 	local function setup_formatting(client, bufnr)
-		-- create a buffer variable to determine whether formatting is
-		-- enabled per buffer
-		if vim.b.formatting_enabled == nil then
-			vim.b.formatting_enabled = true
-		end
 		local function toggle_formatting()
-			vim.b.formatting_enabled = not vim.b.formatting_enabled
+			-- let client_format handle creating the variable if it doesn't
+			-- exist
+			if vim.b.auto_format_enabled == nil then
+				return
+			end
+			vim.b.auto_format_enabled = not vim.b.auto_format_enabled
 		end
+
 		-- using the current client to format helps to avoid the issue of having
 		-- to choose from multiple LSP clients when formatting. Simply add any
 		-- offending clients to the formatting_disabled table below.
 		local function client_format()
-			if not vim.b.formatting_enabled then
-				print("formatting is disabled for " .. vim.fn.bufname())
-				return
-			end
 			local params = vim.lsp.util.make_formatting_params({})
 			client.request('textDocument/formatting', params, nil, bufnr)
 			print("formatted by " .. client.name)
 		end
 
-		vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })
-		vim.keymap.set('n', '<leader>ft', toggle_formatting, { buffer = bufnr })
+		-- give the option to disable auto formatting per buffer
+		local function format_buf()
+			-- use a buffer variable to determine whether formatting is
+			-- enabled per buffer
+			if vim.b.auto_format_enabled == nil then
+				if not vim.g.auto_format_enabled == nil then
+					vim.b.auto_format_enabled = vim.g.auto_format_enabled
+				else
+					vim.b.auto_format_enabled = true
+				end
+			end
+			if not vim.b.auto_format_enabled then
+				return
+			end
+			client_format()
+		end
+
+		vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr }) -- format
+		vim.keymap.set('n', '<leader>ft', toggle_formatting, { buffer = bufnr }) -- format toggle
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		if client.supports_method("textDocument/formatting") then
@@ -66,7 +80,7 @@ function M.on_attach(client, bufnr)
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = augroup,
 				buffer = bufnr,
-				callback = client_format,
+				callback = format_buf,
 			})
 		end
 	end

@@ -124,3 +124,6 @@ execute "digraphs xS " . 0x02e3
 execute "digraphs yS " . 0x02b8
 execute "digraphs zS " . 0x1dbb
 ]])
+
+-- custom stuff
+g.auto_format_enabled = true
