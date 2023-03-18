@@ -35,7 +35,6 @@ local function load_plugins()
 					if not directory then
 						return
 					end
-
 					-- change to the directory
 					vim.cmd.cd(data.file)
 					-- open the tree

@@ -36,15 +36,29 @@ function M.on_attach(client, bufnr)
 	end
 
 	local function setup_formatting(client, bufnr)
+		-- create a buffer variable to determine whether formatting is
+		-- enabled per buffer
+		if vim.b.formatting_enabled == nil then
+			vim.b.formatting_enabled = true
+		end
+		local function toggle_formatting()
+			vim.b.formatting_enabled = not vim.b.formatting_enabled
+		end
 		-- using the current client to format helps to avoid the issue of having
 		-- to choose from multiple LSP clients when formatting. Simply add any
 		-- offending clients to the formatting_disabled table below.
 		local function client_format()
+			if not vim.b.formatting_enabled then
+				print("formatting is disabled for " .. vim.fn.bufname())
+				return
+			end
 			local params = vim.lsp.util.make_formatting_params({})
 			client.request('textDocument/formatting', params, nil, bufnr)
+			print("formatted by " .. client.name)
 		end
 
 		vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })
+		vim.keymap.set('n', '<leader>ft', toggle_formatting, { buffer = bufnr })
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		if client.supports_method("textDocument/formatting") then
