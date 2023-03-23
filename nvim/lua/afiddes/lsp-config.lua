@@ -36,12 +36,19 @@ function M.on_attach(client, bufnr)
 	end
 
 	local function setup_formatting(client, bufnr)
-		local function toggle_formatting()
-			-- let client_format handle creating the variable if it doesn't
-			-- exist
-			if vim.b.auto_format_enabled == nil then
-				return
+		-- use a buffer variable to determine whether formatting is
+		-- enabled per buffer
+		if vim.b.auto_format_enabled == nil then
+			if vim.g.auto_format_enabled ~= nil then
+				-- buffer variable default can be configured globally
+				vim.b.auto_format_enabled = vim.g.auto_format_enabled
+			else
+				-- default if there's not global config
+				vim.b.auto_format_enabled = true
 			end
+		end
+
+		local function toggle_auto_formatting()
 			vim.b.auto_format_enabled = not vim.b.auto_format_enabled
 		end
 
@@ -56,23 +63,14 @@ function M.on_attach(client, bufnr)
 
 		-- give the option to disable auto formatting per buffer
 		local function format_buf()
-			-- use a buffer variable to determine whether formatting is
-			-- enabled per buffer
-			if vim.b.auto_format_enabled == nil then
-				if not vim.g.auto_format_enabled == nil then
-					vim.b.auto_format_enabled = vim.g.auto_format_enabled
-				else
-					vim.b.auto_format_enabled = true
-				end
-			end
 			if not vim.b.auto_format_enabled then
 				return
 			end
 			client_format()
 		end
 
-		vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr }) -- format
-		vim.keymap.set('n', '<leader>ft', toggle_formatting, { buffer = bufnr }) -- format toggle
+		vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })    -- format
+		vim.keymap.set('n', '<leader>ft', toggle_auto_formatting, { buffer = bufnr }) -- format toggle
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		if client.supports_method("textDocument/formatting") then
@@ -88,7 +86,7 @@ function M.on_attach(client, bufnr)
 	local formatting_disabled = {}
 	formatting_disabled["tsserver"] = true
 	formatting_disabled["jedi_language_server"] = true
-	if not formatting_disabled[client.name] == true then
+	if not formatting_disabled[client.name] then
 		setup_formatting(client, bufnr)
 	end
 end
