@@ -81,7 +81,7 @@ function M.set()
 	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts) -- 'glow preview'
 	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle<CR>", opts) --  'toggle file explorer'
-	vim.keymap.set("n", "<Leader>of", ":NvimTreeFindFile<CR>", opts) --  'open file explorer'
+	vim.keymap.set("n", "<Leader>of", ":NvimTreeFindFile!<CR>", opts) --  'open file explorer'
 	vim.keymap.set("n", "<Leader>tn", M.toggle_nums, silent_opts) -- 'toggle line numbers'
 
 	-- IPA Keybindings
