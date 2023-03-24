@@ -46,8 +46,8 @@ function M.set()
 	-- Navigation
 	vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", silent_opts)
 	vim.keymap.set("n", "<C-PageUp>", ":bprev<CR>", silent_opts)
-	vim.keymap.set("n", "gb", repeating("bnext"), silent_opts)
-	vim.keymap.set("n", "gB", repeating("bprev"), silent_opts)
+	vim.keymap.set("n", "g/", repeating("bnext"), silent_opts)
+	vim.keymap.set("n", "g?", repeating("bprev"), silent_opts)
 
 	-- Documentation
 	local ok, neogen = pcall(require, "neogen")
@@ -80,7 +80,8 @@ function M.set()
 	vim.keymap.set("n", "<Leader>ts", ":set spell!<CR>", opts) -- 'toggle spellcheck'
 	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts) -- 'toggle zen'
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts) -- 'glow preview'
-	vim.keymap.set("n", "<Leader>tf", repeating(":NvimTreeFindFileToggle"), opts) --  'toggle file explorer'
+	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle", opts) --  'toggle file explorer'
+	vim.keymap.set("n", "<Leader>of", ":NvimTreeFindFile", opts) --  'open file explorer'
 	vim.keymap.set("n", "<Leader>tn", M.toggle_nums, silent_opts) -- 'toggle line numbers'
 
 	-- IPA Keybindings
