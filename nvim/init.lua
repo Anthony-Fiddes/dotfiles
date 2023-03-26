@@ -2,7 +2,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+		install_path })
 end
 
 --- Plugins
@@ -13,7 +14,8 @@ local function load_plugins()
 
 		-- Useful Things
 		use({ "junegunn/fzf", run = "fzf#install()" })
-		use({ 'ibhagwan/fzf-lua',
+		use({
+			'ibhagwan/fzf-lua',
 			-- optional for icon support
 			requires = { 'kyazdani42/nvim-web-devicons' }
 		})
@@ -117,25 +119,20 @@ local function load_plugins()
 				})
 			end,
 		})
-		-- TODO: Remove once 0.8 drops
-		-- this makes spell check WAY less aggressive looking when coding.
+		use("neovim/nvim-lspconfig")
 		use({
-			"lewis6991/spellsitter.nvim",
-			config = function()
-				require("spellsitter").setup()
-			end,
-		})
-		use({
-			"neovim/nvim-lspconfig",
-			requires = {
-				"williamboman/mason.nvim",
-				"williamboman/mason-lspconfig.nvim",
-			},
+			"williamboman/mason.nvim",
 			config = function()
 				require("mason").setup({})
-				require("mason-lspconfig").setup({})
-			end,
+			end
 		})
+		use({
+			"williamboman/mason-lspconfig.nvim",
+			config = function()
+				require("mason-lspconfig").setup({})
+			end
+		})
+		use("simrat39/rust-tools.nvim")
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
@@ -376,7 +373,6 @@ local function load_plugins()
 	end
 
 	)
-
 end
 
 pcall(require, "impatient") -- call impatient if installed

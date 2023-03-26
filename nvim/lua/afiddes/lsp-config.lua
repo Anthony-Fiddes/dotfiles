@@ -35,59 +35,59 @@ function M.on_attach(client, bufnr)
 		require("lsp_signature").on_attach()
 	end
 
-	local function setup_formatting(client, bufnr)
-		-- use a buffer variable to determine whether formatting is
-		-- enabled per buffer
-		if vim.b.auto_format_enabled == nil then
-			if vim.g.auto_format_enabled ~= nil then
-				-- buffer variable default can be configured globally
-				vim.b.auto_format_enabled = vim.g.auto_format_enabled
-			else
-				-- default if there's not global config
-				vim.b.auto_format_enabled = true
-			end
-		end
-
-		local function toggle_auto_formatting()
-			vim.b.auto_format_enabled = not vim.b.auto_format_enabled
-		end
-
-		-- using the current client to format helps to avoid the issue of having
-		-- to choose from multiple LSP clients when formatting. Simply add any
-		-- offending clients to the formatting_disabled table below.
-		local function client_format()
-			local params = vim.lsp.util.make_formatting_params({})
-			client.request('textDocument/formatting', params, nil, bufnr)
-			print("formatted by " .. client.name)
-		end
-
-		-- give the option to disable auto formatting per buffer
-		local function format_buf()
-			if not vim.b.auto_format_enabled then
-				return
-			end
-			client_format()
-		end
-
-		vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })    -- format
-		vim.keymap.set('n', '<leader>ft', toggle_auto_formatting, { buffer = bufnr }) -- format toggle
-
-		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				buffer = bufnr,
-				callback = format_buf,
-			})
-		end
-	end
-
 	local formatting_disabled = {}
 	formatting_disabled["tsserver"] = true
 	formatting_disabled["jedi_language_server"] = true
 	if not formatting_disabled[client.name] then
-		setup_formatting(client, bufnr)
+		M.setup_formatting(client, bufnr)
+	end
+end
+
+function M.setup_formatting(client, bufnr)
+	-- use a buffer variable to determine whether formatting is
+	-- enabled per buffer
+	if vim.b.auto_format_enabled == nil then
+		if vim.g.auto_format_enabled ~= nil then
+			-- buffer variable default can be configured globally
+			vim.b.auto_format_enabled = vim.g.auto_format_enabled
+		else
+			-- default if there's not global config
+			vim.b.auto_format_enabled = true
+		end
+	end
+
+	local function toggle_auto_formatting()
+		vim.b.auto_format_enabled = not vim.b.auto_format_enabled
+	end
+
+	-- using the current client to format helps to avoid the issue of having
+	-- to choose from multiple LSP clients when formatting. Simply add any
+	-- offending clients to the formatting_disabled table below.
+	local function client_format()
+		local params = vim.lsp.util.make_formatting_params({})
+		client.request('textDocument/formatting', params, nil, bufnr)
+		print("formatted by " .. client.name)
+	end
+
+	-- give the option to disable auto formatting per buffer
+	local function format_buf()
+		if not vim.b.auto_format_enabled then
+			return
+		end
+		client_format()
+	end
+
+	vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })       -- format
+	vim.keymap.set('n', '<leader>ft', toggle_auto_formatting, { buffer = bufnr }) -- format toggle
+
+	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = format_buf,
+		})
 	end
 end
 
@@ -133,6 +133,16 @@ function M.setup_servers()
 		capabilities = capabilities,
 		on_attach = M.on_attach
 	})
+
+	local ok, rt = pcall(require, "rust-tools")
+	if ok then
+		rt.setup({
+			server = {
+				capabilities = capabilities,
+				on_attach = M.on_attach
+			},
+		})
+	end
 end
 
 return M
