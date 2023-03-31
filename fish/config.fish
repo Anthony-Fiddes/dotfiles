@@ -14,6 +14,11 @@ fish_add_path -g ~/scripts
 fish_add_path -g ~/bin
 fish_add_path -g ~/.local/bin
 
+# Env setup
+if type -q rbenv
+	status --is-interactive; and rbenv init - fish | source
+end
+
 # Variables
 set -gx EDITOR nvim
 if not set -q BROWSER; and type -q brave-browser
