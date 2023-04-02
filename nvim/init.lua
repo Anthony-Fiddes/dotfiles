@@ -132,7 +132,13 @@ local function load_plugins()
 				require("mason-lspconfig").setup({})
 			end
 		})
-		use("simrat39/rust-tools.nvim")
+		use({
+			"simrat39/rust-tools.nvim",
+			requires = {
+				'nvim-lua/plenary.nvim',
+				'mfussenegger/nvim-dap'
+			}
+		})
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
@@ -247,6 +253,7 @@ local function load_plugins()
 				local sources = {
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.code_actions.gitsigns,
 					null_ls.builtins.diagnostics.write_good.with({
 						extra_filetypes = { "pandoc" },
