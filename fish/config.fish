@@ -1,3 +1,28 @@
+# PATH Variables
+fish_add_path -g /usr/local/go/bin
+fish_add_path -g ~/go/bin
+fish_add_path -g ~/scripts
+fish_add_path -g ~/bin
+fish_add_path -g ~/.local/bin
+
+# Other Variables
+if not set -q XDG_CONFIG_HOME
+ 	set -gx XDG_CONFIG_HOME "$HOME/.config"
+end
+
+if not status --is-interactive
+	return
+end
+
+# Interactive Variables
+set -gx EDITOR nvim
+if not set -q BROWSER; and type -q brave-browser
+	set -gx BROWSER brave-browser
+end
+if not set -q BAT_THEME
+ 	set -gx BAT_THEME "Visual Studio Dark+"
+end
+
 # Aliases
 # NOTE: You have to clear an alias with "functions -e {ALIAS}" in
 # order to set it again.
@@ -7,28 +32,13 @@ alias icat="kitty +kitten icat"
 alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
-# PATH Variables
-fish_add_path -g /usr/local/go/bin
-fish_add_path -g ~/go/bin
-fish_add_path -g ~/scripts
-fish_add_path -g ~/bin
-fish_add_path -g ~/.local/bin
-
 # Env setup
 if type -q rbenv
 	status --is-interactive; and rbenv init - fish | source
 end
-
-# Variables
-set -gx EDITOR nvim
-if not set -q BROWSER; and type -q brave-browser
-	set -gx BROWSER brave-browser
-end
-if not set -q XDG_CONFIG_HOME
- 	set -gx XDG_CONFIG_HOME "$HOME/.config"
-end
-if not set -q BAT_THEME
- 	set -gx BAT_THEME "Visual Studio Dark+"
+if not type -q pyenv
+	abbr -a -g ipython ipython3
+	abbr -a -g python python3
 end
 
 # Abbreviations
@@ -52,10 +62,6 @@ abbr -a -g gpop git stash pop
 abbr -a -g gs git status
 abbr -a -g gsw git switch
 abbr -a -g m math
-if not type -q pyenv
-	abbr -a -g ipython ipython3
-	abbr -a -g python python3
-end
 if on_fedora
 	abbr -a -g say espeak-ng
 end
