@@ -14,11 +14,11 @@ local function load_plugins()
 
 		-- Useful Things
 		use({ "junegunn/fzf", run = "fzf#install()" })
-		use({
-			'ibhagwan/fzf-lua',
-			-- optional for icon support
-			requires = { 'kyazdani42/nvim-web-devicons' }
-		})
+		use {
+			'nvim-telescope/telescope.nvim', tag = '0.1.1',
+			-- or                            , branch = '0.1.x',
+			requires = { { 'nvim-lua/plenary.nvim' } }
+		}
 		use({
 			"kylechui/nvim-surround",
 			tag = "*", -- Use for stability; omit to use `main` branch for the latest features
