@@ -327,7 +327,13 @@ local function load_plugins()
 			tag = "v3.*",
 			requires = "nvim-tree/nvim-web-devicons",
 			config = function()
-				require("bufferline").setup()
+				require("bufferline").setup({
+					options = {
+						indicator = {
+							style = 'underline'
+						}
+					}
+				})
 			end
 		})
 		use({
