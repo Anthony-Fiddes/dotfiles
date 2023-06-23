@@ -1,4 +1,6 @@
-local M = {}
+local M       = {}
+-- only create the augroup once
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -58,15 +60,18 @@ function M.setup_formatting(client, bufnr)
 
 	local function toggle_auto_formatting()
 		vim.b.auto_format_enabled = not vim.b.auto_format_enabled
+		if vim.b.auto_format_enabled then
+			print("autoformatting enabled")
+		else
+			print("autoformatting disabled")
+		end
 	end
 
 	-- using the current client to format helps to avoid the issue of having
 	-- to choose from multiple LSP clients when formatting. Simply add any
 	-- offending clients to the formatting_disabled table below.
 	local function client_format()
-		local params = vim.lsp.util.make_formatting_params({})
-		client.request('textDocument/formatting', params, nil, bufnr)
-		print("formatted by " .. client.name)
+		vim.lsp.buf.format({ async = false })
 	end
 
 	-- give the option to disable auto formatting per buffer
@@ -80,8 +85,9 @@ function M.setup_formatting(client, bufnr)
 	vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })       -- format
 	vim.keymap.set('n', '<leader>ft', toggle_auto_formatting, { buffer = bufnr }) -- format toggle
 
-	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+	-- reference doc: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 	if client.supports_method("textDocument/formatting") then
+		-- clear autocmds so the formatting command is only set once
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = augroup,

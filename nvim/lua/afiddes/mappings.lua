@@ -21,36 +21,50 @@ end
 
 --- Sets all of my custom keybindings
 function M.set()
-	local opts = { noremap = true }
+	local opts = { noremap = true, silent = false }
 	local silent_opts = { noremap = true, silent = true }
+	local wk = require("which-key")
 
 	-- telescope
-	vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", opts)
-	vim.keymap.set("n", "<M-p>", ":Telescope git_files<CR>", opts)
-	vim.keymap.set("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<CR>", opts)
-	vim.keymap.set("n", "<Leader>fb", ":Telescope buffers<CR>", opts)            -- 'find buffer'
-	vim.keymap.set("n", "<Leader>ff", ":Telescope live_grep<CR>", opts)          -- 'find in files'
-	vim.keymap.set("n", "<Leader>fc", ":Telescope git_commits<CR>", opts)        -- 'find commit'
-	vim.keymap.set("n", "<Leader>fd", ":Telescope diagnostics<CR>", opts)        -- find diagnostics
-	vim.keymap.set("n", "<Leader>fgs", ":Telescope git_status<CR>", opts)        -- find git status
-	vim.keymap.set("n", "<Leader>fj", ":Telescope jumplist<CR>", opts)           -- find jumplist
-	vim.keymap.set("n", "<Leader>fk", ":Telescope keymaps<CR>", opts)            -- find keymaps
-	vim.keymap.set("n", "<Leader>fo", ":Telescope vim_options<CR>", opts)        -- find options
-	vim.keymap.set("n", "<Leader>fr", ":Telescope resume<CR>", opts)             -- fuzzy finder resume
-	vim.keymap.set("n", "<Leader>fs", ":Telescope lsp_workspace_symbols<CR>", opts) -- find symbols
-	vim.keymap.set("n", "<Leader>fw", ":Telescope grep_string<CR>", opts)        -- find word (under cursor)
-	vim.keymap.set("n", "<Leader>f/", ":Telescope search_history<CR>", opts)
-	vim.keymap.set("n", "<Leader>f\"", ":Telescope registers<CR>", opts)
-	vim.keymap.set("n", "<Leader>ht", ':Telescope builtin<CR>', opts)      -- help telescope (get pickers)
-	vim.keymap.set("n", "<Leader>H", ":Telescope help_tags<CR>", opts)     -- HELP
-	vim.keymap.set("n", "<Leader>hc", ":Telescope commands<CR>", opts)     -- help commands
-	vim.keymap.set("n", "<Leader>hh", ":Telescope oldfiles<CR>", opts)     -- history history
-	vim.keymap.set("n", "<Leader>h:", ":Telescope command_history<CR>", opts) -- history commands
-	vim.keymap.set("n", "<Leader>h/", ":Telescope commands<CR>", opts)     -- history search
+	local find_buffer = { "<cmd>Telescope buffers<CR>", "Find buffer" }
+	wk.register(
+		{
+			["<Leader>f"] = {
+				name = "find",
+				b = find_buffer,
+				f = { "<cmd>Telescope live_grep<CR>", "Live Grep (find in files)" },
+				c = { "<cmd>Telescope git_commits<CR>", "Find commit" },
+				d = { "<cmd>Telescope diagnostics<CR>", "Find diagnostics" },
+				gs = { "<cmd>Telescope git_status<CR>", "(Find) Git status" },
+				j = { "<cmd>Telescope jumplist<CR>", "Find jumplist" },
+				k = { "<cmd>Telescope keymaps<CR>", "Find keymaps" },
+				o = { "<cmd>Telescope vim_options<CR>", "Find options" },
+				r = { "<cmd>Telescope resume<CR>", "Finder resume" },
+				s = { "<cmd>Telescope lsp_workspace_symbols<CR>", "Find symbols" },
+				w = { "<cmd>Telescope grep_string<CR>", "Find word (under cursor)" },
+				['/'] = { "<cmd>Telescope search_history<CR>", "Find search history" },
+				[':'] = { "<cmd>Telescope command_history<CR>", "Find command history" },
+				['"'] = { "<cmd>Telescope registers<CR>", "Find registers" },
+			},
+			["<Leader>b"] = find_buffer
+		},
+		opts
+	)
+
+	-- TODO: keep converting to WhichKey
+	vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", opts)
+	vim.keymap.set("n", "<M-p>", "<cmd>Telescope git_files<CR>", opts)
+	vim.keymap.set("n", "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
+	vim.keymap.set("n", "<Leader>ht", '<cmd>Telescope builtin<CR>', opts)          -- help telescope (get pickers)
+	vim.keymap.set("n", "<Leader>H", "<cmd>Telescope help_tags<CR>", opts)         -- HELP
+	vim.keymap.set("n", "<Leader>hc", "<cmd>Telescope commands<CR>", opts)         -- help commands
+	vim.keymap.set("n", "<Leader>hh", "<cmd>Telescope oldfiles<CR>", opts)         -- history history
+	vim.keymap.set("n", "<Leader>h<cmd>", "<cmd>Telescope command_history<CR>", opts) -- history commands
+	vim.keymap.set("n", "<Leader>h/", "<cmd>Telescope commands<CR>", opts)         -- history search
 
 	-- Navigation
-	vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", silent_opts)
-	vim.keymap.set("n", "<C-PageUp>", ":bprev<CR>", silent_opts)
+	vim.keymap.set("n", "<C-PageDown>", "<cmd>bnext<CR>", silent_opts)
+	vim.keymap.set("n", "<C-PageUp>", "<cmd>bprev<CR>", silent_opts)
 	vim.keymap.set("n", "g/", repeating("bnext"), silent_opts)
 	vim.keymap.set("n", "g?", repeating("bprev"), silent_opts)
 
@@ -87,7 +101,7 @@ function M.set()
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts)                -- 'glow preview'
 	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle<CR>", opts) --  'toggle file explorer'
 	vim.keymap.set("n", "<Leader>of", ":NvimTreeFindFile!<CR>", opts)   --  'open file explorer'
-	vim.keymap.set("n", "<Leader>on", ":on<CR>", opts)					--  ':only (close all other windows)'
+	vim.keymap.set("n", "<Leader>on", ":on<CR>", opts)                  --  ':only (close all other windows)'
 	vim.keymap.set("n", "<Leader>tn", M.toggle_nums, silent_opts)       -- 'toggle line numbers'
 
 	-- IPA Keybindings
