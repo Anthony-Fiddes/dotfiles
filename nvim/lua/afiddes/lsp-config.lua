@@ -84,7 +84,11 @@ function M.setup_formatting(client, bufnr)
 
 	vim.keymap.set('n', '<leader>fo', client_format, { buffer = bufnr })       -- format
 	vim.keymap.set('n', '<leader>ft', toggle_auto_formatting, { buffer = bufnr }) -- format toggle
-
+	if client.supports_method("textDocument/rangeFormatting") then
+		-- makes gq use lsp if it can		
+		-- I believe this is required because null-ls can mess up formatexpr
+		vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+	end
 	-- reference doc: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 	if client.supports_method("textDocument/formatting") then
 		-- clear autocmds so the formatting command is only set once
