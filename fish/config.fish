@@ -10,6 +10,9 @@ if not set -q XDG_CONFIG_HOME
  	set -gx XDG_CONFIG_HOME "$HOME/.config"
 end
 
+# Non-interactive misc
+alias ssh="kitty +kitten ssh"
+
 if not status --is-interactive
 	return
 end
@@ -29,7 +32,6 @@ end
 alias code=codium
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias icat="kitty +kitten icat"
-alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
 # Env setup
