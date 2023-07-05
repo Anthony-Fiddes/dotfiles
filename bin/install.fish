@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
 # Requirements
-sudo apt install libfuse2 gh bat ripgrep
+sudo apt install libfuse2 gh bat ripgrep fzf
 if not set -q XDG_CONFIG_HOME
   set -g XDG_CONFIG_HOME $HOME/.config  
 end
@@ -25,6 +25,9 @@ end
 # configure fish
 rm -rf $XDG_CONFIG_HOME/fish
 ln -s $(pwd)/fish $XDG_CONFIG_HOME/fish
+if not type -q fisher
+  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+end
 
 # configure neovim
 rm -rf $XDG_CONFIG_HOME/nvim
