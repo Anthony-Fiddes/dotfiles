@@ -49,6 +49,7 @@ if on_ubuntu; or on_debian
 else
 	abbr -a -g cat bat
 end
+abbr -a -g g git
 abbr -a -g ga git add
 abbr -a -g gb git branch
 abbr -a -g gc git commit -v
@@ -61,7 +62,9 @@ abbr -a -g gm git merge
 abbr -a -g gp git push
 abbr -a -g gpl git pull
 abbr -a -g gpop git stash pop
+abbr -a -g gr git restore
 abbr -a -g gs git status
+abbr -a -g gstash git stash
 abbr -a -g gsw git switch
 abbr -a -g m math
 if on_fedora
