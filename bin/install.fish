@@ -27,6 +27,7 @@ rm -rf $XDG_CONFIG_HOME/fish
 ln -s $(pwd)/fish $XDG_CONFIG_HOME/fish
 if not type -q fisher
   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+  tide configure
 end
 
 # configure neovim
