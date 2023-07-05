@@ -46,8 +46,8 @@ end
 
 # configure gh/git
 if not gh auth status
+  rm -f $HOME/.gitconfig
+  cp ./.gitconfig $HOME/.gitconfig
   gh auth login
 end
 
-rm -rf $HOME/.gitconfig
-cp ./.gitconfig $HOME/.gitconfig
