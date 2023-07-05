@@ -18,3 +18,6 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[user]
+	name = Anthony Fiddes
+	email = 11233666+Anthony-Fiddes@users.noreply.github.com
