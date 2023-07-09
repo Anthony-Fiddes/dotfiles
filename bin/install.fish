@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
 # Requirements
-sudo apt install libfuse2 gh bat ripgrep fzf
+sudo apt install libfuse2 gh bat ripgrep fzf fdclone
 if not set -q XDG_CONFIG_HOME
   set -g XDG_CONFIG_HOME $HOME/.config  
 end
