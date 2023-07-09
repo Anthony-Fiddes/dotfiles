@@ -49,6 +49,9 @@ if on_ubuntu; or on_debian
 else
 	abbr -a -g cat bat
 end
+if on_ubuntu; or on_debian
+	abbr -a -g fd fdfind
+end
 abbr -a -g g git
 abbr -a -g ga git add
 abbr -a -g gb git branch
