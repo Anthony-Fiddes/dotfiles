@@ -3,6 +3,3 @@ keybindings](https://regolith-desktop.com/docs/using-regolith/configuration/#i3-
 
 Make sure to update ./install.sh when modifying keybindings.
 
-To-Do:
-
-- Add bindings for os+n,e,i,o
