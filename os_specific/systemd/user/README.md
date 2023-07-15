@@ -6,7 +6,7 @@ works for you. (symlinking the directory did NOT work for me!)
 E.g. You need to copy gdrive_crypt.sh to ~/bin (%h/bin) in order for the rclone
 mount service to work.
 
-From there you can just do reload the systemctl user daemon and do something
+From there you can just reload the systemctl user daemon and do something
 like systemctl start --user \[\[service]]. journalctl --user -u \[\[unit_name]]
 is useful for monitoring the associated logs!
 
