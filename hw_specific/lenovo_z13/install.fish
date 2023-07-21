@@ -12,7 +12,6 @@ sudo pam-auth-update
 # Set up Radeon iGPU utils
 sudo apt install radeontop mesa-utils
 
-# Install monitor profiles
-sudo apt install wine64
-
-
+# Set up trackpad gestures
+sudo apt install touchegg
+flatpak install com.github.joseexposito.touche
