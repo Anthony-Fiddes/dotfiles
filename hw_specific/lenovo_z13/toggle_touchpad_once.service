@@ -1,0 +1,12 @@
+[Unit]
+Description=Toggles the touchpad once at startup.
+After=default.target
+
+[Service]
+Type=simple
+RemainAfterExit=no
+ExecStart=%h/bin/restart_touchpad.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
