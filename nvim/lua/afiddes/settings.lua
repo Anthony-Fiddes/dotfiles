@@ -1,5 +1,5 @@
 -- helpers stolen from oroques.dev/notes/neovim-init/
-local g = vim.g -- a table to access global variables
+local g = vim.g     -- a table to access global variables
 local opt = vim.opt -- to set options
 
 g.mapleader = " "
@@ -58,7 +58,7 @@ opt.relativenumber = true
 opt.syntax = "ON"
 opt.ignorecase = true
 opt.spell = true
-opt.spelllang = "en"
+opt.spelllang = "en,de"
 opt.lazyredraw = true
 opt.encoding = "utf-8"
 opt.textwidth = 80
