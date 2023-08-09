@@ -18,6 +18,8 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[init]
+	defaultBranch = main
 [user]
 	name = Anthony Fiddes
 	email = 11233666+Anthony-Fiddes@users.noreply.github.com
