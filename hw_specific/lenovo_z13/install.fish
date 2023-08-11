@@ -2,6 +2,9 @@
 # Package with hardware support for the z13
 sudo apt install oem-sutton.newell-abe-meta
 
+# Turn off wifi power saving
+sudo sed -i "s/wifi.powersave.*/wifi.powersave = 2/" /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+
 # Install sleep script
 sudo cp ./sleep_script.sh /lib/systemd/system-sleep/
 
@@ -16,6 +19,7 @@ sudo apt install radeontop mesa-utils
 sudo apt install touchegg
 flatpak install com.github.joseexposito.touche
 
+# Install script to restart touchpad
 set target $XDG_CONFIG_HOME/systemd/user
 mkdir -p $target
 cp ./toggle_touchpad_once.service $target
