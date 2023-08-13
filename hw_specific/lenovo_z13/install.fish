@@ -2,8 +2,9 @@
 # Package with hardware support for the z13
 sudo apt install oem-sutton.newell-abe-meta
 
-# Turn off wifi power saving
-sudo sed -i "s/wifi.powersave.*/wifi.powersave = 2/" /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+# Configure wifi power saving
+# 2 = off, 3 = on
+sudo sed -i "s/wifi.powersave.*/wifi.powersave = 3/" /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
 
 # Install sleep script
 sudo cp ./sleep_script.sh /lib/systemd/system-sleep/
