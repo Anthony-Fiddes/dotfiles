@@ -1,10 +1,16 @@
 #!/usr/bin/fish
 
 # Requirements
-sudo apt install libfuse2 gh bat ripgrep fzf fd-find rclone dconf-editor
+sudo apt install libfuse2 
 if not set -q XDG_CONFIG_HOME
   set -g XDG_CONFIG_HOME $HOME/.config  
 end
+
+# Install useful cli tools
+sudo apt install htop gh bat ripgrep fzf fd-find rclone 
+
+# Install useful gui tools
+sudo apt install dconf-editor
 
 # Get useful executables (just debian linux for now)
 mkdir -p $HOME/bin
