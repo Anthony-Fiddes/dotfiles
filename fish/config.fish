@@ -44,6 +44,9 @@ if not type -q pyenv
 end
 
 # Abbreviations
+abbr -a -g aup 'sudo apt update && sudo apt upgrade'
+abbr -a -g bqq bq query --nouse_legacy_sql
+abbr -a -g bqdry bq query --nouse_legacy_sql --dry_run
 if on_ubuntu; or on_debian
 	abbr -a -g cat batcat
 else
