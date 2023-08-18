@@ -89,11 +89,19 @@ function M.set()
 		vim.keymap.set("n", "<Leader>tb", gs.toggle_current_line_blame, opts)            -- 'hunk prev'
 	end
 
+	-- Copy/Paste
+	vim.keymap.set("n", "<Leader>v", "i<C-r>+<Esc>", opts)
+	vim.keymap.set("n", "<Leader>V", "a<C-r>+<Esc>", opts)
+	vim.keymap.set("v", "<Leader>c", "\"+y", opts)
+
+	-- Substitute
+	vim.keymap.set("v", "<Leader>s", "y:s/<C-r>\"/", opts)
+
 	-- Misc
 	-- change directory to that of the current file
 	vim.keymap.set("n", "<Leader>cd", "<Cmd>cd %:p:h<CR>:pwd<CR>", opts)
 	vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>", opts)
-	vim.keymap.set("n", "<Leader>uf", ":update<CR>", opts)              -- 'update file'
+	vim.keymap.set("n", "<Leader>u", ":update<CR>", opts)               -- 'update file'
 	vim.keymap.set("n", "<Leader>rf", ":e!<CR>", opts)                  -- 'reload file'
 	vim.keymap.set("n", "<Leader>tl", ":set list!<CR>", opts)           -- 'toggle list (show/hide white space)'
 	vim.keymap.set("n", "<Leader>ts", ":set spell!<CR>", opts)          -- 'toggle spellcheck'
