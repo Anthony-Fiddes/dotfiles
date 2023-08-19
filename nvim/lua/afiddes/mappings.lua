@@ -95,7 +95,7 @@ function M.set()
 	vim.keymap.set("v", "<Leader>c", "\"+y", opts)
 
 	-- Substitute
-	vim.keymap.set("v", "<Leader>s", "y:s/<C-r>\"/", opts)
+	vim.keymap.set("v", "<Leader>s", "y:%s/<C-r>\"/", opts)
 
 	-- Misc
 	-- change directory to that of the current file
