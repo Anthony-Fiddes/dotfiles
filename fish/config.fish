@@ -7,23 +7,23 @@ fish_add_path -g ~/.local/bin
 
 # Other Variables
 if not set -q XDG_CONFIG_HOME
- 	set -gx XDG_CONFIG_HOME "$HOME/.config"
+    set -gx XDG_CONFIG_HOME "$HOME/.config"
 end
 
 # Non-interactive misc
 alias ssh="kitty +kitten ssh"
 
 if not status --is-interactive
-	return
+    return
 end
 
 # Interactive Variables
 set -gx EDITOR nvim
 if not set -q BROWSER; and type -q brave-browser
-	set -gx BROWSER brave-browser
+    set -gx BROWSER brave-browser
 end
 if not set -q BAT_THEME
- 	set -gx BAT_THEME "Visual Studio Dark+"
+    set -gx BAT_THEME "Visual Studio Dark+"
 end
 
 # Aliases
@@ -36,11 +36,11 @@ alias vimm="command vim"
 
 # Env setup
 if type -q rbenv
-	status --is-interactive; and rbenv init - fish | source
+    status --is-interactive; and rbenv init - fish | source
 end
 if not type -q pyenv
-	abbr -a -g ipython ipython3
-	abbr -a -g python python3
+    abbr -a -g ipython ipython3
+    abbr -a -g python python3
 end
 
 # Abbreviations
@@ -48,12 +48,12 @@ abbr -a -g aup 'sudo apt update && sudo apt upgrade'
 abbr -a -g bqq bq query --nouse_legacy_sql
 abbr -a -g bqdry bq query --nouse_legacy_sql --dry_run
 if on_ubuntu; or on_debian
-	abbr -a -g cat batcat
+    abbr -a -g cat batcat
 else
-	abbr -a -g cat bat
+    abbr -a -g cat bat
 end
 if on_ubuntu; or on_debian
-	abbr -a -g fd fdfind
+    abbr -a -g fd fdfind
 end
 abbr -a -g g git
 abbr -a -g ga git add
@@ -74,17 +74,17 @@ abbr -a -g gstash git stash
 abbr -a -g gsw git switch
 abbr -a -g m math
 if on_fedora
-	abbr -a -g say espeak-ng
+    abbr -a -g say espeak-ng
 end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g v nvim
 abbr -a -g vim nvim
 
-if test $(uname) != "Darwin"
-	abbr -a -g open xdg-open
+if test $(uname) != Darwin
+    abbr -a -g open xdg-open
 end
 
 # Vim Mode
 if type -q fish_vi_key_bindings
-	fish_vi_key_bindings
+    fish_vi_key_bindings
 end

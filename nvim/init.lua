@@ -246,27 +246,9 @@ local function load_plugins()
 			ft = "go"
 		})
 		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			config = function()
-				local null_ls = require("null-ls")
-				local sources = {
-					null_ls.builtins.formatting.prettier,
-					null_ls.builtins.formatting.black,
-					null_ls.builtins.formatting.rustfmt,
-					null_ls.builtins.code_actions.gitsigns,
-					null_ls.builtins.diagnostics.write_good.with({
-						extra_filetypes = { "pandoc" },
-					}),
-					null_ls.builtins.diagnostics.proselint.with({
-						extra_filetypes = { "pandoc" },
-					}),
-				}
-				null_ls.setup({
-					sources = sources,
-					on_attach = require("afiddes/lsp-config").on_attach,
-				})
-			end,
-			requires = { "nvim-lua/plenary.nvim" },
+			'creativenull/efmls-configs-nvim',
+			tag = 'v1.*', -- tag is optional, but recommended
+			requires = { 'neovim/nvim-lspconfig' },
 		})
 		use({
 			"danymat/neogen",
