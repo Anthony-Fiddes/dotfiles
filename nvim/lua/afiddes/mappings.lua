@@ -105,7 +105,6 @@ function M.set()
 	vim.keymap.set("n", "<Leader>rf", ":e!<CR>", opts)                  -- 'reload file'
 	vim.keymap.set("n", "<Leader>tl", ":set list!<CR>", opts)           -- 'toggle list (show/hide white space)'
 	vim.keymap.set("n", "<Leader>ts", ":set spell!<CR>", opts)          -- 'toggle spellcheck'
-	vim.keymap.set("n", "<Leader>tz", ":ZenMode<CR>", opts)             -- 'toggle zen'
 	vim.keymap.set("n", "<Leader>gp", ":Glow<CR>", opts)                -- 'glow preview'
 	vim.keymap.set("n", "<Leader>tf", ":NvimTreeFindFileToggle<CR>", opts) --  'toggle file explorer'
 	vim.keymap.set("n", "<Leader>of", ":NvimTreeFindFile!<CR>", opts)   --  'open file explorer'

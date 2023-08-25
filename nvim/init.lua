@@ -347,19 +347,6 @@ local function load_plugins()
 				}
 			end
 		})
-		use({
-			"folke/zen-mode.nvim",
-			config = function()
-				require("zen-mode").setup({
-					plugins = {
-						kitty = {
-							enabled = true,
-							font = "+2",
-						},
-					},
-				})
-			end,
-		})
 
 		if packer_bootstrap then
 			require('packer').sync()
