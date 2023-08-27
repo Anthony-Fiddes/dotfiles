@@ -79,6 +79,8 @@ end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g v nvim
 abbr -a -g vim nvim
+abbr -a -g xcopy xclip -selection clipboard
+abbr -a -g xpaste xclip -out -selection clipboard
 
 if test $(uname) != Darwin
     abbr -a -g open xdg-open
