@@ -1,0 +1,16 @@
+[/]
+active-hint=true
+focus-left=['<Super>Left', '<Super>KP_Left', '<Super>n']
+focus-down=['<Super>Down', '<Super>KP_Down', '<Super>e']
+focus-up=['<Super>Up', '<Super>KP_Up', '<Super>i']
+focus-right=['<Super>Right', '<Super>KP_Right', '<Super>o']
+gap-inner=uint32 1
+gap-outer=uint32 1
+pop-monitor-left=['<Shift><Super>KP_Left', '<Shift><Super>n']
+pop-monitor-right=['<Shift><Super>KP_Right', '<Shift><Super>o']
+pop-workspace-down=['<Shift><Super>Down', '<Shift><Super>KP_Down', '<Shift><Super>e']
+pop-workspace-up=['<Shift><Super>Up', '<Shift><Super>KP_Up', '<Shift><Super>i']
+tile-by-default=true
+tile-move-left-global=['<Shift><Super>Left', '<Shift><Super>n']
+tile-move-right-global=['<Shift><Super>Right', '<Shift><Super>o']
+tile-orientation=@as []
