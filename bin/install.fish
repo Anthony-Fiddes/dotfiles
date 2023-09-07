@@ -39,11 +39,8 @@ end
 # configure neovim
 rm -rf $XDG_CONFIG_HOME/nvim
 ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
+# Note: may need to change the below requirements in the future
 sudo apt install python3.10-venv
-# run twice because i find that it hangs the first time. after the first install
-# it's usually pretty quick.
-timeout 15s nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-timeout 15s nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # configure kitty
 rm -rf $XDG_CONFIG_HOME/kitty
