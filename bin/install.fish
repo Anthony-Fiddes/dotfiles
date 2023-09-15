@@ -12,7 +12,11 @@ sudo apt install htop gh bat ripgrep fzf fd-find rclone
 # Install useful gui tools
 sudo apt install dconf-editor
 
-# Get useful executables (just debian linux for now)
+# Tool that automatically integrates desktop app images.
+sudo add-apt-repository ppa:appimagelauncher-team/stable
+sudo apt update
+sudo apt install appimagelauncher
+
 mkdir -p $HOME/bin
 fish_add_path -U $HOME/bin
 
