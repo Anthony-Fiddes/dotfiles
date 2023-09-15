@@ -42,6 +42,7 @@ end
 
 # configure neovim
 rm -rf $XDG_CONFIG_HOME/nvim
+git submodule update --init # nvim/ is a submodule now
 ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 # Note: may need to change the below requirements in the future
 sudo apt install python3.10-venv
