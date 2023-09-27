@@ -1,5 +1,5 @@
 #!/bin/bash
-DRIVE=/mnt/nextcloud_crypt
+DRIVE=/media/nextcloud_crypt
 sudo mkdir -p $DRIVE
 sudo chown $(whoami) $DRIVE
 fusermount -u $DRIVE 
