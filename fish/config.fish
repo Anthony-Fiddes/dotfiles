@@ -44,7 +44,6 @@ if not type -q pyenv
 end
 
 # Abbreviations
-abbr -a -g aup 'sudo apt update && sudo apt upgrade'
 abbr -a -g bqq bq query --nouse_legacy_sql
 abbr -a -g bqdry bq query --nouse_legacy_sql --dry_run
 if on_ubuntu; or on_debian
@@ -77,6 +76,7 @@ if on_fedora
     abbr -a -g say espeak-ng
 end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
+abbr -a -g sysup 'sudo apt update && sudo apt upgrade && flatpak update'
 abbr -a -g v nvim
 abbr -a -g vim nvim
 abbr -a -g xcopy xclip -selection clipboard
