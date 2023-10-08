@@ -51,6 +51,7 @@ ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 sudo apt install python3.10-venv
 
 # configure kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 rm -rf $XDG_CONFIG_HOME/kitty
 ln -s $(pwd)/kitty $XDG_CONFIG_HOME/kitty
 if not fc-list | grep -q -i caskaydiacove

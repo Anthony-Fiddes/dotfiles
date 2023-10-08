@@ -1,4 +1,5 @@
 # PATH Variables
+fish_add_path -g ~/.local/kitty.app/bin
 fish_add_path -g /usr/local/go/bin
 fish_add_path -g ~/go/bin
 fish_add_path -g ~/scripts
