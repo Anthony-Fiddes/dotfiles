@@ -36,7 +36,7 @@ if not type -q brave-browser
 end
 
 # configure fish
-rm -rf $XDG_CONFIG_HOME/fish
+rm -r $XDG_CONFIG_HOME/fish
 ln -s $(pwd)/fish $XDG_CONFIG_HOME/fish
 if not type -q fisher
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
@@ -44,7 +44,7 @@ if not type -q fisher
 end
 
 # configure neovim
-rm -rf $XDG_CONFIG_HOME/nvim
+rm -r $XDG_CONFIG_HOME/nvim
 git submodule update --init # nvim/ is a submodule now
 ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 # Note: may need to change the below requirements in the future
@@ -52,7 +52,7 @@ sudo apt install python3.10-venv
 
 # configure kitty
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-rm -rf $XDG_CONFIG_HOME/kitty
+rm -r $XDG_CONFIG_HOME/kitty
 ln -s $(pwd)/kitty $XDG_CONFIG_HOME/kitty
 if not fc-list | grep -q -i caskaydiacove
     set cascadia "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.tar.xz"
@@ -63,7 +63,11 @@ end
 
 # configure gh/git
 if not gh auth status
-    rm -f $HOME/.gitconfig
+    rm $HOME/.gitconfig
     cp ./.gitconfig $HOME/.gitconfig
     gh auth login
 end
+
+# configure global prettier
+rm $HOME/.prettierrc.js
+cp ./.prettierrc.js $HOME/.prettierrc.js
