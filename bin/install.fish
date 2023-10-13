@@ -51,9 +51,14 @@ ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 sudo apt install python3.10-venv
 
 # configure kitty
+# based off instructions from https://sw.kovidgoyal.net/kitty/binary/
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 rm -r $XDG_CONFIG_HOME/kitty
 ln -s $(pwd)/kitty $XDG_CONFIG_HOME/kitty
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
 if not fc-list | grep -q -i caskaydiacove
     set cascadia "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.tar.xz"
     mkdir -p $HOME/.fonts
