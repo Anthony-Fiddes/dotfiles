@@ -76,7 +76,7 @@ if on_fedora
     abbr -a -g say espeak-ng
 end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
-abbr -a -g sysup 'sudo apt update && sudo apt upgrade && flatpak update'
+abbr -a -g sysup 'sudo apt update && yes | sudo apt upgrade && yes | flatpak update'
 abbr -a -g v nvim
 abbr -a -g vim nvim
 abbr -a -g xcopy xclip -selection clipboard
