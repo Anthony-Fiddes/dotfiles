@@ -35,12 +35,22 @@ alias icat="kitty +kitten icat"
 alias vimm="command vim"
 
 # Env setup
+
+# Order matters here. E.g. if pyenv was installed with brew then it won't be on
+# the PATH until this step is done.
+if test -e /home/linuxbrew/.linuxbrew/bin/brew
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
+
 if type -q rbenv
     status --is-interactive; and rbenv init - fish | source
 end
+
 if not type -q pyenv
     abbr -a -g ipython ipython3
     abbr -a -g python python3
+else
+    pyenv init - | source
 end
 
 # Abbreviations
