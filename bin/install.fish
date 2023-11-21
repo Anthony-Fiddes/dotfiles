@@ -7,6 +7,7 @@ if not set -q XDG_CONFIG_HOME
 end
 
 # Install useful cli tools
+echo "Warning: fzf may cause errors if it's really old."
 sudo apt install htop gh bat ripgrep fzf fd-find rclone
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
