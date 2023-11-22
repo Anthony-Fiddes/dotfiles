@@ -51,6 +51,7 @@ if not type -q pyenv
     abbr -a -g python python3
 else
     pyenv init - | source
+    pyenv virtualenv-init - | source
 end
 
 # Abbreviations
