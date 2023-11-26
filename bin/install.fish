@@ -71,6 +71,7 @@ end
 if not gh auth status
     rm $HOME/.gitconfig
     cp ./.gitconfig $HOME/.gitconfig
+    cp ./global_gitignore $HOME/.gitignore
     gh auth login
 end
 
