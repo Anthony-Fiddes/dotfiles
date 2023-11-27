@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir -p $HOME/Documents/nextcloud_crypt
 target=$XDG_CONFIG_HOME/systemd/user
 mkdir -p $target
 cp ./user/nextcloud_crypt.service $target

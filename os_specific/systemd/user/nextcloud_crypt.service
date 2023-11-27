@@ -1,6 +1,6 @@
 [Unit]
 Description=Nextcloud (rclone)
-AssertPathIsDirectory=/mnt/nextcloud_crypt
+AssertPathIsDirectory=/media/nextcloud_crypt
 After=network-online.target
 Wants=network-online.target
 
