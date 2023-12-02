@@ -26,6 +26,9 @@ if not set -q BAT_THEME
     set -gx BAT_THEME "Visual Studio Dark+"
 end
 
+# Keep around failed commands in history this many entries
+set sponge_delay 20
+
 # Aliases
 # NOTE: You have to clear an alias with "functions -e {ALIAS}" in
 # order to set it again.
