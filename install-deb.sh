@@ -9,4 +9,4 @@ chsh -s $(which fish) $USER
 update-alternatives --config x-terminal-emulator
 
 # Keep going in fish
-./bin/install.fish
+./bin/install-deb.fish
