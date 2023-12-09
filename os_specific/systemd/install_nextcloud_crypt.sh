@@ -1,5 +1,6 @@
 #!/bin/bash
 target=$XDG_CONFIG_HOME/systemd/user
+sudo mkdir -p /media/nextcloud_crypt
 mkdir -p $target
 cp ./user/nextcloud_crypt.service $target
 # the config is available in Bitwarden
