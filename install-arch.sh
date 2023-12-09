@@ -1,6 +1,7 @@
 #!/bin/sh
 yay -S fish kitty neovim fzf ripgrep github-cli go htop bat
-yay -S brave-bin
+# Optional
+yay -S brave-bin touchegg gnome-shell-extension-pop-shell-bin
 
 chsh -s $(which fish) $USER
 
