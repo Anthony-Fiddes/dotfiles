@@ -5,5 +5,7 @@ functions/bass*
 functions/fisher*
 functions/fish_mode_prompt.fish
 functions/fish_prompt.fish
+functions/nvm*
 functions/tide*
+functions/sponge*
 functions/fzf_configure_bindings.fish
