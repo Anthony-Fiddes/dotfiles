@@ -1,7 +1,8 @@
 #!/bin/sh
-yay -S fish kitty neovim fzf ripgrep github-cli go htop bat xclip pyenv-virtualenv
-# Optional
-yay -S brave-bin gnome-shell-extension-pop-shell-bin
+yay -S fish kitty neovim fzf ripgrep github-cli go htop \
+  bat xclip  flatpak
+# AUR
+yay -S brave-bin gnome-shell-extension-pop-shell-bin pyenv-virtualenv
 
 chsh -s $(which fish) $USER
 # Don't enable if bluetooth isn't needed
