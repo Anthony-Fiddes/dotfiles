@@ -14,6 +14,7 @@ systemctl enable --now bluetooth.service
 # not to conflict with avahi. I think it was disabled by default on EndeavourOS
 systemctl disable --now systemd-resolved.service
 # Use avahi to resolve mDNS requests
+# More info: https://wiki.archlinux.org/title/avahi
 systemctl enable --now avahi-daemon.service
 
 # Keep going in fish
