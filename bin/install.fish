@@ -9,6 +9,10 @@ end
 mkdir -p $HOME/bin
 fish_add_path -U $HOME/bin
 
+# configure brave
+rm $XDG_CONFIG_HOME/brave-flags.conf
+ln -s $(pwd)/brave-flags.conf $XDG_CONFIG_HOME/brave-flags.conf
+
 # configure fish
 rm -r $XDG_CONFIG_HOME/fish
 ln -s $(pwd)/fish $XDG_CONFIG_HOME/fish
