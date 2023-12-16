@@ -14,13 +14,13 @@
 [diff]
     colorMoved = default
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [pull]
-	rebase = true
+    rebase = true
 [rebase]
-	autoStash = true
+    autoStash = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [user]
-	name = Anthony Fiddes
-	email = 11233666+Anthony-Fiddes@users.noreply.github.com
+    name = Anthony Fiddes
+    email = 11233666+Anthony-Fiddes@users.noreply.github.com
