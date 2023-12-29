@@ -1,5 +1,5 @@
 #!/bin/sh
-yay -S fish kitty neovim fzf ripgrep github-cli go htop \
+yay -S fish neovim fzf ripgrep github-cli go htop \
   bat xclip flatpak git-delta nss-mdns avahi
 # AUR
 yay -S brave-bin gnome-shell-extension-pop-shell-bin pyenv-virtualenv

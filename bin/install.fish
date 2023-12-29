@@ -26,7 +26,7 @@ rm -r $XDG_CONFIG_HOME/nvim
 git submodule update --init # nvim/ is a submodule now
 ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 
-# configure kitty
+# install/configure kitty
 # based off instructions from https://sw.kovidgoyal.net/kitty/binary/
 if not type -q kitty
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
