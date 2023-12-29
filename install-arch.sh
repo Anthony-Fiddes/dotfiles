@@ -17,5 +17,12 @@ systemctl disable --now systemd-resolved.service
 # More info: https://wiki.archlinux.org/title/avahi
 systemctl enable --now avahi-daemon.service
 
+# Ensure nautilus is the default folder opener
+xdg-mime default org.gnome.Nautilus.desktop inode/directory
+
+# Allow nautilus to open kitty anywhere
+yay -S nautilus-open-any-terminal
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
+
 # Keep going in fish
 ./bin/install.fish
