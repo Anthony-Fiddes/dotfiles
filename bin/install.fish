@@ -38,14 +38,6 @@ if not type -q kitty
     sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
 end
 
-# install caskaydia cove font
-if not fc-list | grep -q -i caskaydiacove
-    set cascadia "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.tar.xz"
-    mkdir -p $HOME/.fonts
-    curl -s -L $cascadia | tar xvfJ - --directory=$HOME/.fonts/
-    sudo fc-cache -fv
-end
-
 # configure gh/git
 if not gh auth status
     rm $HOME/.gitconfig

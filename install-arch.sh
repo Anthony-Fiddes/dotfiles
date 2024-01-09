@@ -1,6 +1,6 @@
 #!/bin/sh
 yay -S fish neovim fzf ripgrep github-cli go htop \
-  bat xclip flatpak git-delta nss-mdns avahi
+  bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd
 # AUR
 yay -S brave-bin gnome-shell-extension-pop-shell-bin pyenv-virtualenv
 

@@ -35,10 +35,10 @@ end
 # Note: may need to change the below requirements in the future
 sudo apt install python3.10-venv
 
-# configure gh/git
-if not gh auth status
-    rm $HOME/.gitconfig
-    cp ./.gitconfig $HOME/.gitconfig
-    cp ./global_gitignore $HOME/.gitignore
-    gh auth login
+# install caskaydia cove font
+if not fc-list | grep -q -i caskaydiacove
+    set cascadia "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CascadiaCode.tar.xz"
+    mkdir -p $HOME/.fonts
+    curl -s -L $cascadia | tar xvfJ - --directory=$HOME/.fonts/
+    sudo fc-cache -fv
 end
