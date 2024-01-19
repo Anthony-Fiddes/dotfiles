@@ -3,7 +3,12 @@ yay -S fish neovim fzf ripgrep github-cli go htop \
   bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd \
   timeshift
 # AUR
-yay -S brave-bin gnome-shell-extension-pop-shell-bin pyenv-virtualenv timeshift-autosnap
+yay -S brave-bin pyenv-virtualenv timeshift-autosnap
+# Gnome stuff
+## baobab is the gnome disk usage analyzer
+yay -S baobab
+## AUR Gnome stuff
+yay -S gnome-shell-extension-pop-shell-bin
 
 chsh -s $(which fish) $USER
 
