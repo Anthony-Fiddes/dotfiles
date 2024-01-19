@@ -1,8 +1,9 @@
 #!/bin/sh
 yay -S fish neovim fzf ripgrep github-cli go htop \
-  bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd
+  bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd \
+  timeshift
 # AUR
-yay -S brave-bin gnome-shell-extension-pop-shell-bin pyenv-virtualenv
+yay -S brave-bin gnome-shell-extension-pop-shell-bin pyenv-virtualenv timeshift-autosnap
 
 chsh -s $(which fish) $USER
 
