@@ -9,3 +9,4 @@ functions/nvm*
 functions/tide*
 functions/sponge*
 functions/fzf_configure_bindings.fish
+completions
