@@ -45,3 +45,5 @@ if not gh auth status
     cp ./global_gitignore $HOME/.gitignore
     gh auth login
 end
+
+cp ./.yamllint.yaml $HOME/
