@@ -26,8 +26,10 @@ if not set -q BAT_THEME
     set -gx BAT_THEME "Visual Studio Dark+"
 end
 
-# Keep around failed commands in history this many entries
-set sponge_delay 20
+# Plugin Conf
+if type -q tide
+    tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Compact --icons='Few icons' --transient=No
+end
 
 # Aliases
 # NOTE: You have to clear an alias with "functions -e {ALIAS}" in
