@@ -9,6 +9,8 @@ yay -R power-profiles-daemon
 yay -S tlp
 sudo sed -i "s/#\?PLATFORM_PROFILE_ON_AC=.*/PLATFORM_PROFILE_ON_AC=performance/1" /etc/tlp.conf
 sudo sed -i "s/#\?PLATFORM_PROFILE_ON_BAT=.*/PLATFORM_PROFILE_ON_BAT=low-power/1" /etc/tlp.conf
+# Disable usb autosuspend for my Belkin dock
+sudo sed -i "s/#\?USB_DENYLIST=\".*\"/USB_DENYLIST=\"050d:006d 050d:106d 050d:206d\"/1" /etc/tlp.conf
 systemctl enable tlp.service
 systemctl mask systemd-rfkill.service systemd-rfkill.socket
 echo "Run sudo tlp start or restart"
