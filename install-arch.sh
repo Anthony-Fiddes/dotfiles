@@ -3,9 +3,9 @@ yay -S fish neovim fzf ripgrep github-cli go htop \
   bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd \
   timeshift
 # AUR
-yay -S brave-bin pyenv-virtualenv timeshift-autosnap
+yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
 # Gnome stuff
-yay -S gnome-shell-extension-appindicator
+yay -S gnome-shell-extension-appindicator dconf-editor
 echo "appindicator was installed. Restart gnome and enable it in the extensions app."
 
 ## baobab is the gnome disk usage analyzer
