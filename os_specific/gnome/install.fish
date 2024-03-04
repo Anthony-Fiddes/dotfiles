@@ -7,3 +7,4 @@ dconf load /org/gnome/desktop/wm/keybindings/ <keybindings.dconf
 dconf load /org/gnome/shell/extensions/pop-shell/ <pop-shell.dconf
 dconf load /org/gnome/shell/keybindings/ <gnome-shell-keybindings.dconf
 dconf load /org/gnome/mutter/ <mutter.dconf
+dconf load /org/gnome/desktop/interface/ <interface.dconf
