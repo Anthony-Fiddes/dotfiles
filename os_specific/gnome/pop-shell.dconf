@@ -1,9 +1,9 @@
 [/]
 active-hint=true
-focus-left=['<Super>Left', '<Super>KP_Left', '<Super>n']
 focus-down=['<Super>Down', '<Super>KP_Down', '<Super>e']
-focus-up=['<Super>Up', '<Super>KP_Up', '<Super>i']
+focus-left=['<Super>Left', '<Super>KP_Left', '<Super>n']
 focus-right=['<Super>Right', '<Super>KP_Right', '<Super>o']
+focus-up=['<Super>Up', '<Super>KP_Up', '<Super>i']
 gap-inner=uint32 1
 gap-outer=uint32 1
 pop-monitor-left=['<Shift><Super>KP_Left', '<Shift><Super>n']
