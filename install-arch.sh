@@ -5,13 +5,14 @@ yay -S fish neovim fzf ripgrep github-cli go htop \
 # AUR
 yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
 # Gnome stuff
-yay -S gnome-shell-extension-appindicator dconf-editor gnome-calendar
+yay -S gnome-shell-extension-appindicator dconf-editor gnome-calendar gnome-software
 echo "appindicator was installed. Restart gnome and enable it in the extensions app."
 
 ## baobab is the gnome disk usage analyzer
 yay -S baobab
 ## AUR Gnome stuff
-yay -S gnome-shell-extension-pop-shell-bin
+yay -S gnome-shell-extension-pop-shell-bin gnome-shell-extension-espresso
+echo "pop-shell and espresso were installed. Restart gnome and enable them in the extensions app."
 
 chsh -s $(which fish) $USER
 
