@@ -1,7 +1,7 @@
 #!/bin/sh
 yay -S fish neovim fzf ripgrep github-cli go htop \
   bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd \
-  timeshift
+  rclone timeshift
 # AUR
 yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
 # Gnome stuff
