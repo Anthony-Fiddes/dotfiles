@@ -11,7 +11,7 @@ echo "appindicator was installed. Restart gnome and enable it in the extensions 
 ## baobab is the gnome disk usage analyzer
 yay -S baobab
 ## AUR Gnome stuff
-yay -S gnome-shell-extension-pop-shell-bin gnome-shell-extension-espresso
+yay -S gnome-shell-extension-pop-shell gnome-shell-extension-espresso
 echo "pop-shell and espresso were installed. Restart gnome and enable them in the extensions app."
 
 chsh -s $(which fish) $USER
