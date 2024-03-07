@@ -19,8 +19,8 @@ end
 
 # Interactive Variables
 set -gx EDITOR nvim
-if not set -q BROWSER; and type -q brave-browser
-    set -gx BROWSER brave-browser
+if not set -q BROWSER; and type -q librewolf
+    set -gx BROWSER librewolf
 end
 if not set -q BAT_THEME
     set -gx BAT_THEME "Visual Studio Dark+"
