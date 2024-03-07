@@ -1,6 +1,6 @@
 #!/bin/sh
 yay -S fish neovim fzf ripgrep github-cli go htop \
-  bat xclip flatpak git-delta nss-mdns avahi ttf-cascadia-code-nerd \
+  bat xclip flatpak git-delta ttf-cascadia-code-nerd \
   rclone timeshift tesseract-data-eng zathura zathura-pdf-mupdf
 # AUR
 yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
@@ -19,13 +19,12 @@ chsh -s $(which fish) $USER
 # Don't enable if bluetooth isn't needed
 systemctl enable --now bluetooth.service
 
-# Disable resolved so that it doesn't conflict with avahi
-# TODO: maybe learn the benefits of resolved and if that pans out, configure it
-# not to conflict with avahi. I think it was disabled by default on EndeavourOS
-systemctl disable --now systemd-resolved.service
-# Use avahi to resolve mDNS requests
-# More info: https://wiki.archlinux.org/title/avahi
-systemctl enable --now avahi-daemon.service
+# Configure DNS settings
+systemctl enable --now systemd-resolved.service
+sudo rm /etc/resolv.conf
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+sudo mkdir /etc/systemd/resolved.conf.d/
+sudo cp ./os_specific/systemd/custom_resolved.conf /etc/systemd/resolved.conf.d/
 
 # Ensure nautilus is the default folder opener
 xdg-mime default org.gnome.Nautilus.desktop inode/directory
