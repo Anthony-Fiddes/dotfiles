@@ -19,7 +19,7 @@ end
 
 # Interactive Variables
 set -gx EDITOR nvim
-if not set -q BROWSER; and type -q librewolf
+if type -q librewolf
     set -gx BROWSER librewolf
 end
 if not set -q BAT_THEME
