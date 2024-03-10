@@ -1,7 +1,7 @@
 #!/bin/sh
 yay -S fish neovim fzf ripgrep github-cli go htop \
   bat xclip flatpak git-delta ttf-cascadia-code-nerd \
-  kitty-terminfo rclone timeshift \
+  kitty-terminfo rclone vlc timeshift \
   tesseract-data-eng zathura zathura-pdf-mupdf
 # AUR
 yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
