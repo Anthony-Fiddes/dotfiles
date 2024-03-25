@@ -5,6 +5,8 @@ yay -S fish neovim fzf ripgrep github-cli go htop \
   tesseract-data-eng zathura zathura-pdf-mupdf
 # AUR
 yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
+# One big update including AUR ones caused like 4 snapshots. Default was 3
+sudo sed -i "s/maxSnapshots=.*/maxSnapshots=10/1" /etc/timeshift-autosnap.conf
 # Gnome stuff
 yay -S  dconf-editor gnome-calendar gnome-contacts \
   gnome-software gnome-firmware baobab
