@@ -12,8 +12,8 @@ yay -S  dconf-editor gnome-calendar gnome-contacts \
   gnome-software gnome-firmware baobab
 
 ## AUR Gnome stuff
-yay -S gnome-shell-extension-appindicator gnome-shell-extension-pop-shell gnome-shell-extension-espresso
-echo "appindicator, pop-shell, and espresso were installed. Restart gnome and enable them in the extensions app."
+yay -S gnome-shell-extension-appindicator gnome-shell-extension-pop-shell gnome-shell-extension-caffeine
+echo "appindicator, pop-shell, and caffeine were installed. Restart gnome and enable them in the extensions app."
 
 chsh -s $(which fish) $USER
 
