@@ -141,6 +141,7 @@ ctrl-shift-tab = 'focus-monitor --wrap-around prev'
 alt-shift-semicolon = 'mode service'
 ctrl-space = 'mode window'
 ctrl-enter = 'mode window'
+ctrl-q = 'close'
 
 [mode.window.binding]
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
