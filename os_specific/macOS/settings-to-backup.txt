@@ -1,0 +1,2 @@
+com.apple.symbolichotkeys -> keyboard-shortcuts.xml
+.GlobalPreferences -> global-preferences.xml
