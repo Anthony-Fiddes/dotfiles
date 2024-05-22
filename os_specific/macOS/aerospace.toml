@@ -139,7 +139,6 @@ ctrl-shift-tab = 'focus-monitor --wrap-around prev'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
-ctrl-space = 'mode window'
 ctrl-enter = 'mode window'
 ctrl-q = 'close'
 
