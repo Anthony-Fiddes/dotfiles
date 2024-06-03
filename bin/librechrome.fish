@@ -7,7 +7,7 @@ if test $(count $argv) -ne 1
 end
 
 set target $argv[1]
-set profiles_dir (fd -H --full-path 'librewolf(/Profiles)?$' ~ | rg -v '(C|c)ache')
+set profiles_dir (fd -H --full-path 'librewolf$' ~ | rg -v '(C|c)ache' | rg -v 'dotfiles')[1]
 set separator "Default="
 set profiles_ini (fd profiles.ini $profiles_dir)
 # search profiles.ini from the bottom up since there's usually a Default=1
