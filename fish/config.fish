@@ -56,10 +56,7 @@ if type -q rbenv
     status --is-interactive; and rbenv init - fish | source
 end
 
-if not type -q pyenv
-    abbr -a -g ipython ipython3
-    abbr -a -g python python3
-else
+if type -q pyenv
     pyenv init - | source
     pyenv virtualenv-init - | source
 end
