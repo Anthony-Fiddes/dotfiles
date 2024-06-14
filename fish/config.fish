@@ -64,6 +64,10 @@ else
     pyenv virtualenv-init - | source
 end
 
+if type -q nvm
+    set --universal nvm_default_version latest
+end
+
 # Abbreviations
 abbr -a -g bqq bq query --nouse_legacy_sql
 abbr -a -g bqdry bq query --nouse_legacy_sql --dry_run
