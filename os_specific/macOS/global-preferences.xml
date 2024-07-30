@@ -46,7 +46,7 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2024-05-20T18:31:50Z</date>
+	<date>2024-07-26T10:13:29Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
@@ -68,7 +68,7 @@
 	<key>NSSpellCheckerDictionaryContainerTransitionComplete</key>
 	<true/>
 	<key>NSSpellCheckerInputAnalyticsTime</key>
-	<date>2024-05-20T18:31:55Z</date>
+	<date>2024-07-26T09:17:36Z</date>
 	<key>NSTableViewDefaultSizeMode</key>
 	<integer>3</integer>
 	<key>NSUserDictionaryReplacementItems</key>
@@ -80,6 +80,8 @@
 		<string>‘</string>
 		<string>’</string>
 	</array>
+	<key>_HIHideMenuBar</key>
+	<true/>
 	<key>com.apple.finder.SyncExtensions</key>
 	<dict>
 		<key>collaborationMap</key>
