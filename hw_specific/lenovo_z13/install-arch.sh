@@ -1,8 +1,12 @@
 # Install sleep script
 sudo cp ./sleep_script.sh /usr/lib/systemd/system-sleep/
 
-# Don't turn on bluetooth by default, saves battery
-sudo sed -i "s/#\?AutoEnable=true/AutoEnable=false/1" /etc/bluetooth/main.conf
+# Turn on bluetooth by default
+sudo sed -i "s/#\?AutoEnable=false/AutoEnable=true/1" /etc/bluetooth/main.conf
+
+# Use this line instead to turn off bluetooth by default to save battery and be
+# more secure.
+# sudo sed -i "s/#\?AutoEnable=true/AutoEnable=false/1" /etc/bluetooth/main.conf
 
 # Useful guide: https://linrunner.de/tlp/faq/ppd.html
 yay -R power-profiles-daemon
