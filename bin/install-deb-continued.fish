@@ -11,7 +11,7 @@ sudo apt install python3.12-venv -y
 
 # Install useful cli tools
 echo "Warning: fzf may cause errors if it's really old."
-sudo apt install htop gh bat ripgrep fzf fd-find rclone golang -y
+sudo apt install htop gh git-delta golang bat ripgrep fzf fd-find rclone -y
 sudo add-apt-repository ppa:git-core/ppa -y
 sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt update
