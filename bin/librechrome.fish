@@ -6,6 +6,10 @@ if test $(count $argv) -ne 1
     exit 1
 end
 
+if not type -q fd
+    alias fd=fdfind
+end
+
 set target $argv[1]
 set librewolf_dir (fd -H --full-path 'librewolf$' ~ | rg -v '(C|c)ache' | rg -v 'dotfiles')[1]
 set separator "Default="
