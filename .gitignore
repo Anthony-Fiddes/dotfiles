@@ -4,3 +4,4 @@ nvim/autoload
 scripts/logs
 systemd/user/default.target.wants/
 systemd/user/timers.target.wants/
+fish/*.tmp.*
