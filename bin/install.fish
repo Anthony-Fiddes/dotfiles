@@ -6,7 +6,8 @@ if not set -q XDG_CONFIG_HOME
     set -g XDG_CONFIG_HOME $HOME/.config
 end
 
-mkdir -p $HOME/bin
+rm -r $HOME/bin
+ln -s $(pwd)/bin $HOME/bin
 fish_add_path -U $HOME/bin
 
 # configure brave
