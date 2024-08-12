@@ -1,0 +1,36 @@
+#!/usr/bin/fish
+
+# Requirement for rclone mounting
+sudo apt install libfuse2 -y
+
+# Install neovim requirement for mason
+#
+# This changes over time; the error gets reported in :MasonLog with instructions
+# on what the new package name is.
+sudo apt install python3.12-venv -y
+
+# Install useful cli tools
+echo "Warning: fzf may cause errors if it's really old."
+sudo apt install htop gh bat ripgrep fzf fd-find rclone golang -y
+sudo add-apt-repository ppa:git-core/ppa -y
+sudo add-apt-repository ppa:neovim-ppa/stable -y
+sudo apt update
+sudo apt install git neovim -y
+
+# Install useful gui tools
+sudo apt install dconf-editor gnome-shell-extension-manager -y
+
+if not type -q brave-browser
+    sudo curl -fsslo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    sudo apt update
+    sudo apt install brave-browser
+end
+
+# install caskaydia cove font
+if not fc-list | grep -q -i caskaydiacove
+    set cascadia "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.tar.xz"
+    mkdir -p $HOME/.fonts/CascadiaCode
+    curl -s -L $cascadia | tar xvfJ - --directory=$HOME/.fonts/CascadiaCode
+    sudo fc-cache -fv
+end
