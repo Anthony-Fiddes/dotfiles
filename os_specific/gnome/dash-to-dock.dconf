@@ -1,0 +1,24 @@
+[/]
+app-ctrl-hotkey-1=@as []
+app-ctrl-hotkey-2=@as []
+app-ctrl-hotkey-3=@as []
+app-ctrl-hotkey-4=@as []
+app-ctrl-hotkey-5=@as []
+app-ctrl-hotkey-6=@as []
+app-hotkey-1=@as []
+app-hotkey-2=@as []
+app-hotkey-3=@as []
+app-hotkey-4=@as []
+app-hotkey-5=@as []
+app-hotkey-6=@as []
+app-shift-hotkey-1=@as []
+app-shift-hotkey-2=@as []
+app-shift-hotkey-3=@as []
+app-shift-hotkey-4=@as []
+app-shift-hotkey-5=@as []
+app-shift-hotkey-6=@as []
+dock-fixed=false
+dock-position='LEFT'
+height-fraction=0.90000000000000002
+hot-keys=false
+show-windows-preview=true
