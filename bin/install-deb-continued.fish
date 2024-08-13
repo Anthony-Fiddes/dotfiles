@@ -17,6 +17,9 @@ sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt update
 sudo apt install git neovim -y
 
+sudo apt install flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 # Install useful gui tools
 sudo apt install dconf-editor gnome-shell-extension-manager -y
 
