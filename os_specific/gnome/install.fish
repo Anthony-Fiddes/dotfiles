@@ -9,3 +9,4 @@ dconf load /org/gnome/shell/extensions/dash-to-dock/ <dash-to-dock.dconf
 dconf load /org/gnome/shell/keybindings/ <gnome-shell-keybindings.dconf
 dconf load /org/gnome/mutter/ <mutter.dconf
 dconf load /org/gnome/desktop/interface/ <interface.dconf
+dconf load /org/gnome/settings-daemon/plugins/media-keys/ <media-keys.dconf

@@ -1,0 +1,9 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+terminal=['<Super>t']
+www=['<Super>b']
+
+[custom-keybindings/custom0]
+binding='<Super>f'
+command='nautilus'
+name='Files'
