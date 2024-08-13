@@ -1,7 +1,7 @@
 [/]
 active-hint=true
 focus-down=['<Super>Down', '<Super>KP_Down', '<Super>e']
-focus-left=['<Super>n','<Super>Left', '<Super>KP_Left']
+focus-left=['<Super>n', '<Super>Left', '<Super>KP_Left']
 focus-right=['<Super>Right', '<Super>KP_Right', '<Super>o']
 focus-up=['<Super>Up', '<Super>KP_Up', '<Super>i']
 gap-inner=uint32 1
