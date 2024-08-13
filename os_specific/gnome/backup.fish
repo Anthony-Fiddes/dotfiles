@@ -5,6 +5,7 @@ if test -e $touchegg_dir
 end
 dconf dump /org/gnome/desktop/wm/keybindings/ >keybindings.dconf
 dconf dump /org/gnome/shell/extensions/pop-shell/ >pop-shell.dconf
+dconf dump /org/gnome/shell/extensions/dash-to-dock/ >dash-to-dock.dconf
 dconf dump /org/gnome/shell/keybindings/ >gnome-shell-keybindings.dconf
 dconf dump /org/gnome/mutter/ >mutter.dconf
 dconf dump /org/gnome/desktop/interface/ >interface.dconf
