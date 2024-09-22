@@ -11,9 +11,6 @@ if not set -q XDG_CONFIG_HOME
     set -gx XDG_CONFIG_HOME "$HOME/.config"
 end
 
-# Non-interactive misc
-alias ssh="kitty +kitten ssh"
-
 if not status --is-interactive
     return
 end
@@ -29,6 +26,7 @@ end
 alias code=codium
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias icat="kitty +kitten icat"
+alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
 # Env setup
@@ -44,7 +42,7 @@ if type -q /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
 end
 
-# Interactive Variables
+# Variables
 set -gx EDITOR nvim
 if not set -q BAT_THEME
     set -gx BAT_THEME "Visual Studio Dark+"
