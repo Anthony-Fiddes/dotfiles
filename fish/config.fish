@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # PATH Variables
 fish_add_path -g /usr/local/go/bin
 fish_add_path -g ~/go/bin
