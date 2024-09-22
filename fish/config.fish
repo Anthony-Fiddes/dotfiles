@@ -23,7 +23,6 @@ end
 # Aliases
 # NOTE: You have to clear an alias with "functions -e {ALIAS}" in
 # order to set it again.
-alias code=codium
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
 alias icat="kitty +kitten icat"
 alias ssh="kitty +kitten ssh"
@@ -72,6 +71,9 @@ if on_ubuntu; or on_debian
 else
     abbr -a -g cat bat
 end
+if type -q codium && not type -q code
+    abbr -a -g code codium
+end
 if on_ubuntu; or on_debian
     abbr -a -g fd fdfind
 end
@@ -102,7 +104,10 @@ end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g sysup 'sudo apt update && yes | sudo apt upgrade && flatpak update -y'
 abbr -a -g v nvim
-abbr -a -g vim nvim
+# if nvim isn't installed yet, this abbreviation is annoying
+if type -q nvim
+    abbr -a -g vim nvim
+end
 
 abbr -a -g copy fish_clipboard_copy
 abbr -a -g paste fish_clipboard_paste
