@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# PATH Variables
+# PATH
 fish_add_path -g /usr/local/go/bin
 fish_add_path -g ~/go/bin
 fish_add_path -g ~/scripts
@@ -16,6 +16,8 @@ if not status --is-interactive
 end
 
 # Plugin Conf
+set nvm_default_version latest
+set sponge_delay 5
 if type -q tide
     tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Compact --icons='Few icons' --transient=No
 end
@@ -28,26 +30,12 @@ alias icat="kitty +kitten icat"
 alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
-# Env setup
-
 # Order matters here. E.g. if pyenv was installed with brew then it won't be on
 # the PATH until this step is done.
 if test -e /home/linuxbrew/.linuxbrew/bin/brew
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-end
-
-# Set up homebrew
-if type -q /opt/homebrew/bin/brew
+else if type -q /opt/homebrew/bin/brew
     eval (/opt/homebrew/bin/brew shellenv)
-end
-
-# Variables
-set -gx EDITOR nvim
-if not set -q BAT_THEME
-    set -gx BAT_THEME "Visual Studio Dark+"
-end
-if type -q librewolf
-    set -gx BROWSER librewolf
 end
 
 if type -q rbenv
@@ -59,8 +47,13 @@ if type -q pyenv
     pyenv virtualenv-init - | source
 end
 
-if type -q nvm
-    set --universal nvm_default_version latest
+# Variables
+set -gx EDITOR nvim
+if not set -q BAT_THEME
+    set -gx BAT_THEME "Visual Studio Dark+"
+end
+if type -q librewolf
+    set -gx BROWSER librewolf
 end
 
 # Abbreviations
