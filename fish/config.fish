@@ -95,7 +95,9 @@ if on_fedora
     abbr -a -g say espeak-ng
 end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
-abbr -a -g sysup 'sudo apt update && yes | sudo apt upgrade && flatpak update -y'
+if on_debian
+    abbr -a -g sysup 'sudo apt update && sudo apt upgrade'
+end
 abbr -a -g v nvim
 # if nvim isn't installed yet, this abbreviation is annoying
 if type -q nvim
