@@ -95,6 +95,9 @@ abbr -a -g gs git status
 abbr -a -g gstash git stash
 abbr -a -g gsw git switch
 abbr -a -g m math
+if test $(uname) != Darwin
+    abbr -a -g open xdg-open
+end
 if on_fedora
     abbr -a -g say espeak-ng
 end
@@ -102,12 +105,9 @@ abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
 abbr -a -g sysup 'sudo apt update && yes | sudo apt upgrade && flatpak update -y'
 abbr -a -g v nvim
 abbr -a -g vim nvim
-abbr -a -g xcopy xclip -selection clipboard
-abbr -a -g xpaste xclip -out -selection clipboard
 
-if test $(uname) != Darwin
-    abbr -a -g open xdg-open
-end
+abbr -a -g copy fish_clipboard_copy
+abbr -a -g paste fish_clipboard_paste
 
 # Vim Mode
 if type -q fish_vi_key_bindings
