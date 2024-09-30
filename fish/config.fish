@@ -59,15 +59,15 @@ end
 # Abbreviations
 abbr -a -g bqq bq query --nouse_legacy_sql
 abbr -a -g bqdry bq query --nouse_legacy_sql --dry_run
-if on_ubuntu; or on_debian
+if type -q batcat
     abbr -a -g cat batcat
-else
+else if type -q bat
     abbr -a -g cat bat
 end
 if type -q codium && not type -q code
     abbr -a -g code codium
 end
-if on_ubuntu; or on_debian
+if type -q fdfind
     abbr -a -g fd fdfind
 end
 abbr -a -g g git
@@ -88,10 +88,10 @@ abbr -a -g gs git status
 abbr -a -g gstash git stash
 abbr -a -g gsw git switch
 abbr -a -g m math
-if test $(uname) != Darwin
+if test $(uname) != Darwin; and not type -q xdg-open
     abbr -a -g open xdg-open
 end
-if on_fedora
+if type -q espeak-ng
     abbr -a -g say espeak-ng
 end
 abbr -a -g sf source "$XDG_CONFIG_HOME/fish/config.fish"
