@@ -48,7 +48,7 @@ if not gh auth status
     gh auth login
 end
 
-cp ./.yamllint.yaml $HOME/
+ln -s $(pwd)/.yamllint.yaml $HOME/.yamllint.yaml
 
 if type -q nvm
     nvm install latest
