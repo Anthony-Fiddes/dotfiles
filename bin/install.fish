@@ -48,8 +48,9 @@ if not gh auth status
     gh auth login
 end
 
-ln -s $(pwd)/.yamllint.yaml $HOME/.yamllint.yaml
-ln -s $(pwd)/.gitlint $HOME/.gitlint
+ln -sf $(pwd)/.yamllint.yaml $HOME/.yamllint.yaml
+ln -sf $(pwd)/.gitlint $HOME/.gitlint
+ln -sf $(pwd)/.rgignore $HOME/.rgignore
 
 if type -q nvm
     nvm install latest
