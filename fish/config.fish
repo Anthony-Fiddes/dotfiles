@@ -55,7 +55,7 @@ end
 if type -q librewolf
     set -gx BROWSER librewolf
 end
-set -gx GITLINT_EXTRA_PATH="~/.gitlint"
+set -gx GITLINT_EXTRA_PATH "~/.gitlint"
 
 # Abbreviations
 abbr -a -g bqq bq query --nouse_legacy_sql
