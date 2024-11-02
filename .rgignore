@@ -1,3 +1,4 @@
 !.gitlab
 !.github
 !.env*
+lazy-lock.json
