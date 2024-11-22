@@ -1,4 +1,5 @@
 !.gitlab
+!.gitlab-ci.yml
 !.github
 !.env*
 lazy-lock.json
