@@ -5,3 +5,8 @@ scripts/logs
 systemd/user/default.target.wants/
 systemd/user/timers.target.wants/
 fish/*.tmp.*
+# if bin is a symlink to ~/bin, this is nice to have so I just keep track of
+# the scripts I've added
+bin/*
+!bin/*.sh
+!bin/*.fish
