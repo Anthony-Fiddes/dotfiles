@@ -44,7 +44,7 @@ end
 
 if type -q pyenv
     pyenv init - | source
-    if type -q pyenv virtualenv-init
+    if pyenv virtualenv-init &>/dev/null
         pyenv virtualenv-init - | source
     end
 end
