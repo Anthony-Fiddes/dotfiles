@@ -1,10 +1,10 @@
 #!/usr/bin/env fish
 # PATH
-fish_add_path -g /usr/local/go/bin
-fish_add_path -g ~/go/bin
-fish_add_path -g ~/scripts
-fish_add_path -g ~/bin
-fish_add_path -g ~/.local/bin
+fish_add_path /usr/local/go/bin
+fish_add_path ~/go/bin
+fish_add_path ~/scripts
+fish_add_path ~/bin
+fish_add_path ~/.local/bin
 
 # Other Variables
 if not set -q XDG_CONFIG_HOME
