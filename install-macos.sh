@@ -13,8 +13,7 @@ cp ./os_specific/macOS/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBi
 brew install kitty neovim fish bat rg fzf fd
 brew install htop signal go
 brew install librewolf --no-quarantine
-brew tap homebrew/cask-fonts
-brew install font-caskaydia-cove-nerd-font
+brew install --cask font-cascadia-code
 
 # QOL
 brew install tldr mac-mouse-fix
