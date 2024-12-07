@@ -1,6 +1,9 @@
 #!/usr/bin/env fish
 
-# read more about this at https://flaky.build/backup-your-macos-keyboard-shortcuts-from-command-line
+# Read more about this at https://flaky.build/backup-your-macos-keyboard-shortcuts-from-command-line
+#
+# and here are useful docs/demos that will help with using the `defaults` command:
+# https://macos-defaults.com/
 switch $argv[1]
     case backup
         for line in $(cat ./settings-to-backup.txt)
