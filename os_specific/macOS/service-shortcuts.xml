@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FinderActive</key>
+	<dict>
+		<key>APPEXTENSION-com.apple.finder.CreatePDFQuickAction</key>
+		<true/>
+		<key>APPEXTENSION-com.apple.finder.MarkupQuickAction</key>
+		<true/>
+		<key>APPEXTENSION-com.apple.finder.RotateQuickAction</key>
+		<true/>
+		<key>APPEXTENSION-com.apple.finder.TrimQuickAction</key>
+		<true/>
+		<key>is.workflow.actions.image.convert.finder</key>
+		<true/>
+		<key>is.workflow.actions.image.removebackground</key>
+		<true/>
+	</dict>
+	<key>FinderOrdering</key>
+	<dict>
+		<key>APPEXTENSION-com.apple.finder.CreatePDFQuickAction</key>
+		<integer>3</integer>
+		<key>APPEXTENSION-com.apple.finder.MarkupQuickAction</key>
+		<integer>1</integer>
+		<key>APPEXTENSION-com.apple.finder.RotateQuickAction</key>
+		<integer>0</integer>
+		<key>APPEXTENSION-com.apple.finder.TrimQuickAction</key>
+		<integer>2</integer>
+		<key>is.workflow.actions.image.convert.finder</key>
+		<integer>4</integer>
+		<key>is.workflow.actions.image.removebackground</key>
+		<integer>5</integer>
+	</dict>
+	<key>NSServicesStatus</key>
+	<dict>
+		<key>com.apple.ChineseTextConverterService - Convert Text from Simplified to Traditional Chinese - convertTextToTraditionalChinese</key>
+		<dict>
+			<key>enabled_context_menu</key>
+			<false/>
+			<key>enabled_services_menu</key>
+			<false/>
+			<key>presentation_modes</key>
+			<dict>
+				<key>ContextMenu</key>
+				<false/>
+				<key>ServicesMenu</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>com.apple.ChineseTextConverterService - Convert Text from Traditional to Simplified Chinese - convertTextToSimplifiedChinese</key>
+		<dict>
+			<key>enabled_context_menu</key>
+			<false/>
+			<key>enabled_services_menu</key>
+			<false/>
+			<key>presentation_modes</key>
+			<dict>
+				<key>ContextMenu</key>
+				<false/>
+				<key>ServicesMenu</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>com.apple.Dictionary - Look Up in Dictionary - doLookupService</key>
+		<dict>
+			<key>enabled_context_menu</key>
+			<true/>
+			<key>presentation_modes</key>
+			<dict>
+				<key>ContextMenu</key>
+				<true/>
+				<key>ServicesMenu</key>
+				<true/>
+			</dict>
+		</dict>
+		<key>com.apple.Safari - Search With %WebSearchProvider@ - searchWithWebSearchProvider</key>
+		<dict>
+			<key>enabled_context_menu</key>
+			<false/>
+			<key>enabled_services_menu</key>
+			<false/>
+			<key>key_equivalent</key>
+			<string></string>
+			<key>presentation_modes</key>
+			<dict>
+				<key>ContextMenu</key>
+				<false/>
+				<key>ServicesMenu</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>com.apple.Stickies - Make Sticky - makeStickyFromTextService</key>
+		<dict>
+			<key>enabled_context_menu</key>
+			<true/>
+			<key>presentation_modes</key>
+			<dict>
+				<key>ContextMenu</key>
+				<true/>
+				<key>ServicesMenu</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>ServicesShortcutsPresent</key>
+	<false/>
+</dict>
+</plist>

@@ -46,14 +46,16 @@
 	<key>NSLinguisticDataAssetsRequestLastInterval</key>
 	<real>86400</real>
 	<key>NSLinguisticDataAssetsRequestTime</key>
-	<date>2024-07-26T10:13:29Z</date>
+	<date>2024-12-01T14:40:10Z</date>
 	<key>NSLinguisticDataAssetsRequested</key>
 	<array>
 		<string>en</string>
+		<string>de</string>
 	</array>
 	<key>NSLinguisticDataAssetsRequestedByChecker</key>
 	<array>
 		<string>en</string>
+		<string>de</string>
 	</array>
 	<key>NSPreferredWebServices</key>
 	<dict>
@@ -65,10 +67,12 @@
 			<string>com.google.www</string>
 		</dict>
 	</dict>
+	<key>NSSpellCheckerContainerTransitionComplete</key>
+	<true/>
 	<key>NSSpellCheckerDictionaryContainerTransitionComplete</key>
 	<true/>
 	<key>NSSpellCheckerInputAnalyticsTime</key>
-	<date>2024-07-26T09:17:36Z</date>
+	<date>2024-11-17T16:35:56Z</date>
 	<key>NSTableViewDefaultSizeMode</key>
 	<integer>3</integer>
 	<key>NSUserDictionaryReplacementItems</key>
