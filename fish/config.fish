@@ -9,6 +9,11 @@ fish_add_path ~/.local/bin
 # Other Variables
 if not set -q XDG_CONFIG_HOME
     set -gx XDG_CONFIG_HOME "$HOME/.config"
+    mkdir -p $XDG_CONFIG_HOME
+end
+if not set -q XDG_DATA_HOME
+    set -gx XDG_DATA_HOME "$HOME/.local/share"
+    mkdir -p $XDG_DATA_HOME
 end
 
 if not status --is-interactive
