@@ -29,7 +29,6 @@ ln -s $(pwd)/nvim $XDG_CONFIG_HOME/nvim
 
 # get pretty pandoc html template
 mkdir -p $XDG_DATA_HOME/pandoc/templates
-set
 if not test -e $XDG_DATA_HOME/pandoc/templates/GitHub.html5
     cd $XDG_DATA_HOME/pandoc/templates/
     curl https://raw.githubusercontent.com/tajmone/pandoc-goodies/refs/heads/master/templates/html5/github/GitHub.html5 -O
