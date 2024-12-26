@@ -63,6 +63,10 @@ if type -q librewolf
     set -gx BROWSER librewolf
 end
 set -gx GITLINT_EXTRA_PATH "~/.gitlint"
+# neovim will freeze for some reason when using the :tag command to jump to a
+# new manpage without this MANWIDTH variable set.
+set -gx MANWIDTH 999
+set -gx MANPAGER "nvim +Man!"
 
 # Abbreviations
 abbr -a -g bqq bq query --nouse_legacy_sql
