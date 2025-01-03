@@ -16,7 +16,10 @@ brew install librewolf --no-quarantine
 brew install --cask font-cascadia-code
 
 # QOL
-brew install tldr mac-mouse-fix
+# terminal-notifier is used by the notify plugin for fish
+# NOTE: you may have to enable notifications for terminal-notifier/kitty in
+# settings
+brew install tldr mac-mouse-fix terminal-notifier
 # Tiling Window Manager
 brew install --cask nikitabobko/tap/aerospace
 brew tap FelixKratz/formulae
