@@ -31,8 +31,6 @@ end
 # NOTE: You have to clear an alias with "functions -e {ALIAS}" in
 # order to set it again.
 alias docker_ocrmypdf='docker run --rm -i ocrmypdf'
-alias icat="kitty +kitten icat"
-alias ssh="kitty +kitten ssh"
 alias vimm="command vim"
 
 # Order matters here. E.g. if pyenv was installed with brew then it won't be on
@@ -115,7 +113,10 @@ abbr -a -g v nvim
 if type -q nvim
     abbr -a -g vim nvim
 end
-
+if set -q KITTY_PID
+    abbr icat kitten icat
+    abbr ssh kitten ssh
+end
 abbr -a -g copy fish_clipboard_copy
 abbr -a -g paste fish_clipboard_paste
 
