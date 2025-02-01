@@ -8,7 +8,6 @@ end
 
 rm -r $HOME/bin
 ln -s $(pwd)/bin $HOME/bin
-fish_add_path -U $HOME/bin
 
 # configure brave
 rm $XDG_CONFIG_HOME/brave-flags.conf
