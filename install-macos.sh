@@ -11,7 +11,7 @@ cp ./os_specific/macOS/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBi
 
 # Essentials
 brew install kitty neovim fish bat rg fzf fd
-brew install htop signal go
+brew install htop signal go rclone
 brew install librewolf --no-quarantine
 brew install --cask font-cascadia-code
 
