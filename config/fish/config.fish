@@ -60,7 +60,7 @@ end
 if type -q librewolf
     set -gx BROWSER librewolf
 end
-set -gx GITLINT_EXTRA_PATH "$HOME/.gitlint"
+set -gx GITLINT_EXTRA_PATH "$XDG_CONFIG_HOME/gitlint/config"
 # neovim will freeze for some reason when using the :tag command to jump to a
 # new manpage without this MANWIDTH variable set.
 set -gx MANWIDTH 999
