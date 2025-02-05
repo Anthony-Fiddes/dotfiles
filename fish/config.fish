@@ -21,7 +21,7 @@ if not status --is-interactive
 end
 
 # Plugin Conf
-set nvm_default_version lts
+set -U nvm_default_version lts # has to be universal to work
 set sponge_delay 20
 if type -q tide
     tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Compact --icons='Few icons' --transient=No
