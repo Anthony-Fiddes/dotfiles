@@ -9,7 +9,7 @@ rm -r $XDG_CONFIG_HOME/fish
 ln -s $(pwd)/config/fish $XDG_CONFIG_HOME/fish
 
 rm -r $XDG_CONFIG_HOME/kitty
-ln -s $(pwd)/kitty $XDG_CONFIG_HOME/kitty
+ln -s $(pwd)/config/kitty $XDG_CONFIG_HOME/kitty
 
 mkdir -p $XDG_CONFIG_HOME/yamllint/
 ln -sf $(pwd)/config/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
