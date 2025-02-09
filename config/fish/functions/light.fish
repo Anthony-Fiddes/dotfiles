@@ -10,4 +10,5 @@ function light
         --color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
         --color=selected-bg:#bcc0cc \
         --multi"
+    set -Ux BAT_THEME "Catppuccin Latte"
 end

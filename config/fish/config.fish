@@ -60,9 +60,7 @@ end
 
 # Variables
 set -gx EDITOR nvim
-if not set -q BAT_THEME
-    set -gx BAT_THEME "Visual Studio Dark+"
-end
+set -gx BAT_CONFIG_DIR "$XDG_CONFIG_HOME/bat"
 if type -q librewolf
     set -gx BROWSER librewolf
 end

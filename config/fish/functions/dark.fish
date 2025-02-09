@@ -10,5 +10,5 @@ function dark
         --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
         --color=selected-bg:#494d64 \
         --multi"
-    # TODO: configure bat
+    set -Ux BAT_THEME "Catppuccin Macchiato"
 end

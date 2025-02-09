@@ -45,3 +45,7 @@ end
 if type -q nvm
     nvm install latest
 end
+
+if type -q bat
+    bat cache --build
+end
