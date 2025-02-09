@@ -20,6 +20,12 @@ if not status --is-interactive
     return
 end
 
+if test $THEME = light
+    light
+else
+    dark
+end
+
 # Plugin Conf
 set -U nvm_default_version lts # has to be universal to work
 set sponge_delay 20
