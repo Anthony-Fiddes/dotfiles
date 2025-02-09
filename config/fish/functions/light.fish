@@ -11,4 +11,8 @@ function light
         --color=selected-bg:#bcc0cc \
         --multi"
     set -Ux BAT_THEME "Catppuccin Latte"
+
+    if type -q gsettings
+        gsettings set org.gnome.desktop.interface color-scheme default
+    end
 end

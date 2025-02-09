@@ -11,4 +11,8 @@ function dark
         --color=selected-bg:#494d64 \
         --multi"
     set -Ux BAT_THEME "Catppuccin Macchiato"
+
+    if type -q gsettings
+        gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    end
 end
