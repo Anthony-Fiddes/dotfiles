@@ -12,7 +12,9 @@ function dark
         --multi"
     set -Ux BAT_THEME "Catppuccin Macchiato"
 
-    if type -q gsettings
+    if type -q osascript
+        osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
+    else if type -q gsettings
         gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     end
 end
