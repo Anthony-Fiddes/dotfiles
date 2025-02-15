@@ -75,6 +75,7 @@ abbr -a -g bqq bq query --nouse_legacy_sql
 abbr -a -g bqdry bq query --nouse_legacy_sql --dry_run
 if type -q batcat
     abbr -a -g cat batcat
+    abbr -a -g bat batcat
 else if type -q bat
     abbr -a -g cat bat
 end
