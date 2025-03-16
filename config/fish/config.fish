@@ -60,6 +60,7 @@ end
 
 # Variables
 set -gx EDITOR nvim
+set -gx SUDO_EDITOR vi # usually installed and available to root user
 set -gx BAT_CONFIG_DIR "$XDG_CONFIG_HOME/bat"
 if type -q librewolf
     set -gx BROWSER librewolf
