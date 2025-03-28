@@ -1,4 +1,6 @@
 extends: relaxed
-line-length:
-    max: 120
-    level: warning
+
+rules:
+    line-length:
+        max: 120
+        level: warning
