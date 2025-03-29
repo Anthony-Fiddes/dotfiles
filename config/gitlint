@@ -1,4 +1,0 @@
-[general]
-# Ignore rules, reference them by id or name (comma-separated)
-ignore=B6
-contrib=contrib-title-conventional-commits

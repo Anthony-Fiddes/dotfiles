@@ -65,7 +65,8 @@ set -gx BAT_CONFIG_DIR "$XDG_CONFIG_HOME/bat"
 if type -q librewolf
     set -gx BROWSER librewolf
 end
-set -gx GITLINT_EXTRA_PATH "$XDG_CONFIG_HOME/gitlint/config"
+set -gx GITLINT_CONTRIB contrib-title-conventional-commits
+set -gx GITLINT_IGNORE B6
 # neovim will freeze for some reason when using the :tag command to jump to a
 # new manpage without this MANWIDTH variable set.
 set -gx MANWIDTH 999

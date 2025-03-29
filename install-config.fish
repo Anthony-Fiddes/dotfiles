@@ -17,7 +17,4 @@ end
 mkdir -p $XDG_CONFIG_HOME/yamllint/
 ln -sf $(pwd)/config/yamllint.yaml $XDG_CONFIG_HOME/yamllint/config
 
-mkdir -p $XDG_CONFIG_HOME/gitlint/
-ln -sf $(pwd)/config/gitlint $XDG_CONFIG_HOME/gitlint/config
-
 ln -sf $(pwd)/config/.rgignore $HOME/.rgignore
