@@ -2,6 +2,7 @@
 # PATH
 fish_add_path /usr/local/go/bin
 fish_add_path ~/go/bin
+fish_add_path ~/.cargo/bin
 fish_add_path ~/scripts
 fish_add_path ~/bin
 fish_add_path ~/.local/bin
@@ -56,6 +57,11 @@ if type -q pyenv
     if pyenv virtualenv-init &>/dev/null
         pyenv virtualenv-init - | source
     end
+end
+
+if type -q bob
+    fish_add_path ~/.local/share/bob/nvim-bin
+    bob complete fish | source
 end
 
 # Variables
