@@ -11,6 +11,11 @@ function light
         --color=selected-bg:#bcc0cc \
         --multi"
     set -Ux BAT_THEME "Catppuccin Latte"
+    if type -q vivid
+        set -Ux LS_COLORS (vivid generate catppuccin-latte)
+    else
+        echo "info: `vivid` not installed, not setting LS_COLORS"
+    end
 
     if type -q osascript
         # Taken from this article:
