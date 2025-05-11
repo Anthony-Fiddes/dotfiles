@@ -10,6 +10,7 @@ sudo apt install libfuse2 -y
 sudo apt install python3.12-venv -y
 
 # Install useful cli tools
+# TODO: install rust/cargo, use it to install vivid
 sudo apt install htop gh git-delta golang bat ripgrep fd-find rclone -y
 sudo add-apt-repository ppa:git-core/ppa -y
 sudo add-apt-repository ppa:neovim-ppa/stable -y
