@@ -13,9 +13,8 @@ sudo apt install python3.12-venv -y
 # TODO: install rust/cargo, use it to install vivid
 sudo apt install htop gh git-delta golang bat ripgrep fd-find rclone -y
 sudo add-apt-repository ppa:git-core/ppa -y
-sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt update
-sudo apt install git neovim -y
+sudo apt install git -y
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --bin
