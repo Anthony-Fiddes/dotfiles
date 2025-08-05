@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the basics
-sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt-add-repository ppa:fish-shell/release-4
 sudo apt update && sudo apt upgrade
 sudo apt install fish tldr curl make gcc -y
 chsh -s $(which fish) $USER
