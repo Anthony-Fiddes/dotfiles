@@ -10,7 +10,7 @@ mkdir -p ~/Library/KeyBindings/
 cp ./os_specific/macOS/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.Dict
 
 # Essentials
-brew install kitty neovim fish bat rg fzf fd
+brew install kitty neovim fish bat rg fzf fd vivid
 brew install htop signal go rclone
 brew install librewolf --no-quarantine
 brew install --cask font-cascadia-code
