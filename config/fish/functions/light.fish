@@ -1,7 +1,7 @@
 function light
     # made with reference to this great article:
     # https://evantravers.com/articles/2022/02/08/light-dark-toggle-for-neovim-fish-and-kitty/
-    set -Ux THEME light
+    set -Ux MY_THEME light
     kitty @ set-colors -a $XDG_CONFIG_HOME/kitty/light-theme.conf
 
     set -Ux FZF_DEFAULT_OPTS "\

@@ -21,7 +21,8 @@ if not status --is-interactive
     return
 end
 
-if test $THEME = light
+# used to be THEME, but this variable is manipulated in Ubuntu somewhere
+if test $MY_THEME = light
     light
 else
     dark
