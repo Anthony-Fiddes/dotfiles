@@ -21,8 +21,9 @@ if not status --is-interactive
     return
 end
 
-# used to be THEME, but this variable is manipulated in Ubuntu somewhere
-if test $MY_THEME = light
+# don't let global copies influence behavior
+set -ge THEME
+if test $THEME = light
     light
 else
     dark
