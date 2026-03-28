@@ -19,7 +19,8 @@ brew install --cask font-cascadia-code
 # terminal-notifier is used by the notify plugin for fish
 # NOTE: you may have to enable notifications for terminal-notifier/kitty in
 # settings
-brew install tldr mac-mouse-fix terminal-notifier
+brew install tldr terminal-notifier
+brew install --cask mos
 # Tiling Window Manager
 brew install --cask nikitabobko/tap/aerospace
 brew tap FelixKratz/formulae
