@@ -2,7 +2,10 @@
 # Install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # Make sure it works in default terminal/zsh
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/$USER/.zprofile
+(
+  echo
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+) >>/Users/$USER/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Map some familiar text navigation shortcuts
@@ -27,10 +30,10 @@ brew tap FelixKratz/formulae
 brew install borders
 
 # Make fish the default shell
-if not sudo grep $(which fish) /etc/shells
-  echo $(which fish) | sudo tee -a /etc/shells
-end
-chsh -s $(which fish) $USER
+if not sudo grep "$(which fish)" /etc/shells; then
+  which fish | sudo tee -a /etc/shells
+fi
+chsh -s "$(which fish)" "$USER"
 
 # Link aerospace functionality
 ln -s $(pwd)/os_specific/macOS/aerospace.toml ~/.aerospace.toml
