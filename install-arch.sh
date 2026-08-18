@@ -8,7 +8,7 @@ yay -S brave-bin pyenv-virtualenv timeshift-autosnap librewolf-bin
 # One big update including AUR ones caused like 4 snapshots. Default was 3
 sudo sed -i "s/maxSnapshots=.*/maxSnapshots=10/1" /etc/timeshift-autosnap.conf
 # Gnome stuff
-yay -S  dconf-editor gnome-calendar gnome-contacts \
+yay -S dconf-editor gnome-calendar gnome-contacts \
   gnome-software gnome-firmware baobab
 
 ## AUR Gnome stuff
@@ -35,4 +35,4 @@ yay -S nautilus-open-any-terminal
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
 
 # Keep going in fish
-./bin/install.fish
+./install.fish

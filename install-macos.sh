@@ -40,4 +40,4 @@ chsh -s "$(which fish)" "$USER"
 ln -s "$(pwd)/os_specific/macOS/aerospace.toml" ~/.aerospace.toml
 
 # Keep going in fish
-./bin/install.fish
+./install.fish

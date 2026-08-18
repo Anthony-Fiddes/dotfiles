@@ -13,7 +13,7 @@ sudo apt update && sudo apt install librewolf -y
 
 # Keep going in fish
 ./bin/install-deb-continued.fish
-./bin/install.fish
+./install.fish
 
 # Set kitty as default terminal
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which kitty) 100
