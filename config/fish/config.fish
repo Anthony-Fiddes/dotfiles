@@ -22,6 +22,7 @@ if not status --is-interactive
 end
 
 # don't let global copies influence behavior
+# don't let global copies influence behavior (it was a weird systemd issue)
 set -ge THEME
 if test $THEME = light
     light
