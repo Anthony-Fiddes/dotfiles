@@ -21,7 +21,7 @@ if not status --is-interactive
     return
 end
 
-# don't let global copies influence behavior
+fish_config theme choose catppuccin-macchiato
 # don't let global copies influence behavior (it was a weird systemd issue)
 set -ge THEME
 if test $THEME = light
