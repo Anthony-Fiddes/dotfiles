@@ -37,7 +37,7 @@ fi
 chsh -s "$(which fish)" "$USER"
 
 # Link aerospace functionality
-ln -s $(pwd)/os_specific/macOS/aerospace.toml ~/.aerospace.toml
+ln -s "$(pwd)/os_specific/macOS/aerospace.toml" ~/.aerospace.toml
 
 # Keep going in fish
 ./bin/install.fish
