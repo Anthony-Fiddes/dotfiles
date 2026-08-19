@@ -15,7 +15,7 @@ cp ./os_specific/macOS/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBi
 # Essentials
 brew install kitty neovim fish bat rg fzf fd vivid
 brew install btop htop signal go rclone pyenv
-brew install git-delta
+brew install git-delta tree-sitter-cli
 brew install librewolf --no-quarantine
 brew install --cask zen
 brew install --cask font-cascadia-code
