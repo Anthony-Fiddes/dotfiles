@@ -33,9 +33,8 @@ brew install borders
 
 # Make fish the default shell
 if not sudo grep "$(which fish)" /etc/shells; then
-  which fish | sudo tee -a /etc/shells
+  which fish | sudo tee -a /etc/shells && chsh -s "$(which fish)" "$USER"
 fi
-chsh -s "$(which fish)" "$USER"
 
 # Link aerospace functionality
 ln -s "$(pwd)/os_specific/macOS/aerospace.toml" ~/.aerospace.toml
