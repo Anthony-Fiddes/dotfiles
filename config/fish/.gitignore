@@ -1,5 +1,5 @@
 *.tmp.*
-fish_variables
+fish_variables*
 conf.d
 functions/_*
 functions/bass*
