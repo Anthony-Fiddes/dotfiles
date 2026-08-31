@@ -18,7 +18,6 @@ brew install btop htop signal go rclone pyenv
 brew install git-delta tree-sitter-cli
 brew install librewolf --no-quarantine
 brew install --cask zen
-brew install --cask monitorcontrol
 brew install --cask font-cascadia-code
 
 # QOL
@@ -26,7 +25,8 @@ brew install --cask font-cascadia-code
 # NOTE: you may have to enable notifications for terminal-notifier/kitty in
 # settings
 brew install tldr terminal-notifier
-brew install --cask mos
+brew install --cask hiddenbar
+brew install --cask vorssaint
 # Tiling Window Manager
 brew install --cask nikitabobko/tap/aerospace
 brew tap FelixKratz/formulae
