@@ -22,13 +22,6 @@ if not status --is-interactive
 end
 
 fish_config theme choose catppuccin-macchiato
-# don't let global copies influence behavior (it was a weird systemd issue)
-set -ge THEME
-if test $THEME = light
-    light
-else
-    dark
-end
 
 # Plugin Conf
 set -U nvm_default_version lts # has to be universal to work
